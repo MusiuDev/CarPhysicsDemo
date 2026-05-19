@@ -4,7 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class SmoothCarMovement : MonoBehaviour
 {
-    [SerializeField] private CarMovementCharacteristics _movement;
+    [SerializeField] private CarMovementCharacteristics _movementStraight;
+    [SerializeField] private CarMovementCharacteristics _movementSteering;
+
+    [SerializeField] private float _steeringTransitionTime;
+    [SerializeField] private AnimationCurve _steeringTransitionCurve;
+
     [SerializeField] private float _centerOfMassVerticalOffset;
     [SerializeField] private CarWheel[] _wheels;
     [SerializeField] private float _wheelRaycastDistance;
@@ -15,11 +20,14 @@ public class SmoothCarMovement : MonoBehaviour
     public ICarState State => _state;
 
     public IReadOnlyCollection<CarWheel> Wheels => _wheels;
+    private float _steeringTransitionState = 0f;
+    private CarMovementCharacteristics _movement;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _rb.centerOfMass = Vector3.up * _centerOfMassVerticalOffset;
+        _movement = Instantiate(_movementStraight);
     }
 
     public void SetInput(float steer, bool accelerate, bool brake)
@@ -33,6 +41,7 @@ public class SmoothCarMovement : MonoBehaviour
     {
         UpdateWheelsInfo();
         UpdateMotionInfo();
+        UpdateMovementCharacteristicsFromSteering();
         UpdateSteering();
         UpdateMotion();
         UpdateDamping();
@@ -42,7 +51,7 @@ public class SmoothCarMovement : MonoBehaviour
     {
         _state.ContactingWheels = 0;
         _state.TotalSlopeTraction = 0f;
-        _state.CurrentSpeedFactor = _rb.linearVelocity.magnitude / _movement._maxSpeed;
+        _state.CurrentSpeedFactor = _rb.linearVelocity.magnitude / _movement.MaxSpeed;
 
         foreach (var wheel in _wheels)
         {
@@ -50,11 +59,13 @@ public class SmoothCarMovement : MonoBehaviour
             if (wheel.InContact)
             {
                 _state.ContactingWheels++;
-                _state.TotalSlopeTraction += wheel.ContactSlope;
+                _state.TotalSlopeTraction += _movement.TractionCurveBySlope.Evaluate(wheel.ContactSlope);
             }
         }
+        float totalContact = (1f / _wheels.Length) * _state.ContactingWheels;
+        _state.TotalSlopeTraction /= _wheels.Length;
 
-        _state.ContactingMult = (1f / _wheels.Length) * _state.ContactingWheels * _movement._tractionCurveBySlope.Evaluate(_state.TotalSlopeTraction) * _movement._tractionMutliplier;
+        _state.ContactingMult = totalContact * _state.TotalSlopeTraction * _movement.TractionMutliplier;
     }
 
     private void UpdateMotionInfo()
@@ -75,26 +86,26 @@ public class SmoothCarMovement : MonoBehaviour
 
     private void UpdateDamping()
     {
-        float linearDamping = _movement._baseDamping;
+        float linearDamping = _movement.BaseDamping;
 
         if (!_state.AccelerateInput && !_state.BrakeInput)
         {
-            linearDamping += _movement._stoppedDamping * _state.ContactingMult;
+            linearDamping += _movement.StoppedDamping * _state.ContactingMult;
         }
 
-        linearDamping += _state.DriftingFactor * _movement._driftingDamping * _state.ContactingMult;
+        linearDamping += _state.DriftingFactor * _movement.DriftingDamping * _state.ContactingMult;
 
         _rb.linearDamping = linearDamping;
 
 
-        float angularDamping = _movement._baseAngularDamping;
+        float angularDamping = _movement.BaseAngularDamping;
         if (Mathf.Abs(_state.SteerInput) > 0.1f)
         {
-            angularDamping += _movement._steeringAngularDamping * _state.ContactingMult;
+            angularDamping += _movement.SteeringAngularDamping * _state.ContactingMult;
         }
         else
         {
-            angularDamping += _movement._straightAngularDamping * _state.ContactingMult;
+            angularDamping += _movement.StraightAngularDamping * _state.ContactingMult;
         }
 
         _rb.angularDamping = angularDamping;
@@ -121,21 +132,51 @@ public class SmoothCarMovement : MonoBehaviour
 
         if (Mathf.Abs(_state.SteerInput) > 0.1f)
         {
-            float steerMult = _state.ContactingMult * _movement._steerMultCurveBySpeed.Evaluate(_state.CurrentSpeedFactor);
+            float steerMult = Mathf.Max(_state.ContactingMult, _movement.AirControl) * _movement.SteerMultCurveBySpeed.Evaluate(_state.CurrentSpeedFactor);
             if (_state.ContactingWheels == 0)
             {
-                steerMult = _movement._airControl;
+                steerMult = Mathf.Max(steerMult, _movement.AirControl);
             }
 
-            _rb.AddRelativeTorque(0, _movement._steerTorque * _state.SteerInput * steerMult * Time.fixedDeltaTime * _state.IntentionAngle, 0, ForceMode.Acceleration);
+            _rb.AddRelativeTorque(0, _movement.SteerTorque * _state.SteerInput * steerMult * Time.fixedDeltaTime * _state.IntentionAngle, 0, ForceMode.Acceleration);
 
             Vector3 currentAngularVelocity = _rb.angularVelocity;
             float localYAngularVelocity = Vector3.Dot(currentAngularVelocity, _state.RbUp) * Mathf.Rad2Deg;
-            if (Mathf.Abs(localYAngularVelocity) > _movement._maxAngularSpeed)
+            if (Mathf.Abs(localYAngularVelocity) > _movement.MaxAngularSpeed)
             {
-                float excessYSpin = localYAngularVelocity - Mathf.Clamp(localYAngularVelocity, -_movement._maxAngularSpeed, _movement._maxAngularSpeed);
+                float excessYSpin = localYAngularVelocity - Mathf.Clamp(localYAngularVelocity, -_movement.MaxAngularSpeed, _movement.MaxAngularSpeed);
                 Vector3 reduction = _state.RbUp * excessYSpin * Mathf.Deg2Rad;
                 _rb.angularVelocity = Vector3.Lerp(currentAngularVelocity, currentAngularVelocity - reduction, steerMult);
+            }
+        }
+    }
+
+    private void UpdateMovementCharacteristicsFromSteering()
+    {
+        if (Mathf.Abs(_state.SteerInput) > 0.1f)
+        {
+            float steerMult = _movement.SteerMultCurveBySpeed.Evaluate(_state.CurrentSpeedFactor);
+            _steeringTransitionState += (Time.deltaTime / _steeringTransitionTime) * steerMult * Mathf.Abs(_state.SteerInput);
+        }
+        else
+        {
+            _steeringTransitionState -= Time.deltaTime / _steeringTransitionTime;
+        }
+
+        _steeringTransitionState = Mathf.Clamp01(_steeringTransitionState);
+        float curvedTransition = _steeringTransitionCurve.Evaluate(_steeringTransitionState);
+
+        var objectType = typeof(CarMovementCharacteristics);
+        var props = objectType.GetProperties();
+        foreach (var prop in props)
+        {
+            object value = prop.GetValue(_movement, null);
+            if (value != null && value is float)
+            {
+                float valueStraight = (float)prop.GetValue(_movementStraight, null);
+                float valueSteering = (float)prop.GetValue(_movementSteering, null);
+                float lerped = Mathf.Lerp(valueStraight, valueSteering, curvedTransition);
+                prop.SetValue(_movement, lerped);
             }
         }
     }
@@ -144,28 +185,28 @@ public class SmoothCarMovement : MonoBehaviour
     {
         if (_state.AccelerateInput)
         {
-            _rb.AddForce(_state.RbForward * _state.ContactingMult * _movement._acceleration, ForceMode.Force);
+            _rb.AddForce(_state.RbForward * _state.ContactingMult * _movement.Acceleration, ForceMode.Force);
         }
         if (_state.BrakeInput)
         {
-            _rb.AddForce(-_state.RbForward * _state.ContactingMult * _movement._acceleration, ForceMode.Force);
+            _rb.AddForce(-_state.RbForward * _state.ContactingMult * _movement.Acceleration, ForceMode.Force);
         }
 
-        if (_movement._driftRecoverySpeed > 0)
+        if (_movement.DriftRecoverySpeed > 0)
         {
-            float recoverySpeed = Mathf.Deg2Rad * _movement._driftRecoverySpeed * Time.fixedDeltaTime;
-            if (_state.DriftingFactor > _movement._fastDriftRecoveryThreshold)
+            float recoverySpeed = Mathf.Deg2Rad * _movement.DriftRecoverySpeed * Time.fixedDeltaTime;
+            if (_state.DriftingFactor > _movement.FastDriftRecoveryThreshold)
             {
-                float m = Mathf.Lerp(1, _movement._fastDriftRecoveryMult, (_state.DriftingFactor - _movement._fastDriftRecoveryThreshold) / (1 - _movement._fastDriftRecoveryThreshold));
+                float m = Mathf.Lerp(1, _movement.FastDriftRecoveryMult, (_state.DriftingFactor - _movement.FastDriftRecoveryThreshold) / (1 - _movement.FastDriftRecoveryThreshold));
                 recoverySpeed *= m;
             }
 
             Vector3 targetDirection = Vector3.MoveTowards(_rb.linearVelocity.normalized, _state.IntentionAngle < 0 ? -_state.RbForward : _state.RbForward, recoverySpeed).normalized;
             float velocityMagnitude = _rb.linearVelocity.magnitude;
 
-            if (velocityMagnitude > _movement._maxSpeed)
+            if (velocityMagnitude > _movement.MaxSpeed)
             {
-                velocityMagnitude = Mathf.Lerp(velocityMagnitude, _movement._maxSpeed, _state.ContactingMult);
+                velocityMagnitude = Mathf.Lerp(velocityMagnitude, _movement.MaxSpeed, _state.ContactingMult);
             }
             Vector3 targetVelocity = targetDirection * velocityMagnitude;
 

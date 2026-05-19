@@ -2984,8 +2984,32 @@ PrefabInstance:
       value: Car
       objectReference: {fileID: 0}
     - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+      propertyPath: _movementSteering
+      value: 
+      objectReference: {fileID: 11400000, guid: 40cb94c4b4e442096929433f3fe6048b, type: 2}
+    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+      propertyPath: _movementStraight
+      value: 
+      objectReference: {fileID: 11400000, guid: 11e62ed8aa33876ec9aed9a6675df3d6, type: 2}
+    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: _wheelRaycastDistance
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+      propertyPath: _steeringTransitionTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+      propertyPath: _steeringTransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+      propertyPath: _steeringTransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+      propertyPath: _steeringTransitionCurve.m_Curve.Array.data[1].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

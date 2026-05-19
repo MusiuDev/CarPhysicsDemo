@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cf837d079136d3ed9fec850dbbaaef4, type: 3}
-  m_Name: CarMovement_Base
+  m_Name: CarMovement_Ice
   m_EditorClassIdentifier: Assembly-CSharp::CarMovementCharacteristics
-  <_maxSpeed>k__BackingField: 20
-  <_acceleration>k__BackingField: 16
-  <_steerTorque>k__BackingField: 600
-  <_maxAngularSpeed>k__BackingField: 180
-  <_driftRecoverySpeed>k__BackingField: 95
-  <_fastDriftRecoveryThreshold>k__BackingField: 0.8
-  <_fastDriftRecoveryMult>k__BackingField: 3
-  <_steerMultCurveBySpeed>k__BackingField:
+  <MaxSpeed>k__BackingField: 20
+  <Acceleration>k__BackingField: 16
+  <SteerTorque>k__BackingField: 600
+  <MaxAngularSpeed>k__BackingField: 180
+  <DriftRecoverySpeed>k__BackingField: 10
+  <FastDriftRecoveryThreshold>k__BackingField: 0.8
+  <FastDriftRecoveryMult>k__BackingField: 2
+  <SteerMultCurveBySpeed>k__BackingField:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -43,7 +43,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <_tractionCurveBySlope>k__BackingField:
+  <TractionCurveBySlope>k__BackingField:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -76,11 +76,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <_tractionMutliplier>k__BackingField: 1
-  <_airControl>k__BackingField: 0.2
-  <_baseDamping>k__BackingField: 0
-  <_stoppedDamping>k__BackingField: 2.5
-  <_driftingDamping>k__BackingField: 0
-  <_baseAngularDamping>k__BackingField: 0
-  <_steeringAngularDamping>k__BackingField: 0
-  <_straightAngularDamping>k__BackingField: 3
+  <TractionMutliplier>k__BackingField: 0.5
+  <AirControl>k__BackingField: 0
+  <BaseDamping>k__BackingField: 0
+  <StoppedDamping>k__BackingField: 2.5
+  <DriftingDamping>k__BackingField: 0
+  <BaseAngularDamping>k__BackingField: 0
+  <SteeringAngularDamping>k__BackingField: 0
+  <StraightAngularDamping>k__BackingField: 3
