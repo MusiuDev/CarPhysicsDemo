@@ -9,6 +9,7 @@ public class SmoothCarMovement : MonoBehaviour
     [SerializeField] private float _acceleration;
 
     [SerializeField] private float _steerTorque;
+    [SerializeField] private AnimationCurve _steerMultCurveBySpeed;
     [SerializeField] private float _maxAngularSpeed;
     [SerializeField] private float _driftRecoverySpeed;
     [SerializeField] private float _fastDriftRecoveryThreshold = 1f;
@@ -25,7 +26,7 @@ public class SmoothCarMovement : MonoBehaviour
     [SerializeField] private float _steeringAngularDamping;
     [SerializeField] private float _straightAngularDamping;
 
-    [SerializeField] private float centerOfMassVerticalOffset;
+    [SerializeField] private float _centerOfMassVerticalOffset;
 
     [SerializeField] private Transform[] _frontWheels;
     [SerializeField] private Transform[] _backWheels;
@@ -40,12 +41,13 @@ public class SmoothCarMovement : MonoBehaviour
     public bool AccelerateInput => _accelerateInput;
     private bool _brakeInput;
     public bool BrakeInput => _brakeInput;
-    
+
     private float _contactingMult;
     private int _contactingWheels;
     private float _totalTraction;
     private float _driftingFactor;
     private int _intentionAngle;
+    private float _currentSpeedFactor;
 
     public float DriftingFactor => _driftingFactor;
 
@@ -61,7 +63,7 @@ public class SmoothCarMovement : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _rb.centerOfMass = Vector3.up * centerOfMassVerticalOffset;
+        _rb.centerOfMass = Vector3.up * _centerOfMassVerticalOffset;
 
         _allWheels = new List<Transform>();
 
@@ -93,6 +95,7 @@ public class SmoothCarMovement : MonoBehaviour
 
         _contactingWheels = 0;
         _totalTraction = 0f;
+        _currentSpeedFactor = _rb.linearVelocity.magnitude / _maxSpeed;
 
         for (int i = 0; i < _allWheels.Count; i++)
         {
@@ -158,7 +161,7 @@ public class SmoothCarMovement : MonoBehaviour
 
         if (Mathf.Abs(_steerInput) > 0.1f)
         {
-            float steerMult = _contactingMult;
+            float steerMult = _contactingMult * _steerMultCurveBySpeed.Evaluate(_currentSpeedFactor);
             if (_contactingWheels == 0)
             {
                 steerMult = _airControl;

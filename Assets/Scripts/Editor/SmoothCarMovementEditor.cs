@@ -8,7 +8,7 @@ public class SmoothCarMovementEditor : Editor
 
     void OnEnable()
     {
-        comProperty = serializedObject.FindProperty("centerOfMassVerticalOffset");
+        comProperty = serializedObject.FindProperty("_centerOfMassVerticalOffset");
     }
 
     void OnSceneGUI()
