@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CarVisualsManager : MonoBehaviour
 {
     [SerializeField] private SmoothCarMovement _car;
-    [SerializeField] private DriftingVFXGroup[] tireGroups;
+    [SerializeField] private DriftingVFXGroup[] _tireGroups;
 
     void Start()
     {
-        foreach (var group in tireGroups)
+        foreach (var group in _tireGroups)
         {
-            group.Initialize(_car);
+            group.Initialize(_car.State);
         }
     }
 
@@ -17,26 +18,24 @@ public class CarVisualsManager : MonoBehaviour
     {
         if (!_car) return;
 
-        foreach (var group in tireGroups)
+        foreach (var group in _tireGroups)
         {
             group.Update();
         }
     }
 
-
-
     [System.Serializable]
-    private class TireTrailPair
+    private class WheelTrailPair
     {
-        public Transform tireReference;
-        public Transform visualTire;
+        public CarWheel carWheel;
         public TrailRenderer trail;
+        public Transform visualWheel;
     }
 
     [System.Serializable]
     private class DriftingVFXGroup
     {
-        [SerializeField] private TireTrailPair[] _tires;
+        [SerializeField] private WheelTrailPair[] _wheelPairs;
         [SerializeField] private float _driftingStart;
         [SerializeField] private float _driftingEnd;
         [SerializeField] private float _extraTime;
@@ -47,12 +46,12 @@ public class CarVisualsManager : MonoBehaviour
 
         private bool _emitting;
         private float _lastDrfitTime;
-        private SmoothCarMovement _car;
+        private SmoothCarMovement.ICarState _carState;
         private float _currentSteer;
 
-        public void Initialize(SmoothCarMovement car)
+        public void Initialize(SmoothCarMovement.ICarState carState)
         {
-            _car = car;
+            _carState = carState;
         }
 
         public void Update()
@@ -65,13 +64,13 @@ public class CarVisualsManager : MonoBehaviour
         {
             if (!_emitting)
             {
-                if (_car.DriftingFactor >= _driftingStart)
+                if (_carState.DriftingFactor >= _driftingStart)
                 {
                     _emitting = true;
                     _lastDrfitTime = 0;
                 }
             }
-            else if (_car.DriftingFactor < _driftingEnd)
+            else if (_carState.DriftingFactor < _driftingEnd)
             {
                 _lastDrfitTime += Time.deltaTime;
                 if (_lastDrfitTime >= _extraTime)
@@ -80,23 +79,20 @@ public class CarVisualsManager : MonoBehaviour
                 }
             }
 
-            _currentSteer = Mathf.MoveTowards(_currentSteer, _car.SteerInput * _steerTurnAngle, _steerTurnSpeed * Time.deltaTime);
+            _currentSteer = Mathf.MoveTowards(_currentSteer, _carState.SteerInput * _steerTurnAngle, _steerTurnSpeed * Time.deltaTime);
         }
 
         private void UpdateRenderers()
         {
 
-            foreach (var tire in _tires)
+            foreach (var wheelPair in _wheelPairs)
             {
-                var trail = tire.trail;
-                var tireRef = tire.tireReference;
-
-                bool shouldEnable = _emitting && _car.ContacticDict[tireRef];
-                trail.emitting = shouldEnable;
+                bool shouldEnable = _emitting && wheelPair.carWheel.InContact;
+                wheelPair.trail.emitting = shouldEnable;
 
                 if (_steerVisualWheels)
                 {
-                    var visualTire = tire.visualTire;
+                    var visualTire = wheelPair.visualWheel;
                     visualTire.transform.localEulerAngles = new Vector3(0, _currentSteer, 0);
                 }
             }

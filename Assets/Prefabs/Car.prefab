@@ -496,6 +496,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7196612063000889047}
+  - component: {fileID: 6149756497397849223}
   m_Layer: 0
   m_Name: Wheel_BL
   m_TagString: Untagged
@@ -518,6 +519,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4414064789507278876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6149756497397849223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691612657001272659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e45fa94121ac5a8bb5cdc7cf0a3569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarWheel
 --- !u!1 &3760265733334291419
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,6 +764,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7363966853345560560}
+  - component: {fileID: 3781649925366475516}
   m_Layer: 0
   m_Name: Wheel_FL
   m_TagString: Untagged
@@ -773,6 +787,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4414064789507278876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3781649925366475516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040252674101459030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e45fa94121ac5a8bb5cdc7cf0a3569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarWheel
 --- !u!1 &5402952260927350049
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,71 +849,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a06aacbb94333f55ba20860ef96dcb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmoothCarMovement
-  _maxSpeed: 20
-  _acceleration: 16
-  _steerTorque: 600
-  _maxAngularSpeed: 180
-  _driftRecoverySpeed: 95
-  _fastDriftRecoveryThreshold: 0.8
-  _fastDriftRecoveryMult: 3
-  _tractionCurveBySlope:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.3
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.24193518
-      value: 0.6033334
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _tractionMutliplier: 1
-  _airControl: 0.2
-  _baseDamping: 0
-  _stoppedDamping: 2
-  _driftingDamping: 0
-  _baseAngularDamping: 0
-  _steeringAngularDamping: 0
-  _straightAngularDamping: 3
-  centerOfMassVerticalOffset: 0.25
-  _frontWheels:
-  - {fileID: 8563424147768947980}
-  - {fileID: 7363966853345560560}
-  _backWheels:
-  - {fileID: 7196612063000889047}
-  - {fileID: 2367171039619527348}
-  _raycastDistance: 0.15
+  _movement: {fileID: 11400000, guid: 40cb94c4b4e442096929433f3fe6048b, type: 2}
+  _centerOfMassVerticalOffset: 0
+  _wheels:
+  - {fileID: 281692923439181367}
+  - {fileID: 5919621192534708112}
+  - {fileID: 3781649925366475516}
+  - {fileID: 6149756497397849223}
+  _wheelRaycastDistance: 0.15
 --- !u!114 &3678377149773849879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,27 +886,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarVisualsManager
   _car: {fileID: 7410640515221001165}
-  tireGroups:
-  - _tires:
-    - tireReference: {fileID: 2367171039619527348}
-      visualTire: {fileID: 7096238476793552909}
+  _tireGroups:
+  - _wheelPairs:
+    - carWheel: {fileID: 5919621192534708112}
       trail: {fileID: 4181690862047351985}
-    - tireReference: {fileID: 7196612063000889047}
-      visualTire: {fileID: 5935452671999141626}
+      visualWheel: {fileID: 7096238476793552909}
+    - carWheel: {fileID: 6149756497397849223}
       trail: {fileID: 7757259745858714459}
+      visualWheel: {fileID: 5935452671999141626}
     _driftingStart: 0.4
     _driftingEnd: 0.15
     _extraTime: 0.25
     _steerVisualWheels: 0
     _steerTurnAngle: 0
     _steerTurnSpeed: 0
-  - _tires:
-    - tireReference: {fileID: 8563424147768947980}
-      visualTire: {fileID: 3909459024096447841}
+  - _wheelPairs:
+    - carWheel: {fileID: 281692923439181367}
       trail: {fileID: 2230355027006260103}
-    - tireReference: {fileID: 7363966853345560560}
-      visualTire: {fileID: 2290752738240404371}
+      visualWheel: {fileID: 3909459024096447841}
+    - carWheel: {fileID: 3781649925366475516}
       trail: {fileID: 3139425257789938427}
+      visualWheel: {fileID: 2290752738240404371}
     _driftingStart: 0.65
     _driftingEnd: 0.3
     _extraTime: 0.25
@@ -1015,6 +984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2367171039619527348}
+  - component: {fileID: 5919621192534708112}
   m_Layer: 0
   m_Name: Wheel_BR
   m_TagString: Untagged
@@ -1037,6 +1007,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4414064789507278876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5919621192534708112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260809457805272271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e45fa94121ac5a8bb5cdc7cf0a3569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarWheel
 --- !u!1 &7331733919713500144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,6 +1140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8563424147768947980}
+  - component: {fileID: 281692923439181367}
   m_Layer: 0
   m_Name: Wheel_FR
   m_TagString: Untagged
@@ -1180,6 +1163,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4414064789507278876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &281692923439181367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7465043158455555802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e45fa94121ac5a8bb5cdc7cf0a3569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarWheel
 --- !u!1 &7627493797710945966
 GameObject:
   m_ObjectHideFlags: 0

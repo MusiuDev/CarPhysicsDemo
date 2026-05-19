@@ -2953,19 +2953,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0.0000004768371
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2973,7 +2973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2984,32 +2984,8 @@ PrefabInstance:
       value: Car
       objectReference: {fileID: 0}
     - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[0].inSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[0].outSlope
-      value: 2
+      propertyPath: _wheelRaycastDistance
+      value: 0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
