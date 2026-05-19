@@ -15,7 +15,7 @@ public class SmoothCarMovement : MonoBehaviour
     [SerializeField] private float _fastDriftRecoveryMult = 3;
     [SerializeField] private AnimationCurve _tractionCurveBySlope; //1 = flat, 0 = vertical or worse.
     [SerializeField] private float _tractionMutliplier = 1f;
-    [SerializeField] private float _airTraction = 0.1f;
+    [SerializeField] private float _airControl = 0.1f;
 
     [SerializeField] private float _baseDamping;
     [SerializeField] private float _stoppedDamping;
@@ -35,8 +35,12 @@ public class SmoothCarMovement : MonoBehaviour
     Rigidbody _rb;
 
     private float _steerInput;
+    public float SteerInput => _steerInput;
     private bool _accelerateInput;
+    public bool AccelerateInput => _accelerateInput;
     private bool _brakeInput;
+    public bool BrakeInput => _brakeInput;
+    
     private float _contactingMult;
     private int _contactingWheels;
     private float _totalTraction;
@@ -114,10 +118,7 @@ public class SmoothCarMovement : MonoBehaviour
         Vector3 rbUp = _rb.rotation * Vector3.up;
 
         _contactingMult = (1f / _allWheels.Count) * _contactingWheels * _tractionCurveBySlope.Evaluate(_totalTraction) * _tractionMutliplier;
-        if (_contactingWheels == 0)
-        {
-            _contactingMult = _airTraction * _tractionMutliplier;
-        }
+
         _driftingFactor = 0f;
         float motionAngle = 0;
 
@@ -157,14 +158,21 @@ public class SmoothCarMovement : MonoBehaviour
 
         if (Mathf.Abs(_steerInput) > 0.1f)
         {
-            _rb.AddRelativeTorque(0, _steerTorque * _steerInput * _contactingMult * Time.fixedDeltaTime * _intentionAngle, 0, ForceMode.Acceleration);
+            float steerMult = _contactingMult;
+            if (_contactingWheels == 0)
+            {
+                steerMult = _airControl;
+            }
+
+            _rb.AddRelativeTorque(0, _steerTorque * _steerInput * steerMult * Time.fixedDeltaTime * _intentionAngle, 0, ForceMode.Acceleration);
+
             Vector3 currentAngularVelocity = _rb.angularVelocity;
             float localYAngularVelocity = Vector3.Dot(currentAngularVelocity, rbUp) * Mathf.Rad2Deg;
             if (Mathf.Abs(localYAngularVelocity) > _maxAngularSpeed)
             {
                 float excessYSpin = localYAngularVelocity - Mathf.Clamp(localYAngularVelocity, -_maxAngularSpeed, _maxAngularSpeed);
                 Vector3 reduction = rbUp * excessYSpin * Mathf.Deg2Rad;
-                _rb.angularVelocity = Vector3.Lerp(currentAngularVelocity, currentAngularVelocity - reduction, _contactingMult);
+                _rb.angularVelocity = Vector3.Lerp(currentAngularVelocity, currentAngularVelocity - reduction, steerMult);
             }
         }
 
