@@ -13,6 +13,9 @@ public class SmoothCarMovement : MonoBehaviour
     [SerializeField] private float _driftRecoverySpeed;
     [SerializeField] private float _fastDriftRecoveryThreshold = 1f;
     [SerializeField] private float _fastDriftRecoveryMult = 3;
+    [SerializeField] private AnimationCurve _tractionCurveBySlope; //1 = flat, 0 = vertical or worse.
+    [SerializeField] private float _tractionMutliplier = 1f;
+    [SerializeField] private float _airTraction = 0.1f;
 
     [SerializeField] private float _baseDamping;
     [SerializeField] private float _stoppedDamping;
@@ -36,6 +39,7 @@ public class SmoothCarMovement : MonoBehaviour
     private bool _brakeInput;
     private float _contactingMult;
     private int _contactingWheels;
+    private float _totalTraction;
     private float _driftingFactor;
     private int _intentionAngle;
 
@@ -43,6 +47,8 @@ public class SmoothCarMovement : MonoBehaviour
 
     private Dictionary<Transform, bool> _contactingDict = new Dictionary<Transform, bool>();
     public IReadOnlyDictionary<Transform, bool> ContacticDict => _contactingDict;
+
+    private Dictionary<Transform, float> _slopeDict = new Dictionary<Transform, float>();
 
     private List<Transform> _allWheels;
 
@@ -59,12 +65,14 @@ public class SmoothCarMovement : MonoBehaviour
         {
             _allWheels.Add(_frontWheels[i]);
             _contactingDict.Add(_frontWheels[i], false);
+            _slopeDict.Add(_frontWheels[i], -1f);
         }
 
         for (int i = 0; i < _backWheels.Length; i++)
         {
             _allWheels.Add(_backWheels[i]);
             _contactingDict.Add(_backWheels[i], false);
+            _slopeDict.Add(_backWheels[i], -1f);
         }
     }
 
@@ -80,26 +88,36 @@ public class SmoothCarMovement : MonoBehaviour
     {
 
         _contactingWheels = 0;
+        _totalTraction = 0f;
 
         for (int i = 0; i < _allWheels.Count; i++)
         {
             Transform wheel = _allWheels[i];
             Ray ray = new Ray(wheel.position, -transform.up);
-            if (Physics.Raycast(ray, _raycastDistance))
+
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, _raycastDistance))
             {
                 _contactingWheels++;
                 _contactingDict[wheel] = true;
+                float slope = Mathf.Clamp01(Vector3.Dot(hitInfo.normal, Vector3.up));
+                _slopeDict[wheel] = slope;
+                _totalTraction += slope / _allWheels.Count;
             }
             else
             {
                 _contactingDict[wheel] = false;
+                _slopeDict[wheel] = -1f;
             }
         }
 
         Vector3 rbForward = _rb.rotation * Vector3.forward;
         Vector3 rbUp = _rb.rotation * Vector3.up;
 
-        _contactingMult = (1f / _allWheels.Count) * _contactingWheels;
+        _contactingMult = (1f / _allWheels.Count) * _contactingWheels * _tractionCurveBySlope.Evaluate(_totalTraction) * _tractionMutliplier;
+        if (_contactingWheels == 0)
+        {
+            _contactingMult = _airTraction * _tractionMutliplier;
+        }
         _driftingFactor = 0f;
         float motionAngle = 0;
 
@@ -125,7 +143,7 @@ public class SmoothCarMovement : MonoBehaviour
             _intentionAngle = 0;
         }
 
-        if (!_accelerateInput && _brakeInput /* && motionAngle < 0 */)
+        if (!_accelerateInput && _brakeInput)
         {
             if (_intentionAngle == 0f)
             {
