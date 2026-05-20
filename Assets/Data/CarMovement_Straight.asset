@@ -16,9 +16,9 @@ MonoBehaviour:
   <Acceleration>k__BackingField: 16
   <SteerTorque>k__BackingField: 600
   <MaxAngularSpeed>k__BackingField: 180
-  <DriftRecoverySpeed>k__BackingField: 60
-  <FastDriftRecoveryThreshold>k__BackingField: 0.8
-  <FastDriftRecoveryMult>k__BackingField: 2
+  <DriftRecoverySpeed>k__BackingField: 90
+  <FastDriftRecoveryThreshold>k__BackingField: 0.7
+  <FastDriftRecoveryMult>k__BackingField: 2.5
   <SteerMultCurveBySpeed>k__BackingField:
     serializedVersion: 2
     m_Curve:

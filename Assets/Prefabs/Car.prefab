@@ -849,7 +849,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a06aacbb94333f55ba20860ef96dcb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmoothCarMovement
-  _movement: {fileID: 11400000, guid: 40cb94c4b4e442096929433f3fe6048b, type: 2}
+  _movementStraight: {fileID: 11400000, guid: 11e62ed8aa33876ec9aed9a6675df3d6, type: 2}
+  _movementSteering: {fileID: 11400000, guid: 40cb94c4b4e442096929433f3fe6048b, type: 2}
+  _steeringTransitionTime: 0.5
+  _steeringTransitionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _centerOfMassVerticalOffset: 0
   _wheels:
   - {fileID: 281692923439181367}
@@ -894,9 +920,9 @@ MonoBehaviour:
     - carWheel: {fileID: 6149756497397849223}
       trail: {fileID: 7757259745858714459}
       visualWheel: {fileID: 5935452671999141626}
-    _driftingStart: 0.4
-    _driftingEnd: 0.15
-    _extraTime: 0.25
+    _driftingStart: 0.3
+    _driftingEnd: 0.1
+    _extraTime: 0.3
     _steerVisualWheels: 0
     _steerTurnAngle: 0
     _steerTurnSpeed: 0
@@ -907,8 +933,8 @@ MonoBehaviour:
     - carWheel: {fileID: 3781649925366475516}
       trail: {fileID: 3139425257789938427}
       visualWheel: {fileID: 2290752738240404371}
-    _driftingStart: 0.65
-    _driftingEnd: 0.3
+    _driftingStart: 0.55
+    _driftingEnd: 0.25
     _extraTime: 0.25
     _steerVisualWheels: 1
     _steerTurnAngle: 35
