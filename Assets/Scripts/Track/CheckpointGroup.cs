@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckpointGroup : MonoBehaviour
@@ -8,6 +9,7 @@ public class CheckpointGroup : MonoBehaviour
 
     [SerializeField] private Checkpoint[] _checkpoints;
 
+    public IReadOnlyCollection<Checkpoint> Checkpoints => _checkpoints;
     private int _currentCheckpointIndex;
     private Checkpoint _nextCheckpoint;
     public bool Completed { get; private set; }

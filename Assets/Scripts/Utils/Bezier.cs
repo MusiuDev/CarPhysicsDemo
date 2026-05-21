@@ -2,37 +2,32 @@ using UnityEngine;
 
 public class Bezier
 {
-    private Vector3 _p0, _p1, _p2, _p3;
+    private BezierDefinition _def;
     private int _segments = 16;
-
     private Vector3 _coef_a;
     private Vector3 _coef_b;
     private Vector3 _coef_c;
-
     private float[] LUT;
     public float ArcLength => (LUT != null && LUT.Length > 0) ? LUT[^1] : 0;
 
-    public Bezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, int segments = 16)
+    public Bezier(BezierDefinition definition, int segments = 16)
     {
         _segments = segments;
-        SetPoints(p0, p1, p2, p3);
+        SetPoints(definition);
     }
 
-    public void SetPoints(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+    public void SetPoints(BezierDefinition definition)
     {
-        this._p0 = p0;
-        this._p1 = p1;
-        this._p2 = p2;
-        this._p3 = p3;
+        _def = definition;
         UpdateCoefficients();
         UpdateLUT();
     }
 
     private void UpdateCoefficients()
     {
-        _coef_a = -3 * _p0 + 3 * _p1;
-        _coef_b = 3 * _p0 - 6 * _p1 + 3 * _p2;
-        _coef_c = -_p0 + 3 * _p1 - 3 * _p2 + _p3;
+        _coef_a = -3 * _def.p0 + 3 * _def.p1;
+        _coef_b = 3 * _def.p0 - 6 * _def.p1 + 3 * _def.p2;
+        _coef_c = -_def.p0 + 3 * _def.p1 - 3 * _def.p2 + _def.p3;
     }
 
     private void UpdateLUT()
@@ -40,8 +35,13 @@ public class Bezier
         LUT = new float[_segments + 1];
         LUT[0] = 0;
 
-        Vector3[] positionsByT = new Vector3[_segments];
-        positionsByT[0] = _p0;
+        Vector3[] positionsByT = new Vector3[_segments + 1];
+        if (positionsByT.Length == 0 || _segments == 0)
+        {
+            Debug.Log("Why?");
+        }
+
+        positionsByT[0] = _def.p0;
 
         float segmentSize = 1f / _segments;
         for (int i = 1; i <= _segments; i++)
@@ -55,16 +55,30 @@ public class Bezier
         }
     }
 
-    public Vector3[] GetEquallySpacedPoints(int count, float offset = 0f)
+    public Vector3[] GetEquallySpacedPoints(float segmentDistance, float offset = 0f)
     {
-        Vector3[] points = new Vector3[count];
-        float distSegment = (1 / count) * ArcLength;
+        return GetEquallySpacedPoints(segmentDistance, out _, offset);
+    }
 
-        for (int i = 0; i < count; i++)
+    public Vector3[] GetEquallySpacedPoints(float segmentDistance, out float remainingDistance, float offset = 0f)
+    {
+        if (ArcLength < segmentDistance)
         {
-            float t = DistToT(distSegment * i + offset);
+            Debug.LogError("Invalid Request for Equally Spaced Points");
+            remainingDistance = segmentDistance - ArcLength; //TODO: check if this is correct
+            return null;
+        }
+        
+        int pointCount = Mathf.FloorToInt((ArcLength - offset) / segmentDistance);
+        Vector3[] points = new Vector3[pointCount];
+
+        remainingDistance = (ArcLength - offset) - (pointCount * segmentDistance);
+        for (int i = 0; i < points.Length; i++)
+        {
+            float t = DistToT(segmentDistance * i + offset);
             points[i] = Sample(t);
         }
+
         return points;
     }
 
@@ -102,6 +116,20 @@ public class Bezier
         float t2 = t * t;
         float t3 = t * t * t;
 
-        return _p0 + t * _coef_a + t2 * _coef_b + t3 * _coef_c;
+        return _def.p0 + t * _coef_a + t2 * _coef_b + t3 * _coef_c;
+    }
+}
+
+[System.Serializable]
+public struct BezierDefinition
+{
+    public Vector3 p0, p1, p2, p3;
+
+    public BezierDefinition(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
+    {
+        this.p0 = p0;
+        this.p1 = p1;
+        this.p2 = p2;
+        this.p3 = p3;
     }
 }
