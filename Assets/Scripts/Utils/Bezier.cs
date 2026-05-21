@@ -16,6 +16,16 @@ public class Bezier
         SetPoints(definition);
     }
 
+    public Bezier(BezierKnot from, BezierKnot to, int segments = 16)
+    {
+        _segments = segments;
+        Vector3 p0 = from.position;
+        Vector3 p1 = from.ForwardHandlePosition;
+        Vector3 p2 = to.BackwardsHandlePosition;
+        Vector3 p3 = to.position;
+        SetPoints(new BezierDefinition(p0, p1, p2, p3));
+    }
+
     public void SetPoints(BezierDefinition definition)
     {
         _def = definition;
@@ -64,13 +74,12 @@ public class Bezier
     {
         if (ArcLength < segmentDistance)
         {
-            Debug.LogError("Invalid Request for Equally Spaced Points");
             remainingDistance = segmentDistance - ArcLength; //TODO: check if this is correct
-            return null;
+            return new Vector3[0];
         }
-        
+
         int pointCount = Mathf.FloorToInt((ArcLength - offset) / segmentDistance);
-        Vector3[] points = new Vector3[pointCount];
+        Vector3[] points = new Vector3[pointCount + 1];
 
         remainingDistance = (ArcLength - offset) - (pointCount * segmentDistance);
         for (int i = 0; i < points.Length; i++)
