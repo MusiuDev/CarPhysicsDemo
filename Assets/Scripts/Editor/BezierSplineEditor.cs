@@ -165,12 +165,12 @@ public class BezierSplineEditor : Editor
             }
 
             BezierKnot newKnot = new BezierKnot(position, rotation, forwardsHandleSize, backwardsHandleSize);
-            SetKnotAtIndex(newKnot, i);
+            SetSerializedKnotAtIndex(newKnot, i);
         }
         serializedObject.ApplyModifiedProperties();
     }
 
-    private void SetKnotAtIndex(BezierKnot knot, int index)
+    private void SetSerializedKnotAtIndex(BezierKnot knot, int index)
     {
         if (_knotsProperty.arraySize <= index)
         {

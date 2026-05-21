@@ -142,3 +142,37 @@ public struct BezierDefinition
         this.p3 = p3;
     }
 }
+
+[System.Serializable]
+public class BezierKnot
+{
+    public Vector3 position;
+    public Quaternion rotation;
+    public float forwardsHandleSize;
+    public float backwardsHandleSize;
+
+    public Vector3 Forward => rotation * Vector3.forward;
+    public Vector3 Right => rotation * Vector3.right;
+    public Vector3 Up => rotation * Vector3.up;
+
+    public Vector3 ForwardHandlePosition => ScaledForwardsHandle(1f);
+    public Vector3 BackwardsHandlePosition => ScaledBackwardsHandle(1f);
+
+    public Vector3 ScaledForwardsHandle(float scale)
+    {
+        return position + Forward * forwardsHandleSize * scale;
+    }
+
+    public Vector3 ScaledBackwardsHandle(float scale)
+    {
+        return position - Forward * backwardsHandleSize * scale;
+    }
+
+    public BezierKnot(Vector3 position, Quaternion rotation, float forwardsHandleSize, float backwardsHandleSize)
+    {
+        this.position = position;
+        this.rotation = rotation;
+        this.forwardsHandleSize = forwardsHandleSize;
+        this.backwardsHandleSize = backwardsHandleSize;
+    }
+}
