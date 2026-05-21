@@ -2,23 +2,17 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-[CustomEditor(typeof(BezierSpline))]
+[CustomEditor(typeof(SceneBezierSpline))]
 public class BezierSplineEditor : Editor
 {
-    private SerializedProperty _knotsProperty;
-
-    void OnEnable()
-    {
-        _knotsProperty = serializedObject.FindProperty("_knots");
-    }
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         serializedObject.Update();
-        BezierSpline spline = target as BezierSpline;
+        SceneBezierSpline sceneSpline = target as SceneBezierSpline;
+        BezierSpline spline = (sceneSpline).spline;
 
-        CheckpointGroup checkpointGroup = spline?.GetComponent<CheckpointGroup>();
+        CheckpointGroup checkpointGroup = sceneSpline?.GetComponent<CheckpointGroup>();
 
         EditorGUI.BeginDisabledGroup(checkpointGroup == null);
 
@@ -31,12 +25,12 @@ public class BezierSplineEditor : Editor
 
     void OnSceneGUI()
     {
-        BezierSpline spline = target as BezierSpline;
+        SceneBezierSpline sceneSpline = target as SceneBezierSpline;
+        BezierSpline spline = (sceneSpline).spline;
         var scope = new Handles.DrawingScope();
         using (scope)
         {
             var knots = spline.Knots;
-            float handlesScaling = 0.5f;
             int index = 0;
             foreach (var knot in knots)
             {
@@ -45,79 +39,20 @@ public class BezierSplineEditor : Editor
                     knot.rotation = Quaternion.identity;
                 }
 
-                if (index < knots.Count - 1)
+                if (Tools.current == Tool.Scale)
                 {
-                    EditorGUI.BeginChangeCheck();
-
-                    Handles.color = Event.current.alt ? Color.azure : Color.blue;
-                    Vector3 newForward = Handles.FreeMoveHandle(knot.ScaledForwardsHandle(handlesScaling), 0.25f, Vector3.one * 0.1f, Handles.CircleHandleCap);
-
-                    Handles.color = Color.blue;
-                    Handles.DrawLine(knot.position, knot.ScaledForwardsHandle(handlesScaling));
-                    if (EditorGUI.EndChangeCheck())
-                    {
-                        Undo.RecordObject(target, "Change Handle Size");
-                        Vector3 newHandle = Vector3.Project((newForward - knot.position), knot.Forward);
-                        float newHandleSize = newHandle.magnitude / handlesScaling;
-
-                        if (Event.current.alt)
-                        {
-                            float handleSizeRatio = newHandleSize / Mathf.Max(knot.forwardsHandleSize, 0.01f);
-                            knot.backwardsHandleSize *= handleSizeRatio;
-                        }
-                        knot.forwardsHandleSize = newHandleSize;
-                        EditorUtility.SetDirty(target);
-                    }
+                    ScaleKnotHandles(knot, forwards: index < knots.Length - 1, index > 0);
                 }
 
-                if (index > 0)
+                if (Tools.current == Tool.Move)
                 {
-                    EditorGUI.BeginChangeCheck();
-                    Handles.color = Event.current.alt ? Color.azure : Color.blue;
-                    Vector3 newBackward = Handles.FreeMoveHandle(knot.ScaledBackwardsHandle(handlesScaling), 0.25f, Vector3.one * 0.1f, Handles.CircleHandleCap);
-                    Handles.color = Color.blue;
-
-                    Handles.DrawLine(knot.position, knot.ScaledBackwardsHandle(handlesScaling));
-                    if (EditorGUI.EndChangeCheck())
-                    {
-                        Undo.RecordObject(target, "Change Handle Size");
-                        Vector3 newHandle = Vector3.Project((newBackward - knot.position), knot.Forward);
-                        float newHandleSize = newHandle.magnitude / handlesScaling;
-
-                        if (Event.current.alt)
-                        {
-                            float handleSizeRatio = newHandleSize / Mathf.Max(knot.backwardsHandleSize, 0.01f);
-                            knot.forwardsHandleSize *= handleSizeRatio;
-                        }
-
-                        knot.backwardsHandleSize = newHandleSize;
-                        EditorUtility.SetDirty(target);
-                    }
+                    MoveKnot(knot);
                 }
 
-                Handles.color = Color.red;
-                EditorGUI.BeginChangeCheck();
-                Vector3 newPosition = Handles.FreeMoveHandle(knot.position, 0.35f, Vector3.one * 0.25f, Handles.CircleHandleCap);
-                if (EditorGUI.EndChangeCheck())
+                if (Tools.current == Tool.Rotate)
                 {
-                    Vector3 delta = newPosition - knot.position;
-                    Vector3 axisDelta = Vector3.Project(delta, knot.Right);
-
-                    Undo.RecordObject(target, "Change Knot Offset");
-                    knot.position = knot.position + axisDelta;
-                    EditorUtility.SetDirty(target);
+                    RotateKnot(knot);
                 }
-
-                Handles.color = Color.green;
-                EditorGUI.BeginChangeCheck();
-                Quaternion newRotation = Handles.Disc(knot.rotation, knot.position, knot.Up, 1.5f, false, 15f);
-                if (EditorGUI.EndChangeCheck())
-                {
-                    Undo.RecordObject(target, "Change Knot Rotation");
-                    knot.rotation = newRotation;
-                    EditorUtility.SetDirty(target);
-                }
-
                 index++;
             }
 
@@ -128,7 +63,123 @@ public class BezierSplineEditor : Editor
         }
     }
 
-    private static void DrawSpline(BezierSpline spline)
+    private void ScaleKnotHandles(BezierKnot knot, bool forwards, bool backwards)
+    {
+        if (forwards)
+        {
+            EditorGUI.BeginChangeCheck();
+            float newForwards = ScaleKnotHandle(knot.position, knot.Forward, knot.forwardsHandleSize);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Scale Handle(s)");
+
+                if (Event.current.alt && knot.forwardsHandleSize > 0.01f) //If the original value is too low, don't scale, to avoid edge case behaviors.
+                {
+                    knot.backwardsHandleSize *= newForwards / knot.forwardsHandleSize;
+                }
+                else if (Event.current.shift)
+                {
+                    knot.backwardsHandleSize = newForwards;
+                }
+                knot.forwardsHandleSize = newForwards;
+
+                EditorUtility.SetDirty(target);
+            }
+        }
+
+        if (backwards)
+        {
+            EditorGUI.BeginChangeCheck();
+            float newBackwards = ScaleKnotHandle(knot.position, -knot.Forward, knot.backwardsHandleSize);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Scale Handle(s)");
+
+                if (Event.current.alt && knot.backwardsHandleSize > 0.01f)
+                {
+                    knot.forwardsHandleSize *= newBackwards / knot.backwardsHandleSize;
+                }
+                else if (Event.current.shift)
+                {
+                    knot.forwardsHandleSize = newBackwards;
+                }
+                knot.backwardsHandleSize = newBackwards;
+
+                EditorUtility.SetDirty(target);
+            }
+        }
+    }
+
+    private void MoveKnot(BezierKnot knot)
+    {
+        Handles.color = Color.red;
+        EditorGUI.BeginChangeCheck();
+        Vector3 newPosition = Handles.Slider(knot.position, knot.RawRight, 2f, Handles.ArrowHandleCap, 0.5f);
+        if (EditorGUI.EndChangeCheck())
+        {
+            Vector3 delta = newPosition - knot.position;
+            Vector3 axisDelta = Vector3.Project(delta, knot.RawRight);
+
+            Undo.RecordObject(target, "Change Knot Offset");
+            knot.position = knot.position + axisDelta;
+            EditorUtility.SetDirty(target);
+        }
+    }
+
+    private void RotateKnot(BezierKnot knot)
+    {
+        Handles.color = Color.green;
+        EditorGUI.BeginChangeCheck();
+        Quaternion newRotation = Handles.Disc(knot.RotationWithOffset, knot.position, knot.RawUp, 1.5f, false, 15f);
+        if (EditorGUI.EndChangeCheck())
+        {
+            Quaternion delta = newRotation * Quaternion.Inverse(knot.rotation);
+            delta.ToAngleAxis(out float angle, out Vector3 axis);
+
+            if (Mathf.Abs(angle) < 0.001f)
+            {
+                angle = 0f;
+            }
+            else
+            {
+                angle = angle * Mathf.Sign(Vector3.Dot(axis, knot.RawUp));
+            }
+            
+            Undo.RecordObject(target, "Change Knot Rotation");
+            knot.rotationOffset = angle;
+            EditorUtility.SetDirty(target);
+        }
+    }
+
+    private float ScaleKnotHandle(Vector3 position, Vector3 axis, float knotHandleSize)
+    {
+        float handlesScaling = 0.5f;
+
+        Vector3 handlePos = position + axis * knotHandleSize * handlesScaling;
+
+        Handles.color = Event.current.shift ? Color.blueViolet : Color.blue;
+
+        Handles.CapFunction capFunction = Handles.CircleHandleCap;
+        float handleCapSize = 0.25f;
+        float handleCapMult = 1f;
+        if (Event.current.alt || Event.current.shift)
+        {
+            capFunction = Handles.SphereHandleCap;
+            handleCapMult = 2f;
+        }
+
+        Vector3 newHandlePos = Handles.FreeMoveHandle(handlePos, handleCapSize * handleCapMult, Vector3.one * 0.1f, capFunction);
+
+        Handles.color = Color.blue;
+        Handles.DrawLine(position, handlePos - axis * handleCapSize);
+
+        Vector3 axisHandlePos = Vector3.Project((newHandlePos - position), axis);
+        float newHandleSize = axisHandlePos.magnitude / handlesScaling;
+
+        return newHandleSize;
+    }
+
+    private void DrawSpline(BezierSpline spline)
     {
         Handles.color = Color.cyan;
         List<Vector3> path = spline.GetFullPath(0.5f);
@@ -145,43 +196,22 @@ public class BezierSplineEditor : Editor
 
     private void GetKnotsFromCheckpointGroup(CheckpointGroup group)
     {
-        BezierSpline curve = target as BezierSpline;
-        List<BezierKnot> knotsCache = new List<BezierKnot>(curve.Knots);
+        SceneBezierSpline sceneSpline = target as SceneBezierSpline;
 
+        BezierSpline spline = (sceneSpline).spline;
         List<Checkpoint> checkpointCache = new List<Checkpoint>(group.Checkpoints);
-        _knotsProperty.arraySize = checkpointCache.Count;
 
-        Undo.RecordObject(target, "Auto Update Knot References");
+        BezierKnot[] newKnots = new BezierKnot[checkpointCache.Count];
+
         for (int i = 0; i < checkpointCache.Count; i++)
         {
             Vector3 position = checkpointCache[i].transform.position;
             Quaternion rotation = checkpointCache[i].transform.rotation;
-            float forwardsHandleSize = 5f;
-            float backwardsHandleSize = 5f;
-            if (knotsCache.Count > i)
-            {
-                forwardsHandleSize = knotsCache[i].forwardsHandleSize;
-                backwardsHandleSize = knotsCache[i].backwardsHandleSize;
-            }
-
-            BezierKnot newKnot = new BezierKnot(position, rotation, forwardsHandleSize, backwardsHandleSize);
-            SetSerializedKnotAtIndex(newKnot, i);
+            BezierKnot newKnot = new BezierKnot(position, rotation, 5f, 5f);
+            newKnots[i] = newKnot;
         }
-        serializedObject.ApplyModifiedProperties();
-    }
-
-    private void SetSerializedKnotAtIndex(BezierKnot knot, int index)
-    {
-        if (_knotsProperty.arraySize <= index)
-        {
-            Debug.LogError("Trying to set a knot at an out of range index");
-            return;
-        }
-
-        SerializedProperty serializedKnot = _knotsProperty.GetArrayElementAtIndex(index);
-        serializedKnot.FindPropertyRelative(nameof(BezierKnot.position)).vector3Value = knot.position;
-        serializedKnot.FindPropertyRelative(nameof(BezierKnot.rotation)).quaternionValue = knot.rotation;
-        serializedKnot.FindPropertyRelative(nameof(BezierKnot.forwardsHandleSize)).floatValue = knot.forwardsHandleSize;
-        serializedKnot.FindPropertyRelative(nameof(BezierKnot.backwardsHandleSize)).floatValue = knot.backwardsHandleSize;
+        Undo.RecordObject(target, "Auto Update Knot References");
+        spline.Knots = newKnots;
+        EditorUtility.SetDirty(target);
     }
 }

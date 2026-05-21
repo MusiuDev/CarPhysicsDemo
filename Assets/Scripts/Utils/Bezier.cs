@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bezier
@@ -130,6 +131,30 @@ public class Bezier
 }
 
 [System.Serializable]
+public class BezierSpline
+{
+    public BezierKnot[] Knots;
+
+    public List<Vector3> GetFullPath(float segmentLength)
+    {
+        if (Knots == null || Knots.Length == 0) return new List<Vector3>() { Vector3.zero };
+        if (Knots.Length == 1) return new List<Vector3>() { Knots[0].position };
+
+        List<Vector3> path = new List<Vector3>();
+        float nextOffset = 0f;
+
+        for (int i = 0; i < Knots.Length - 1; i++)
+        {
+            Bezier curve = new Bezier(Knots[i], Knots[i + 1]);
+            Vector3[] points = curve.GetEquallySpacedPoints(segmentLength, out float remainingDistance, nextOffset);
+            nextOffset = segmentLength - remainingDistance;
+            path.AddRange(points);
+        }
+        return path;
+    }
+}
+
+[System.Serializable]
 public struct BezierDefinition
 {
     public Vector3 p0, p1, p2, p3;
@@ -148,12 +173,20 @@ public class BezierKnot
 {
     public Vector3 position;
     public Quaternion rotation;
+    public float rotationOffset;
     public float forwardsHandleSize;
     public float backwardsHandleSize;
 
-    public Vector3 Forward => rotation * Vector3.forward;
-    public Vector3 Right => rotation * Vector3.right;
-    public Vector3 Up => rotation * Vector3.up;
+    public Vector3 RawForward => rotation * Vector3.forward;
+    public Vector3 RawRight => rotation * Vector3.right;
+    public Vector3 RawUp => rotation * Vector3.up;
+
+    public Quaternion OffsetQuaternion => Quaternion.AngleAxis(rotationOffset, RawUp);
+    public Quaternion RotationWithOffset => OffsetQuaternion * rotation;
+
+    public Vector3 Forward => OffsetQuaternion * RawForward;
+    public Vector3 Right => OffsetQuaternion * RawRight;
+    public Vector3 Up => OffsetQuaternion * RawUp;
 
     public Vector3 ForwardHandlePosition => ScaledForwardsHandle(1f);
     public Vector3 BackwardsHandlePosition => ScaledBackwardsHandle(1f);
