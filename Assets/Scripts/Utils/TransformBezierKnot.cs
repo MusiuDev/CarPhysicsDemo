@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class TransformBezierKnot : MonoBehaviour, IBezierKnot
+public class TransformBezierKnot : MonoBehaviour, IBezierKnot, IFlippableObject
 {
     public float rotationOffset = 0f;
     public float forwardsHandleSize = 5f;
@@ -28,6 +28,8 @@ public class TransformBezierKnot : MonoBehaviour, IBezierKnot
     public Vector3 ForwardHandlePosition => ScaledForwardsHandle(1f);
     public Vector3 BackwardsHandlePosition => ScaledBackwardsHandle(1f);
 
+    public Transform TransformReference => this.transform;
+
     Vector3 ScaledForwardsHandle(float scale)
     {
         return Position + Forward * forwardsHandleSize * scale;
@@ -36,5 +38,20 @@ public class TransformBezierKnot : MonoBehaviour, IBezierKnot
     Vector3 ScaledBackwardsHandle(float scale)
     {
         return Position - Forward * backwardsHandleSize * scale;
+    }
+
+    public void Flip()
+    {
+        Vector3 pos = transform.localPosition;
+        Vector3 rot = transform.localEulerAngles;
+
+        pos.x *= -1f;
+        rot.y *= -1f;
+
+        transform.localPosition = pos;
+        transform.localEulerAngles = rot;
+
+        positionOffset *= -1f;
+        rotationOffset *= -1f;
     }
 }
