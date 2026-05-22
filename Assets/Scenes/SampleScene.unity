@@ -2139,6 +2139,7 @@ Transform:
   - {fileID: 677047396}
   - {fileID: 74358194}
   - {fileID: 1000698694}
+  - {fileID: 482186210}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &346706046
@@ -2165,7 +2166,7 @@ MonoBehaviour:
   - {fileID: 677047395}
   - {fileID: 74358193}
   - {fileID: 1000698693}
-  exitPoint: {fileID: 0}
+  _exitPoint: {fileID: 482186210}
 --- !u!114 &346706047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,62 +2179,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e41c53106be182690eb7642b410e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BezierSpline
-  Knots:
+  knots:
+  - _transform: {fileID: 346706045}
+    rotationOffset: 0
+    forwardsHandleSize: 5
+    backwardsHandleSize: 5
+    positionOffset: 0
   - _transform: {fileID: 957407949}
     rotationOffset: 0
     forwardsHandleSize: 5
     backwardsHandleSize: 5
-    positionOffset: -0.078249
+    positionOffset: 0
   - _transform: {fileID: 186855012}
     rotationOffset: 0
     forwardsHandleSize: 5
     backwardsHandleSize: 5
-    positionOffset: 2.8617134
+    positionOffset: 0
   - _transform: {fileID: 155968663}
-    rotationOffset: -10.240497
-    forwardsHandleSize: 10.320586
-    backwardsHandleSize: 5.108006
-    positionOffset: 0.3987117
+    rotationOffset: 0
+    forwardsHandleSize: 5
+    backwardsHandleSize: 5
+    positionOffset: 0
   - _transform: {fileID: 31575551}
-    rotationOffset: -3.572816
-    forwardsHandleSize: 7.576811
-    backwardsHandleSize: 6.9046564
-    positionOffset: -0.344841
+    rotationOffset: 0
+    forwardsHandleSize: 9.220787
+    backwardsHandleSize: 5
+    positionOffset: 0
   - _transform: {fileID: 891444619}
-    rotationOffset: 0.5203926
-    forwardsHandleSize: 5.436873
-    backwardsHandleSize: 7.589747
+    rotationOffset: 0
+    forwardsHandleSize: 5
+    backwardsHandleSize: 5
     positionOffset: 0
   - _transform: {fileID: 1229309888}
     rotationOffset: 0
-    forwardsHandleSize: 6.5184484
+    forwardsHandleSize: 5
     backwardsHandleSize: 5
     positionOffset: 0
   - _transform: {fileID: 1336198598}
     rotationOffset: 0
     forwardsHandleSize: 5
-    backwardsHandleSize: 8.703926
+    backwardsHandleSize: 5
     positionOffset: 0
   - _transform: {fileID: 687242623}
     rotationOffset: 0
-    forwardsHandleSize: 7.160722
+    forwardsHandleSize: 5
     backwardsHandleSize: 5
     positionOffset: 0
   - _transform: {fileID: 677047396}
-    rotationOffset: -6.472559
-    forwardsHandleSize: 5.955859
-    backwardsHandleSize: 13.156888
-    positionOffset: 0.22092056
+    rotationOffset: 0
+    forwardsHandleSize: 5
+    backwardsHandleSize: 5
+    positionOffset: 0
   - _transform: {fileID: 74358194}
-    rotationOffset: -14.380021
-    forwardsHandleSize: 15.625312
-    backwardsHandleSize: 9.74806
+    rotationOffset: 0
+    forwardsHandleSize: 5
+    backwardsHandleSize: 5
     positionOffset: 0
   - _transform: {fileID: 1000698694}
-    rotationOffset: -20.81615
+    rotationOffset: 0
     forwardsHandleSize: 5
-    backwardsHandleSize: 16.726234
-    positionOffset: 0.009197235
+    backwardsHandleSize: 5
+    positionOffset: 0
+  - _transform: {fileID: 482186210}
+    rotationOffset: 0
+    forwardsHandleSize: 5
+    backwardsHandleSize: 5
+    positionOffset: 0
+  segmentDistance: 0.5
 --- !u!4 &365335987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
@@ -2836,6 +2848,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
   m_PrefabInstance: {fileID: 769561347}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &482186209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482186210}
+  m_Layer: 0
+  m_Name: ExitPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &482186210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482186209}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.7295808, z: -0, w: 0.68389463}
+  m_LocalPosition: {x: -73.7, y: 0, z: -8.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 346706045}
+  m_LocalEulerAnglesHint: {x: 0, y: -93.703, z: 0}
 --- !u!1001 &483330954
 PrefabInstance:
   m_ObjectHideFlags: 0

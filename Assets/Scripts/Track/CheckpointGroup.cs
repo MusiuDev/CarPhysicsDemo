@@ -8,9 +8,10 @@ public class CheckpointGroup : MonoBehaviour
     public event CheckpointGroupEvent OnCheckpointGroupCleared;
 
     [SerializeField] private Checkpoint[] _checkpoints;
-    [SerializeField] private Transform exitPoint;
+    [SerializeField] private Transform _exitPoint;
 
     public IReadOnlyCollection<Checkpoint> Checkpoints => _checkpoints;
+    public Transform ExitPoint => _exitPoint;
     private int _currentCheckpointIndex;
     private Checkpoint _nextCheckpoint;
     public bool Completed { get; private set; }
@@ -92,5 +93,33 @@ public class CheckpointGroup : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Reset();
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        DrawArrowGizmo(transform.position, transform.forward);
+
+        if (_exitPoint)
+        {
+            Gizmos.color = Color.red;
+            DrawArrowGizmo(_exitPoint.position, _exitPoint.forward);
+        }
+    }
+
+    private void DrawArrowGizmo(Vector3 from, Vector3 direction, float arrowSize = 3f)
+    {
+        Vector3 to = from + direction.normalized * arrowSize;
+        Gizmos.DrawLine(from, to);
+        Gizmos.DrawSphere(from, 0.2f);
+
+        int arrowSections = 4;
+        Vector3 arrowCap = Vector3.RotateTowards(-direction, direction, 30f * Mathf.Deg2Rad, 99f) * 0.6f;
+
+        for (int i = 0; i < arrowSections; i++)
+        {
+            Vector3 newArrowCap = Quaternion.AngleAxis((360f / arrowSections) * i, direction) * arrowCap;
+            Gizmos.DrawLine(to, to + newArrowCap);
+        }
     }
 }

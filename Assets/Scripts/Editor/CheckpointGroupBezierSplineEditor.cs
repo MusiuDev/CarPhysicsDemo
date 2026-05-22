@@ -28,7 +28,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
         var scope = new Handles.DrawingScope();
         using (scope)
         {
-            var knots = sceneSpline.Knots;
+            var knots = sceneSpline.knots;
             int index = 0;
             bool allToolsActive = Tools.current == Tool.Rect;
             foreach (var knot in knots)
@@ -52,7 +52,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
 
             if (Event.current.type == EventType.Repaint)
             {
-                DrawSpline(BezierSpline.GetFullPath(knots, 0.5f));
+                DrawSpline(BezierSpline.GetFullPath(knots, sceneSpline.segmentDistance));
             }
         }
     }
@@ -109,6 +109,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
         Handles.color = Color.green;
         EditorGUI.BeginChangeCheck();
         Vector3 newPosition = Handles.Slider(knot.Position, knot.RawRight, 0.5f, PositionOffsetHandleCap, 0.5f);
+        Handles.SphereHandleCap(-1, knot.RawPosition, Quaternion.identity, 0.25f, EventType.Repaint);
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(target, "Change Knot Offset");
@@ -182,7 +183,6 @@ public class CheckpointGroupBezierSplineEditor : Editor
                 Handles.SphereHandleCap(-1, point, Quaternion.identity, 0.2f, EventType.Repaint);
             }
         }
-        Handles.DrawPolyLine(path.ToArray());
     }
 
     private void GetKnotsFromCheckpointGroup(CheckpointGroup group)
@@ -191,16 +191,23 @@ public class CheckpointGroupBezierSplineEditor : Editor
 
         List<Checkpoint> checkpointCache = new List<Checkpoint>(group.Checkpoints);
 
-        TransformBezierKnot[] newKnots = new TransformBezierKnot[checkpointCache.Count];
 
+
+        List<TransformBezierKnot> newKnots = new();
+
+        newKnots.Add(new TransformBezierKnot(group.transform, 0, 5f, 5f));
         for (int i = 0; i < checkpointCache.Count; i++)
         {
             TransformBezierKnot newKnot = new TransformBezierKnot(checkpointCache[i].transform, 0f, 5f, 5f);
-            newKnots[i] = newKnot;
+            newKnots.Add(newKnot);
+        }
+        if (group.ExitPoint)
+        {
+            newKnots.Add(new TransformBezierKnot(group.ExitPoint, 0, 5f, 5f));
         }
 
         Undo.RecordObject(target, "Auto Update Knot References");
-        sceneSpline.Knots = newKnots;
+        sceneSpline.knots = newKnots.ToArray();
         EditorUtility.SetDirty(target);
     }
 
