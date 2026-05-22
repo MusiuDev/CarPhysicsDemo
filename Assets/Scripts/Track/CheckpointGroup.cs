@@ -139,7 +139,6 @@ public class CheckpointGroup : MonoBehaviour
         IFlippableObject[] childFlippables = gameObject.GetComponentsInChildren<IFlippableObject>();
         foreach (var item in childFlippables)
         {
-            if (item.TransformReference == this.transform) continue;
             item.Flip();
         }
     }

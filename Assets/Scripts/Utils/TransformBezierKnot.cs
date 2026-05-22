@@ -30,8 +30,6 @@ public class TransformBezierKnot : MonoBehaviour, IBezierKnot, IFlippableObject
     public Vector3 ForwardHandlePosition => ScaledForwardsHandle(1f);
     public Vector3 BackwardsHandlePosition => ScaledBackwardsHandle(1f);
 
-    public Transform TransformReference => this.transform;
-
     Vector3 ScaledForwardsHandle(float scale)
     {
         return Position + Forward * forwardsHandleSize * scale;

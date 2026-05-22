@@ -6,6 +6,7 @@ public class TrackManager : MonoBehaviour
 {
     [SerializeField] private int _lookAhead = 3;
     [SerializeField] private float _maxMapAngle = 60f;
+    [SerializeField] private int _startingSegments = 10;
 
     private CheckpointGroup[] _checkpointPrefabs;
 
@@ -26,7 +27,7 @@ public class TrackManager : MonoBehaviour
         }
         _currentChain = new TrackChain();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < _startingSegments; i++)
         {
             TrySpawn();
         }
@@ -103,11 +104,16 @@ public class TrackManager : MonoBehaviour
         foreach (var candidate in shuffledGroups)
         {
             bool flipped = Random.value > 0.5f;
+
             TrackChainLink newLink = candidate.GetTrackChainLinkAt(currentExitPos, currentExitAngle, flipped);
-
-            bool collides = chain.CheckCollision(newLink);
-
-            if (Mathf.Abs(newLink.exitAngle) <= _maxMapAngle && !collides)
+            if (Mathf.Abs(newLink.exitAngle) <= _maxMapAngle && !chain.CheckCollision(newLink))
+            {
+                return (candidate, flipped, newLink);
+            }
+            flipped = !flipped; 
+            
+            newLink = candidate.GetTrackChainLinkAt(currentExitPos, currentExitAngle, flipped);
+            if (Mathf.Abs(newLink.exitAngle) <= _maxMapAngle && !chain.CheckCollision(newLink))
             {
                 return (candidate, flipped, newLink);
             }

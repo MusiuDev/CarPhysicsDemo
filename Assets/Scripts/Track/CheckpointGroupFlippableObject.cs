@@ -5,7 +5,6 @@ public class CheckpointGroupFlippableObject : MonoBehaviour, IFlippableObject
     [SerializeField] private bool _flipPosition = true;
     [SerializeField] private bool _flipRotation = true;
 
-    public Transform TransformReference => this.transform;
     public void Flip()
     {
         if (_flipPosition)
