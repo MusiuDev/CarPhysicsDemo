@@ -96,28 +96,22 @@ public class Bezier
     {
         int n = LUT.Length;
 
-        if (distance > 0 && distance < ArcLength)
+        if (distance.Within(0, ArcLength))
         {
             for (int i = 0; i < n - 1; i++)
             {
-                if (distance >= LUT[i] && distance <= LUT[i + 1])
+                if (distance.Between(LUT[i], LUT[i + 1]))
                 {
-                    return Remap(
+                    return distance.Remap(
                         LUT[i],
                         LUT[i + 1],
                         i / (n - 1f),
-                        (i + 1) / (n - 1f),
-                        distance
+                        (i + 1) / (n - 1f)
                     );
                 }
             }
         }
         return distance / ArcLength;
-    }
-
-    private float Remap(float iMin, float iMax, float oMin, float oMax, float value)
-    {
-        return Mathf.Lerp(oMin, oMax, Mathf.InverseLerp(iMin, iMax, value));
     }
 
     public Vector3 Sample(float t)
