@@ -12,7 +12,10 @@ public class CheckpointGroup : MonoBehaviour
     [SerializeField] private Transform _boundsTransform;
 
     public IReadOnlyCollection<Checkpoint> Checkpoints => _checkpoints;
-    public Transform ExitPoint => _exitPoint;
+
+    public Vector3 ExitPosition => _exitPoint ? _exitPoint.position : Vector3.zero;
+    public float ExitAngle => _exitPoint ? _exitPoint.eulerAngles.y : 0f;
+
     public Transform BoundsTransform => _boundsTransform;
 
     private int _currentCheckpointIndex;
@@ -40,7 +43,6 @@ public class CheckpointGroup : MonoBehaviour
     {
         UnsubscribeFromCheckpoints();
     }
-
 
     private void HandleCheckpointCompleted(Checkpoint checkpoint)
     {
@@ -91,6 +93,34 @@ public class CheckpointGroup : MonoBehaviour
         {
             _checkpoints[i].OnCheckpointCompleted -= HandleCheckpointCompleted;
         }
+    }
+
+    public RotatedRectangle GetCurrentBounds()
+    {
+        return MathUtils.RectFromTransformXZ(_boundsTransform);
+    }
+
+
+    public TrackChainLink GetTrackChainLinkAt(Vector3 position, float rotation)
+    {
+        Matrix4x4 trs = Matrix4x4.TRS(position, Quaternion.Euler(0, rotation, 0), Vector3.one);
+
+        Vector3 entryPosition = position;
+        Vector3 exitPosition = trs.MultiplyPoint(this.ExitPosition);
+        float exitAngle = rotation + this.ExitAngle;
+
+        Vector2 boundsPos = trs.MultiplyPoint(_boundsTransform.localPosition).ToXY();
+        float boundsRotation = rotation + _boundsTransform.localEulerAngles.y;
+        Vector3 boundsScale = _boundsTransform.localScale.ToXY();
+
+        RotatedRectangle transformedBounds = new RotatedRectangle(boundsPos, boundsScale, boundsRotation);
+
+        return new TrackChainLink(
+            entryPosition,
+            exitPosition,
+            exitAngle,
+            transformedBounds
+        );
     }
 
     void OnDrawGizmos()

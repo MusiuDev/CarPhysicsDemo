@@ -13,6 +13,7 @@ public static class MathUtils
     //-- Rotated Rectangle Extensions
     public static RotatedRectangle RectFromTransformXZ(Transform transform)
     {
+        if (!transform) return RotatedRectangle.Zero;
         return new RotatedRectangle(transform.position.ToXY(), transform.localScale.ToXY(), transform.eulerAngles.y);
     }
 

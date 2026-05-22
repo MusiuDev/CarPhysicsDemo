@@ -66,5 +66,14 @@ public static class GizmoUtils
                 Gizmos.DrawLine(worldCorners[i], worldCorners[0]);
             }
         }
+        
+        
+        Color orgColor = Gizmos.color;
+        Gizmos.DrawSphere(rect.center.ToXZ(), 0.5f);
+        Gizmos.color = new Color(0.000f, 1.000f, 0.000f, 0.5f);
+        GizmoUtils.DrawArrowGizmo(rect.center.ToXZ(), rect.Up.ToXZ());
+        Gizmos.color = new Color(1.000f, 0.000f, 0.000f, 0.5f);
+        GizmoUtils.DrawArrowGizmo(rect.center.ToXZ(), rect.Right.ToXZ());
+        Gizmos.color = orgColor;
     }
 }
