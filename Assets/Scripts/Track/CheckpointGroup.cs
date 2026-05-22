@@ -105,34 +105,34 @@ public class CheckpointGroup : MonoBehaviour
         if (_boundsTransform)
         {
             Gizmos.color = Color.orange;
-            //Gizmos.DrawWireSphere(_boundsTransform.position, _boundsTransform.localScale.x);
-            DrawBoundsGizmo();
+            DrawBoundsGizmo(_boundsTransform);
         }
     }
 
     private void DrawArrowGizmo(Vector3 from, Vector3 direction, float arrowSize = 3f)
     {
+        Vector3 dir = direction.normalized;
         Vector3 to = from + direction.normalized * arrowSize;
         Gizmos.DrawLine(from, to);
         Gizmos.DrawSphere(from, 0.2f);
 
         int arrowSections = 4;
-        Vector3 arrowCap = Vector3.RotateTowards(-direction, direction, 30f * Mathf.Deg2Rad, 99f) * 0.6f;
+        Vector3 arrowCap = Vector3.RotateTowards(-dir, dir, 30f * Mathf.Deg2Rad, 99f) * 0.6f;
 
         for (int i = 0; i < arrowSections; i++)
         {
-            Vector3 newArrowCap = Quaternion.AngleAxis((360f / arrowSections) * i, direction) * arrowCap;
+            Vector3 newArrowCap = Quaternion.AngleAxis((360f / arrowSections) * i, dir) * arrowCap;
             Gizmos.DrawLine(to, to + newArrowCap);
         }
     }
 
-    private void DrawBoundsGizmo()
+    private void DrawBoundsGizmo(Transform bTransform)
     {
         Matrix4x4 originalMatrix = Gizmos.matrix;
-        Vector3 center = _boundsTransform.position;
+        Vector3 center = bTransform.position;
         center.y = 0;
-        Quaternion rotation = Quaternion.Euler(0, _boundsTransform.eulerAngles.y, 0);
-        Vector3 scale = _boundsTransform.localScale;
+        Quaternion rotation = Quaternion.Euler(0, bTransform.eulerAngles.y, 0);
+        Vector3 scale = bTransform.localScale;
         scale.y = 0.01f;
         Gizmos.matrix = Matrix4x4.TRS(center, rotation, scale);
         Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
