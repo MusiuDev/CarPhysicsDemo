@@ -78,7 +78,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
                 }
                 knot.forwardsHandleSize = newForwards;
 
-                EditorUtility.SetDirty(target);
+                EditorUtility.SetDirty(knot);
             }
         }
 
@@ -100,7 +100,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
                 }
                 knot.backwardsHandleSize = newBackwards;
 
-                EditorUtility.SetDirty(target);
+                EditorUtility.SetDirty(knot);
             }
         }
     }
@@ -116,7 +116,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
             Undo.RecordObject(target, "Change Knot Offset");
             float newOffset = knot.InverseTransformPoint(newPosition).x;
             knot.positionOffset = newOffset;
-            EditorUtility.SetDirty(target);
+            EditorUtility.SetDirty(knot);
         }
     }
 
@@ -141,7 +141,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
 
             Undo.RecordObject(target, "Change Knot Rotation");
             knot.rotationOffset = angle;
-            EditorUtility.SetDirty(target);
+            EditorUtility.SetDirty(knot);
         }
     }
 
@@ -190,25 +190,8 @@ public class CheckpointGroupBezierSplineEditor : Editor
     {
         CheckpointGroupBezierSpline sceneSpline = target as CheckpointGroupBezierSpline;
 
-        List<Checkpoint> checkpointCache = new List<Checkpoint>(group.Checkpoints);
-
-
-
-        List<TransformBezierKnot> newKnots = new();
-
-        newKnots.Add(new TransformBezierKnot(group.transform, 0, 5f, 5f));
-        for (int i = 0; i < checkpointCache.Count; i++)
-        {
-            TransformBezierKnot newKnot = new TransformBezierKnot(checkpointCache[i].transform, 0f, 5f, 5f);
-            newKnots.Add(newKnot);
-        }
-        if (group.ExitPoint)
-        {
-            newKnots.Add(new TransformBezierKnot(group.ExitPoint, 0, 5f, 5f));
-        }
-
-        Undo.RecordObject(target, "Auto Update Knot References");
-        sceneSpline.knots = newKnots.ToArray();
+        TransformBezierKnot[] childrenKnots = sceneSpline.GetComponentsInChildren<TransformBezierKnot>();
+        sceneSpline.knots = childrenKnots;
         EditorUtility.SetDirty(target);
     }
 
