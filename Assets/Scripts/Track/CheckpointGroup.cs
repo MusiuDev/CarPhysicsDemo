@@ -13,6 +13,8 @@ public class CheckpointGroup : MonoBehaviour
 
     public IReadOnlyCollection<Checkpoint> Checkpoints => _checkpoints;
     public Transform ExitPoint => _exitPoint;
+    public Transform BoundsTransform => _boundsTransform;
+
     private int _currentCheckpointIndex;
     private Checkpoint _nextCheckpoint;
     public bool Completed { get; private set; }
@@ -94,48 +96,19 @@ public class CheckpointGroup : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        DrawArrowGizmo(transform.position, transform.forward);
+        GizmoUtils.DrawArrowGizmo(transform.position, transform.forward);
 
         if (_exitPoint)
         {
             Gizmos.color = Color.red;
-            DrawArrowGizmo(_exitPoint.position, _exitPoint.forward);
+            GizmoUtils.DrawArrowGizmo(_exitPoint.position, _exitPoint.forward);
         }
 
         if (_boundsTransform)
         {
             Gizmos.color = Color.orange;
-            DrawBoundsGizmo(_boundsTransform);
+            RotatedRectangle boundsRect = MathUtils.RectFromTransformXZ(_boundsTransform);
+            GizmoUtils.DrawRotatedRectangle(boundsRect, transform.position.y);
         }
-    }
-
-    private void DrawArrowGizmo(Vector3 from, Vector3 direction, float arrowSize = 3f)
-    {
-        Vector3 dir = direction.normalized;
-        Vector3 to = from + direction.normalized * arrowSize;
-        Gizmos.DrawLine(from, to);
-        Gizmos.DrawSphere(from, 0.2f);
-
-        int arrowSections = 4;
-        Vector3 arrowCap = Vector3.RotateTowards(-dir, dir, 30f * Mathf.Deg2Rad, 99f) * 0.6f;
-
-        for (int i = 0; i < arrowSections; i++)
-        {
-            Vector3 newArrowCap = Quaternion.AngleAxis((360f / arrowSections) * i, dir) * arrowCap;
-            Gizmos.DrawLine(to, to + newArrowCap);
-        }
-    }
-
-    private void DrawBoundsGizmo(Transform bTransform)
-    {
-        Matrix4x4 originalMatrix = Gizmos.matrix;
-        Vector3 center = bTransform.position;
-        center.y = 0;
-        Quaternion rotation = Quaternion.Euler(0, bTransform.eulerAngles.y, 0);
-        Vector3 scale = bTransform.localScale;
-        scale.y = 0.01f;
-        Gizmos.matrix = Matrix4x4.TRS(center, rotation, scale);
-        Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
-        Gizmos.matrix = originalMatrix;
     }
 }

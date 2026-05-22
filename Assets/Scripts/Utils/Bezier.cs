@@ -145,6 +145,12 @@ public static class BezierSpline
         if (knots == null || knots.Length == 0) return new List<Vector3>() { Vector3.zero };
         if (knots.Length == 1) return new List<Vector3>() { knots[0].Position };
 
+        if (segmentLength <= 0.01f)
+        {
+            Debug.LogWarning("Segment Length is too small to draw. It would create performance issues.");
+            return new List<Vector3>() { knots[0].Position, knots[^1].Position };
+        }
+
         List<Vector3> path = new List<Vector3>();
         float nextOffset = 0f;
 

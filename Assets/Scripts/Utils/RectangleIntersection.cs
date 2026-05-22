@@ -86,6 +86,8 @@ public struct RotatedRectangle
 
     public Vector2 Up => new Vector2(-SinRot, CosRot);
     public Vector2 Right => new Vector2(CosRot, SinRot);
+
+    public static RotatedRectangle Zero => new RotatedRectangle(Vector2.zero, Vector2.zero, 0);
 }
 
 public struct MinMax
