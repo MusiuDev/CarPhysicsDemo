@@ -9,7 +9,6 @@ public class CheckpointGroup : MonoBehaviour
 
     [SerializeField] private Checkpoint[] _checkpoints;
     [SerializeField] private Transform exitPoint;
-    public BezierSpline spline;
 
     public IReadOnlyCollection<Checkpoint> Checkpoints => _checkpoints;
     private int _currentCheckpointIndex;

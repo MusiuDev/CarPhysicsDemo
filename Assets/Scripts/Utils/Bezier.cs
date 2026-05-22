@@ -17,13 +17,13 @@ public class Bezier
         SetPoints(definition);
     }
 
-    public Bezier(BezierKnot from, BezierKnot to, int segments = 16)
+    public Bezier(IBezierKnot from, IBezierKnot to, int segments = 16)
     {
         _segments = segments;
-        Vector3 p0 = from.position;
+        Vector3 p0 = from.Position;
         Vector3 p1 = from.ForwardHandlePosition;
         Vector3 p2 = to.BackwardsHandlePosition;
-        Vector3 p3 = to.position;
+        Vector3 p3 = to.Position;
         SetPoints(new BezierDefinition(p0, p1, p2, p3));
     }
 
@@ -131,30 +131,6 @@ public class Bezier
 }
 
 [System.Serializable]
-public class BezierSpline
-{
-    public BezierKnot[] Knots;
-
-    public List<Vector3> GetFullPath(float segmentLength)
-    {
-        if (Knots == null || Knots.Length == 0) return new List<Vector3>() { Vector3.zero };
-        if (Knots.Length == 1) return new List<Vector3>() { Knots[0].position };
-
-        List<Vector3> path = new List<Vector3>();
-        float nextOffset = 0f;
-
-        for (int i = 0; i < Knots.Length - 1; i++)
-        {
-            Bezier curve = new Bezier(Knots[i], Knots[i + 1]);
-            Vector3[] points = curve.GetEquallySpacedPoints(segmentLength, out float remainingDistance, nextOffset);
-            nextOffset = segmentLength - remainingDistance;
-            path.AddRange(points);
-        }
-        return path;
-    }
-}
-
-[System.Serializable]
 public struct BezierDefinition
 {
     public Vector3 p0, p1, p2, p3;
@@ -168,44 +144,30 @@ public struct BezierDefinition
     }
 }
 
-[System.Serializable]
-public class BezierKnot
+public static class BezierSpline
 {
-    public Vector3 position;
-    public Quaternion rotation;
-    public float rotationOffset;
-    public float forwardsHandleSize;
-    public float backwardsHandleSize;
-
-    public Vector3 RawForward => rotation * Vector3.forward;
-    public Vector3 RawRight => rotation * Vector3.right;
-    public Vector3 RawUp => rotation * Vector3.up;
-
-    public Quaternion OffsetQuaternion => Quaternion.AngleAxis(rotationOffset, RawUp);
-    public Quaternion RotationWithOffset => OffsetQuaternion * rotation;
-
-    public Vector3 Forward => OffsetQuaternion * RawForward;
-    public Vector3 Right => OffsetQuaternion * RawRight;
-    public Vector3 Up => OffsetQuaternion * RawUp;
-
-    public Vector3 ForwardHandlePosition => ScaledForwardsHandle(1f);
-    public Vector3 BackwardsHandlePosition => ScaledBackwardsHandle(1f);
-
-    public Vector3 ScaledForwardsHandle(float scale)
+    public static List<Vector3> GetFullPath(IBezierKnot[] knots, float segmentLength)
     {
-        return position + Forward * forwardsHandleSize * scale;
-    }
+        if (knots == null || knots.Length == 0) return new List<Vector3>() { Vector3.zero };
+        if (knots.Length == 1) return new List<Vector3>() { knots[0].Position };
 
-    public Vector3 ScaledBackwardsHandle(float scale)
-    {
-        return position - Forward * backwardsHandleSize * scale;
-    }
+        List<Vector3> path = new List<Vector3>();
+        float nextOffset = 0f;
 
-    public BezierKnot(Vector3 position, Quaternion rotation, float forwardsHandleSize, float backwardsHandleSize)
-    {
-        this.position = position;
-        this.rotation = rotation;
-        this.forwardsHandleSize = forwardsHandleSize;
-        this.backwardsHandleSize = backwardsHandleSize;
+        for (int i = 0; i < knots.Length - 1; i++)
+        {
+            Bezier curve = new Bezier(knots[i], knots[i + 1]);
+            Vector3[] points = curve.GetEquallySpacedPoints(segmentLength, out float remainingDistance, nextOffset);
+            nextOffset = segmentLength - remainingDistance;
+            path.AddRange(points);
+        }
+        return path;
     }
+}
+
+public interface IBezierKnot
+{
+    Vector3 Position { get; }
+    Vector3 ForwardHandlePosition { get; }
+    Vector3 BackwardsHandlePosition { get; }
 }

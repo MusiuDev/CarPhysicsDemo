@@ -2,15 +2,14 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-[CustomEditor(typeof(SceneBezierSpline))]
-public class BezierSplineEditor : Editor
+[CustomEditor(typeof(CheckpointGroupBezierSpline))]
+public class CheckpointGroupBezierSplineEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         serializedObject.Update();
-        SceneBezierSpline sceneSpline = target as SceneBezierSpline;
-        BezierSpline spline = (sceneSpline).spline;
+        CheckpointGroupBezierSpline sceneSpline = target as CheckpointGroupBezierSpline;
 
         CheckpointGroup checkpointGroup = sceneSpline?.GetComponent<CheckpointGroup>();
 
@@ -25,31 +24,26 @@ public class BezierSplineEditor : Editor
 
     void OnSceneGUI()
     {
-        SceneBezierSpline sceneSpline = target as SceneBezierSpline;
-        BezierSpline spline = (sceneSpline).spline;
+        CheckpointGroupBezierSpline sceneSpline = target as CheckpointGroupBezierSpline;
         var scope = new Handles.DrawingScope();
         using (scope)
         {
-            var knots = spline.Knots;
+            var knots = sceneSpline.Knots;
             int index = 0;
+            bool allToolsActive = Tools.current == Tool.Rect;
             foreach (var knot in knots)
             {
-                if (knot.rotation.x + knot.rotation.y + knot.rotation.z + knot.rotation.w == 0)
-                {
-                    knot.rotation = Quaternion.identity;
-                }
-
-                if (Tools.current == Tool.Scale)
+                if (allToolsActive || Tools.current == Tool.Scale)
                 {
                     ScaleKnotHandles(knot, forwards: index < knots.Length - 1, index > 0);
                 }
 
-                if (Tools.current == Tool.Move)
+                if (allToolsActive || Tools.current == Tool.Move)
                 {
                     MoveKnot(knot);
                 }
 
-                if (Tools.current == Tool.Rotate)
+                if (allToolsActive || Tools.current == Tool.Rotate)
                 {
                     RotateKnot(knot);
                 }
@@ -58,17 +52,17 @@ public class BezierSplineEditor : Editor
 
             if (Event.current.type == EventType.Repaint)
             {
-                DrawSpline(spline);
+                DrawSpline(BezierSpline.GetFullPath(knots, 0.5f));
             }
         }
     }
 
-    private void ScaleKnotHandles(BezierKnot knot, bool forwards, bool backwards)
+    private void ScaleKnotHandles(TransformBezierKnot knot, bool forwards, bool backwards)
     {
         if (forwards)
         {
             EditorGUI.BeginChangeCheck();
-            float newForwards = ScaleKnotHandle(knot.position, knot.Forward, knot.forwardsHandleSize);
+            float newForwards = ScaleKnotHandle(knot.Position, knot.Forward, knot.forwardsHandleSize);
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Scale Handle(s)");
@@ -90,7 +84,7 @@ public class BezierSplineEditor : Editor
         if (backwards)
         {
             EditorGUI.BeginChangeCheck();
-            float newBackwards = ScaleKnotHandle(knot.position, -knot.Forward, knot.backwardsHandleSize);
+            float newBackwards = ScaleKnotHandle(knot.Position, -knot.Forward, knot.backwardsHandleSize);
             if (EditorGUI.EndChangeCheck())
             {
                 Undo.RecordObject(target, "Scale Handle(s)");
@@ -110,30 +104,28 @@ public class BezierSplineEditor : Editor
         }
     }
 
-    private void MoveKnot(BezierKnot knot)
+    private void MoveKnot(TransformBezierKnot knot)
     {
-        Handles.color = Color.red;
+        Handles.color = Color.green;
         EditorGUI.BeginChangeCheck();
-        Vector3 newPosition = Handles.Slider(knot.position, knot.RawRight, 2f, Handles.ArrowHandleCap, 0.5f);
+        Vector3 newPosition = Handles.Slider(knot.Position, knot.RawRight, 0.5f, PositionOffsetHandleCap, 0.5f);
         if (EditorGUI.EndChangeCheck())
         {
-            Vector3 delta = newPosition - knot.position;
-            Vector3 axisDelta = Vector3.Project(delta, knot.RawRight);
-
             Undo.RecordObject(target, "Change Knot Offset");
-            knot.position = knot.position + axisDelta;
+            float newOffset = knot.InverseTransformPoint(newPosition).x;
+            knot.positionOffset = newOffset;
             EditorUtility.SetDirty(target);
         }
     }
 
-    private void RotateKnot(BezierKnot knot)
+    private void RotateKnot(TransformBezierKnot knot)
     {
         Handles.color = Color.green;
         EditorGUI.BeginChangeCheck();
-        Quaternion newRotation = Handles.Disc(knot.RotationWithOffset, knot.position, knot.RawUp, 1.5f, false, 15f);
+        Quaternion newRotation = Handles.Disc(knot.Rotation, knot.Position, knot.RawUp, 1.5f, false, 15f);
         if (EditorGUI.EndChangeCheck())
         {
-            Quaternion delta = newRotation * Quaternion.Inverse(knot.rotation);
+            Quaternion delta = newRotation * Quaternion.Inverse(knot.RawRotation);
             delta.ToAngleAxis(out float angle, out Vector3 axis);
 
             if (Mathf.Abs(angle) < 0.001f)
@@ -144,7 +136,7 @@ public class BezierSplineEditor : Editor
             {
                 angle = angle * Mathf.Sign(Vector3.Dot(axis, knot.RawUp));
             }
-            
+
             Undo.RecordObject(target, "Change Knot Rotation");
             knot.rotationOffset = angle;
             EditorUtility.SetDirty(target);
@@ -155,7 +147,7 @@ public class BezierSplineEditor : Editor
     {
         float handlesScaling = 0.5f;
 
-        Vector3 handlePos = position + axis * knotHandleSize * handlesScaling;
+        Vector3 handlePos = position + handlesScaling * knotHandleSize * axis;
 
         Handles.color = Event.current.shift ? Color.blueViolet : Color.blue;
 
@@ -179,10 +171,9 @@ public class BezierSplineEditor : Editor
         return newHandleSize;
     }
 
-    private void DrawSpline(BezierSpline spline)
+    private void DrawSpline(List<Vector3> path)
     {
         Handles.color = Color.cyan;
-        List<Vector3> path = spline.GetFullPath(0.5f);
         if (path.Count > 1)
         {
             for (int i = 0; i < path.Count; i++)
@@ -196,22 +187,27 @@ public class BezierSplineEditor : Editor
 
     private void GetKnotsFromCheckpointGroup(CheckpointGroup group)
     {
-        SceneBezierSpline sceneSpline = target as SceneBezierSpline;
+        CheckpointGroupBezierSpline sceneSpline = target as CheckpointGroupBezierSpline;
 
-        BezierSpline spline = (sceneSpline).spline;
         List<Checkpoint> checkpointCache = new List<Checkpoint>(group.Checkpoints);
 
-        BezierKnot[] newKnots = new BezierKnot[checkpointCache.Count];
+        TransformBezierKnot[] newKnots = new TransformBezierKnot[checkpointCache.Count];
 
         for (int i = 0; i < checkpointCache.Count; i++)
         {
-            Vector3 position = checkpointCache[i].transform.position;
-            Quaternion rotation = checkpointCache[i].transform.rotation;
-            BezierKnot newKnot = new BezierKnot(position, rotation, 5f, 5f);
+            TransformBezierKnot newKnot = new TransformBezierKnot(checkpointCache[i].transform, 0f, 5f, 5f);
             newKnots[i] = newKnot;
         }
+
         Undo.RecordObject(target, "Auto Update Knot References");
-        spline.Knots = newKnots;
+        sceneSpline.Knots = newKnots;
         EditorUtility.SetDirty(target);
+    }
+
+    private static void PositionOffsetHandleCap(int controlID, Vector3 position, Quaternion rotation, float size, EventType eventType)
+    {
+        Handles.CylinderHandleCap(controlID, position, rotation, size, eventType);
+        Handles.ArrowHandleCap(controlID, position, rotation, size * 3f, eventType);
+        Handles.ArrowHandleCap(controlID, position, Quaternion.Euler(0, 180f, 0) * rotation, size * 3f, eventType);
     }
 }
