@@ -25,6 +25,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
     void OnSceneGUI()
     {
         CheckpointGroupBezierSpline sceneSpline = target as CheckpointGroupBezierSpline;
+        if (sceneSpline.knots == null || sceneSpline.knots.Length == 0) return;
         var scope = new Handles.DrawingScope();
         using (scope)
         {

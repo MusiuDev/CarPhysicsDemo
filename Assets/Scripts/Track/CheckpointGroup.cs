@@ -9,6 +9,7 @@ public class CheckpointGroup : MonoBehaviour
 
     [SerializeField] private Checkpoint[] _checkpoints;
     [SerializeField] private Transform _exitPoint;
+    [SerializeField] private Transform _boundsTransform;
 
     public IReadOnlyCollection<Checkpoint> Checkpoints => _checkpoints;
     public Transform ExitPoint => _exitPoint;
@@ -18,10 +19,10 @@ public class CheckpointGroup : MonoBehaviour
 
     void Start()
     {
-        Reset();
+        ResetGroup();
     }
 
-    public void Reset()
+    public void ResetGroup()
     {
         SubscribeToCheckpoints();
         for (int i = 0; i < _checkpoints.Length; i++)
@@ -69,11 +70,11 @@ public class CheckpointGroup : MonoBehaviour
         Completed = true;
         OnCheckpointGroupCleared?.Invoke(this);
         UnsubscribeFromCheckpoints();
-        StartCoroutine(WaitAndReset());
     }
 
     private void SubscribeToCheckpoints()
     {
+        if (_checkpoints == null || _checkpoints.Length == 0) return;
         UnsubscribeFromCheckpoints();
         for (int i = 0; i < _checkpoints.Length; i++)
         {
@@ -83,16 +84,11 @@ public class CheckpointGroup : MonoBehaviour
 
     private void UnsubscribeFromCheckpoints()
     {
+        if (_checkpoints == null || _checkpoints.Length == 0) return;
         for (int i = 0; i < _checkpoints.Length; i++)
         {
             _checkpoints[i].OnCheckpointCompleted -= HandleCheckpointCompleted;
         }
-    }
-
-    IEnumerator WaitAndReset()
-    {
-        yield return new WaitForSeconds(2f);
-        Reset();
     }
 
     void OnDrawGizmos()
@@ -104,6 +100,13 @@ public class CheckpointGroup : MonoBehaviour
         {
             Gizmos.color = Color.red;
             DrawArrowGizmo(_exitPoint.position, _exitPoint.forward);
+        }
+
+        if (_boundsTransform)
+        {
+            Gizmos.color = Color.orange;
+            //Gizmos.DrawWireSphere(_boundsTransform.position, _boundsTransform.localScale.x);
+            DrawBoundsGizmo();
         }
     }
 
@@ -121,5 +124,18 @@ public class CheckpointGroup : MonoBehaviour
             Vector3 newArrowCap = Quaternion.AngleAxis((360f / arrowSections) * i, direction) * arrowCap;
             Gizmos.DrawLine(to, to + newArrowCap);
         }
+    }
+
+    private void DrawBoundsGizmo()
+    {
+        Matrix4x4 originalMatrix = Gizmos.matrix;
+        Vector3 center = _boundsTransform.position;
+        center.y = 0;
+        Quaternion rotation = Quaternion.Euler(0, _boundsTransform.eulerAngles.y, 0);
+        Vector3 scale = _boundsTransform.localScale;
+        scale.y = 0.01f;
+        Gizmos.matrix = Matrix4x4.TRS(center, rotation, scale);
+        Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+        Gizmos.matrix = originalMatrix;
     }
 }
