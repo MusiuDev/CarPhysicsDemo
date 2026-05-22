@@ -2,16 +2,24 @@ using UnityEngine;
 
 public class CheckpointGroupFlippableObject : MonoBehaviour, IFlippableObject
 {
+    [SerializeField] private bool _flipPosition = true;
+    [SerializeField] private bool _flipRotation = true;
+
     public Transform TransformReference => this.transform;
     public void Flip()
     {
-        Vector3 pos = transform.localPosition;
-        Vector3 rot = transform.localEulerAngles;
+        if (_flipPosition)
+        {
+            Vector3 pos = transform.localPosition;
+            pos.x *= -1f;
+            transform.localPosition = pos;
+        }
 
-        pos.x *= -1f;
-        rot.y *= -1f;
-
-        transform.localPosition = pos;
-        transform.localEulerAngles = rot;
+        if (_flipRotation)
+        {
+            Vector3 rot = transform.localEulerAngles;
+            transform.localEulerAngles = rot;
+            rot.y *= -1f;
+        }
     }
 }

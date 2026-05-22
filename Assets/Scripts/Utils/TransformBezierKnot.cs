@@ -7,6 +7,8 @@ public class TransformBezierKnot : MonoBehaviour, IBezierKnot, IFlippableObject
     public float forwardsHandleSize = 5f;
     public float backwardsHandleSize = 5f;
     public float positionOffset = 0f;
+    [SerializeField] private bool _flipPosition = true;
+    [SerializeField] private bool _flipRotation = true;
 
     public Vector3 InverseTransformPoint(Vector3 pos) => transform.InverseTransformPoint(pos);
 
@@ -42,16 +44,21 @@ public class TransformBezierKnot : MonoBehaviour, IBezierKnot, IFlippableObject
 
     public void Flip()
     {
-        Vector3 pos = transform.localPosition;
-        Vector3 rot = transform.localEulerAngles;
+        if (_flipPosition)
+        {
+            Vector3 pos = transform.localPosition;
+            pos.x *= -1f;
+            transform.localPosition = pos;
+        }
 
-        pos.x *= -1f;
-        rot.y *= -1f;
+        if (_flipRotation)
+        {
+            Vector3 rot = transform.localEulerAngles;
+            rot.y *= -1f;
+            transform.localEulerAngles = rot;
 
-        transform.localPosition = pos;
-        transform.localEulerAngles = rot;
-
-        positionOffset *= -1f;
-        rotationOffset *= -1f;
+            positionOffset *= -1f; //positionOffset is here intentionally.
+            rotationOffset *= -1f;
+        }
     }
 }

@@ -45,17 +45,19 @@ public class TrackManager : MonoBehaviour
             return;
         }
 
-        (CheckpointGroup group, TrackChainLink newLink) = TryChoosePrefabWithLookAhead(_lookAhead);
+        (CheckpointGroup group, bool flipped, TrackChainLink newLink) = TryChoosePrefabWithLookAhead(_lookAhead);
         if (!group || newLink == null)
         {
             Debug.LogError("Spawner wasn't able to find a valid link. Picking one at random");
+            flipped = Random.value > 0.5f;
             group = _checkpointPrefabs[Random.Range(0, _checkpointPrefabs.Length - 1)];
-            newLink = group.GetTrackChainLinkAt(_currentChain.exitPosition, _currentChain.exitAngle);
+            newLink = group.GetTrackChainLinkAt(_currentChain.exitPosition, _currentChain.exitAngle, flipped);
         }
 
         Quaternion rotation = Quaternion.Euler(0, _currentChain.exitAngle, 0);
         Vector3 position = _currentChain.exitPosition;
         CheckpointGroup newActiveGroup = GameObject.Instantiate(group, position, rotation, this.transform);
+        if (flipped) newActiveGroup.Flip();
 
         float oldAngle = _currentChain.exitAngle;
 
@@ -64,17 +66,18 @@ public class TrackManager : MonoBehaviour
         Debug.Log($"Spawned new group at: {position:F2} with angle {oldAngle} - to a new angle: {_currentChain.exitAngle}");
     }
 
-    private (CheckpointGroup group, TrackChainLink newLink) TryChoosePrefabWithLookAhead(int lookAhead)
+    private (CheckpointGroup group, bool flipped, TrackChainLink newLink) TryChoosePrefabWithLookAhead(int lookAhead)
     {
         TrackChain virtualChain = _currentChain.Clone();
         CheckpointGroup pickedGroup = null;
+        bool pickedFlipped = false;
         TrackChainLink pickedLink = null;
         for (int i = 0; i < lookAhead; i++)
         {
-            (CheckpointGroup group, TrackChainLink newLink) = TryChoosePrefab(virtualChain);
+            (CheckpointGroup group, bool flipped, TrackChainLink newLink) = TryChoosePrefab(virtualChain);
 
             //early return with null if any depth is invalid.
-            if (!group || newLink == null) return (null, null);
+            if (!group || newLink == null) return (null, false, null);
 
             virtualChain.Add(newLink);
 
@@ -83,14 +86,15 @@ public class TrackManager : MonoBehaviour
             if (i == 0)
             {
                 pickedGroup = group;
+                pickedFlipped = flipped;
                 pickedLink = newLink;
             }
         }
 
-        return (pickedGroup, pickedLink);
+        return (pickedGroup, pickedFlipped, pickedLink);
     }
 
-    private (CheckpointGroup group, TrackChainLink newLink) TryChoosePrefab(TrackChain chain)
+    private (CheckpointGroup group, bool flipped, TrackChainLink newLink) TryChoosePrefab(TrackChain chain)
     {
         List<CheckpointGroup> shuffledGroups = _checkpointPrefabs.OrderBy(a => Random.value).ToList();
         Vector3 currentExitPos = chain.exitPosition;
@@ -98,16 +102,17 @@ public class TrackManager : MonoBehaviour
 
         foreach (var candidate in shuffledGroups)
         {
-            TrackChainLink newLink = candidate.GetTrackChainLinkAt(currentExitPos, currentExitAngle);
+            bool flipped = Random.value > 0.5f;
+            TrackChainLink newLink = candidate.GetTrackChainLinkAt(currentExitPos, currentExitAngle, flipped);
 
             bool collides = chain.CheckCollision(newLink);
 
             if (Mathf.Abs(newLink.exitAngle) <= _maxMapAngle && !collides)
             {
-                return (candidate, newLink);
+                return (candidate, flipped, newLink);
             }
         }
-        return (null, null);
+        return (null, false, null);
     }
 }
 

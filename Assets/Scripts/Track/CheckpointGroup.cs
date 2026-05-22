@@ -100,17 +100,28 @@ public class CheckpointGroup : MonoBehaviour
         return MathUtils.RectFromTransformXZ(_boundsTransform);
     }
 
-
-    public TrackChainLink GetTrackChainLinkAt(Vector3 position, float rotation)
+    public RotatedRectangle GetBoundsAt(Vector3 position, float rotation, bool flipped)
     {
-        Matrix4x4 trs = Matrix4x4.TRS(position, Quaternion.Euler(0, rotation, 0), Vector3.one);
+        float flippedSign = flipped ? -1 : 1;
+        Matrix4x4 trs = Matrix4x4.TRS(position, Quaternion.Euler(0, rotation, 0), new Vector3(flippedSign, 1, 1));
+
+        Vector2 pos = trs.MultiplyPoint(_boundsTransform.localPosition).ToXY();
+        float rot = rotation + (flippedSign * _boundsTransform.localEulerAngles.y);
+
+        return new RotatedRectangle(pos, _boundsTransform.localScale.ToXY(), rot);
+    }
+
+    public TrackChainLink GetTrackChainLinkAt(Vector3 position, float rotation, bool flipped)
+    {
+        float flippedSign = flipped ? -1 : 1;
+        Matrix4x4 trs = Matrix4x4.TRS(position, Quaternion.Euler(0, rotation, 0), new Vector3(flippedSign, 1, 1));
 
         Vector3 entryPosition = position;
         Vector3 exitPosition = trs.MultiplyPoint(this.ExitPosition);
-        float exitAngle = rotation + this.ExitAngle;
+        float exitAngle = rotation + (flippedSign * this.ExitAngle);
 
         Vector2 boundsPos = trs.MultiplyPoint(_boundsTransform.localPosition).ToXY();
-        float boundsRotation = rotation + _boundsTransform.localEulerAngles.y;
+        float boundsRotation = rotation + (flippedSign * _boundsTransform.localEulerAngles.y);
         Vector3 boundsScale = _boundsTransform.localScale.ToXY();
 
         RotatedRectangle transformedBounds = new RotatedRectangle(boundsPos, boundsScale, boundsRotation);
@@ -121,6 +132,16 @@ public class CheckpointGroup : MonoBehaviour
             exitAngle,
             transformedBounds
         );
+    }
+
+    public void Flip()
+    {
+        IFlippableObject[] childFlippables = gameObject.GetComponentsInChildren<IFlippableObject>();
+        foreach (var item in childFlippables)
+        {
+            if (item.TransformReference == this.transform) continue;
+            item.Flip();
+        }
     }
 
     void OnDrawGizmos()

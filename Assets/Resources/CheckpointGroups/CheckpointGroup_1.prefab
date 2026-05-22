@@ -48,6 +48,8 @@ MonoBehaviour:
   forwardsHandleSize: 3.3981698
   backwardsHandleSize: 4.7685647
   positionOffset: 0
+  _flipPosition: 1
+  _flipRotation: 1
 --- !u!1001 &2060388191835248146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,7 +220,7 @@ PrefabInstance:
       objectReference: {fileID: 7727551583059072660}
     - target: {fileID: 8328285709005201559, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: m_Name
-      value: CheckpointGroup_1 Variant
+      value: CheckpointGroup_1
       objectReference: {fileID: 0}
     - target: {fileID: 8358527107452492904, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: m_LocalScale.x
