@@ -85,11 +85,11 @@ public class SmoothCarMovement : MonoBehaviour
         _state.DriftingFactor = 0f;
         _state.MotionAngle = 0;
 
-        if (_rb.linearVelocity.magnitude > 0.1f)
+        if (_rb.linearVelocity.magnitude > 0.01f)
         {
-            float dot = Vector3.Dot(_state.RbForward, _rb.linearVelocity.normalized);
-            _state.DriftingFactor = 1f - Mathf.Abs(dot);
-            _state.MotionAngle = dot;
+            float angle = Vector3.Angle(_state.RbForward, _rb.linearVelocity.normalized);
+            _state.DriftingFactor = angle / 90f;
+            _state.MotionAngle = -(angle / 90f) + 1;
         }
     }
 

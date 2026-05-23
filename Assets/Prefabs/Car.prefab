@@ -1036,8 +1036,8 @@ MonoBehaviour:
     - carWheel: {fileID: 6149756497397849223}
       trail: {fileID: 7757259745858714459}
       visualWheel: {fileID: 5935452671999141626}
-    _driftingStart: 0.3
-    _driftingEnd: 0.1
+    _driftingStart: 0.1
+    _driftingEnd: 0.05
     _extraTime: 0.3
     _steerVisualWheels: 0
     _steerTurnAngle: 0
@@ -1049,8 +1049,8 @@ MonoBehaviour:
     - carWheel: {fileID: 3781649925366475516}
       trail: {fileID: 3139425257789938427}
       visualWheel: {fileID: 2290752738240404371}
-    _driftingStart: 0.55
-    _driftingEnd: 0.25
+    _driftingStart: 0.25
+    _driftingEnd: 0.2
     _extraTime: 0.25
     _steerVisualWheels: 1
     _steerTurnAngle: 35
@@ -1564,9 +1564,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 345700736046049840}
     m_Modifications:
+    - target: {fileID: 848765413153220810, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Parameters.alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 848765413153220810, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900035983299290752, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Parameters.alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900035983299290752, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2446502235449875190, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
       propertyPath: m_Name
       value: CarVisuals
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514226486951080374, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Parameters.alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514226486951080374, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5472229400656185706, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Parameters.alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5472229400656185706, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7526693453059115973, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
       propertyPath: m_LocalPosition.x
