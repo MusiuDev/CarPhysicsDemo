@@ -140,27 +140,31 @@ public struct BezierDefinition
 
 public static class BezierSpline
 {
-    public static List<Vector3> GetFullPath(IBezierKnot[] knots, float segmentLength)
+    public static SplinePath GetFullPath(IBezierKnot[] knots, float segmentLength, float offset = 0f, int bezierSegments = 16)
     {
-        if (knots == null || knots.Length == 0) return new List<Vector3>() { Vector3.zero };
-        if (knots.Length == 1) return new List<Vector3>() { knots[0].Position };
+
+        if (knots == null || knots.Length == 0) return new SplinePath(Vector3.zero);
+        if (knots.Length == 1) return new SplinePath(knots[0].Position);
 
         if (segmentLength <= 0.01f)
         {
             Debug.LogWarning("Segment Length is too small to draw. It would create performance issues.");
-            return new List<Vector3>() { knots[0].Position, knots[^1].Position };
+            return new SplinePath(knots[0].Position, knots[^1].Position);
         }
 
-        List<Vector3> path = new List<Vector3>();
-        float nextOffset = 0f;
+        SplinePath path = new SplinePath();
+        float nextOffset = offset;
 
+        float remainingDistance = 0f;
         for (int i = 0; i < knots.Length - 1; i++)
         {
-            Bezier curve = new Bezier(knots[i], knots[i + 1]);
-            Vector3[] points = curve.GetEquallySpacedPoints(segmentLength, out float remainingDistance, nextOffset);
+            Bezier curve = new Bezier(knots[i], knots[i + 1], bezierSegments);
+            Vector3[] points = curve.GetEquallySpacedPoints(segmentLength, out remainingDistance, nextOffset);
             nextOffset = segmentLength - remainingDistance;
-            path.AddRange(points);
+            path.pathPoints.AddRange(points);
         }
+        
+        path.remainingDistance = remainingDistance;
         return path;
     }
 }
@@ -170,4 +174,19 @@ public interface IBezierKnot
     Vector3 Position { get; }
     Vector3 ForwardHandlePosition { get; }
     Vector3 BackwardsHandlePosition { get; }
+}
+public class SplinePath
+{
+    public List<Vector3> pathPoints;
+    public float remainingDistance;
+
+    public SplinePath()
+    {
+        pathPoints = new List<Vector3>();
+    }
+
+    public SplinePath(params Vector3[] points)
+    {
+        pathPoints = new List<Vector3>(points);
+    }
 }

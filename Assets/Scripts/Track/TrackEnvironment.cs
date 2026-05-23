@@ -8,7 +8,7 @@ public class TrackEnvironment : MonoBehaviour
 
     void Awake()
     {
-        _trackManager.OnTrackUpdated += HandleTrackUpodated;
+        TrackManager.OnTrackUpdated += HandleTrackUpodated;
     }
 
     private void HandleTrackUpodated()

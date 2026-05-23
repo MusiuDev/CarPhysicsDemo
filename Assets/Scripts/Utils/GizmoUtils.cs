@@ -35,16 +35,16 @@ public static class GizmoUtils
 
     public static void DrawSplineFromKnots(IBezierKnot[] knots, float segmentDistance)
     {
-        var path = BezierSpline.GetFullPath(knots, segmentDistance);
+        SplinePath path = BezierSpline.GetFullPath(knots, segmentDistance);
 
         if (path == null) return;
-        if (path.Count <= 1) return;
+        if (path.pathPoints.Count <= 1) return;
 
-        Vector3[] lineList = new Vector3[(path.Count - 1) * 2];
-        for (int i = 0; i < path.Count - 1; i++)
+        Vector3[] lineList = new Vector3[(path.pathPoints.Count - 1) * 2];
+        for (int i = 0; i < path.pathPoints.Count - 1; i++)
         {
-            lineList[2 * i] = path[i];
-            lineList[2 * i + 1] = path[i + 1];
+            lineList[2 * i] = path.pathPoints[i];
+            lineList[2 * i + 1] = path.pathPoints[i + 1];
         }
 
         Gizmos.color = Color.cyan;

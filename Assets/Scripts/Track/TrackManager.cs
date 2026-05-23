@@ -5,11 +5,11 @@ using UnityEngine;
 public class TrackManager : MonoBehaviour
 {
     public delegate void TrackManagerEvent();
-    public event TrackManagerEvent OnTrackUpdated;
+    public static event TrackManagerEvent OnTrackUpdated;
 
     public delegate void TrackManagerGroupEvent(CheckpointGroup group);
-    public event TrackManagerGroupEvent OnCheckpointGroupDespawned;
-    public event TrackManagerGroupEvent OnCheckpointGroupSpawned;
+    public static event TrackManagerGroupEvent OnCheckpointGroupDespawned;
+    public static event TrackManagerGroupEvent OnCheckpointGroupSpawned;
 
     [SerializeField] private int _lookAhead = 3;
     [SerializeField] private float _maxMapAngle = 60f;

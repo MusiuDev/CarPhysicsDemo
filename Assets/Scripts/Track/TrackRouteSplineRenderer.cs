@@ -4,41 +4,75 @@ using UnityEngine;
 
 public class TrackRouteSplineRenderer : MonoBehaviour
 {
-    [SerializeField] private TrackManager _trackManager;
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private float _lineSegmentDistance = 1f;
+    [SerializeField] private int _bezierSegments = 16;
+    [SerializeField] private float _firstPointDistance = 100f;
+
+
+    private Dictionary<CheckpointGroup, SplinePath> _groupToPath = new Dictionary<CheckpointGroup, SplinePath>();
+    private List<SplinePath> _activePaths = new List<SplinePath>();
+    private List<CheckpointGroup> _activeGroups = new List<CheckpointGroup>();
+    private int _fullPathCount = 0;
+    private float _nextOffset = 0f;
 
     void Awake()
     {
-        _trackManager.OnTrackUpdated += HandleTrackUpdated;
+        TrackManager.OnCheckpointGroupSpawned += HandleGroupSpawned;
+        TrackManager.OnCheckpointGroupDespawned += HandleGroupDespawned;
+        TrackManager.OnTrackUpdated += UpdateLineRenderer; //This one only gets called after bulk updates, so we only update the renderer here.
     }
 
-    private void HandleTrackUpdated()
+    private void HandleGroupSpawned(CheckpointGroup group)
     {
-        var groups = _trackManager.ActiveGroups;
-        List<IBezierKnot> allKnots = new();
-        foreach (var group in groups)
+        CheckpointGroupBezierSpline groupSpline = group.GetComponent<CheckpointGroupBezierSpline>();
+        if (!groupSpline) return;
+
+        SplinePath path = BezierSpline.GetFullPath(groupSpline.knots, _lineSegmentDistance, _nextOffset, _bezierSegments);
+        _nextOffset = _lineSegmentDistance - path.remainingDistance;
+
+        _groupToPath.Add(group, path);
+        _activeGroups.Add(group);
+        _activePaths.Add(path);
+        _fullPathCount += path.pathPoints.Count;
+    }
+
+    private void HandleGroupDespawned(CheckpointGroup group)
+    {
+        if (!_groupToPath.ContainsKey(group)) return;
+
+        SplinePath path = _groupToPath[group];
+        if (path == null) return;
+
+        _activePaths.Remove(path);
+        _groupToPath.Remove(group);
+        _activeGroups.Remove(group);
+
+        _fullPathCount -= path.pathPoints.Count;
+    }
+
+
+    private void UpdateLineRenderer()
+    {
+        if (_activePaths == null || _activePaths.Count == 0) return;
+        if (_activeGroups == null || _activeGroups.Count == 0) return;
+
+        Vector3[] fullPath = new Vector3[_fullPathCount + 1];
+        Vector3 firstPoint = _activeGroups[0].transform.position - _activeGroups[0].transform.forward * _firstPointDistance;
+        fullPath[0] = Swizzle(firstPoint);
+
+        int index = 1;
+        foreach (var path in _activePaths)
         {
-            CheckpointGroupBezierSpline groupSpline = group.GetComponent<CheckpointGroupBezierSpline>();
-            if (groupSpline)
+            foreach (var point in path.pathPoints)
             {
-                allKnots.AddRange(groupSpline.knots);
-                allKnots.RemoveAt(allKnots.Count - 1); //don't add the last one so the spline doesn't double up.
+                fullPath[index] = Swizzle(point);
+                index++;
             }
         }
 
-
-
-        if (_lineRenderer)
-        {
-            Vector3[] path = BezierSpline.GetFullPath(allKnots.ToArray(), _lineSegmentDistance).ToArray();
-            for (int i = 0; i < path.Length; i++)
-            {
-                path[i] = Swizzle(path[i]);
-            }
-            _lineRenderer.positionCount = path.Length;
-            _lineRenderer.SetPositions(path);
-        }
+        _lineRenderer.positionCount = fullPath.Length;
+        _lineRenderer.SetPositions(fullPath);
     }
 
     private Vector3 Swizzle(Vector3 pos)

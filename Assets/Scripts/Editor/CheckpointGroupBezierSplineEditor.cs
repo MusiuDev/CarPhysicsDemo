@@ -53,7 +53,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
 
             if (Event.current.type == EventType.Repaint)
             {
-                DrawSpline(BezierSpline.GetFullPath(knots, sceneSpline.segmentDistance));
+                DrawSplinePath(BezierSpline.GetFullPath(knots, sceneSpline.segmentDistance));
             }
         }
     }
@@ -173,14 +173,14 @@ public class CheckpointGroupBezierSplineEditor : Editor
         return newHandleSize;
     }
 
-    private void DrawSpline(List<Vector3> path)
+    private void DrawSplinePath(SplinePath path)
     {
         Handles.color = Color.cyan;
-        if (path.Count > 1)
+        if (path.pathPoints.Count > 1)
         {
-            for (int i = 0; i < path.Count; i++)
+            for (int i = 0; i < path.pathPoints.Count; i++)
             {
-                Vector3 point = path[i];
+                Vector3 point = path.pathPoints[i];
                 Handles.SphereHandleCap(-1, point, Quaternion.identity, 0.2f, EventType.Repaint);
             }
         }

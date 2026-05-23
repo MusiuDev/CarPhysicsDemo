@@ -528,9 +528,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1816bbf942224babfd32e4dd5b7ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrackRouteSplineRenderer
-  _trackManager: {fileID: 281992370}
   _lineRenderer: {fileID: 389377328}
-  _lineSegmentDistance: 1
+  _lineSegmentDistance: 3
+  _bezierSegments: 8
+  _firstPointDistance: 100
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalRotation.w
