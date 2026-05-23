@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cf837d079136d3ed9fec850dbbaaef4, type: 3}
-  m_Name: CarMovement_Straight
+  m_Name: CarMovement_Steering_Auto
   m_EditorClassIdentifier: Assembly-CSharp::CarMovementCharacteristics
-  <MaxSpeed>k__BackingField: 16
+  <MaxSpeed>k__BackingField: 12
   <Acceleration>k__BackingField: 12
   <SteerTorque>k__BackingField: 720
-  <MaxAngularSpeed>k__BackingField: 200
-  <DriftRecoverySpeed>k__BackingField: 60
-  <FastDriftRecoveryThreshold>k__BackingField: 0.7
-  <FastDriftRecoveryMult>k__BackingField: 2.5
+  <MaxAngularSpeed>k__BackingField: 170
+  <DriftRecoverySpeed>k__BackingField: 90
+  <FastDriftRecoveryThreshold>k__BackingField: 0.75
+  <FastDriftRecoveryMult>k__BackingField: 2
   <SteerMultCurveBySpeed>k__BackingField:
     serializedVersion: 2
     m_Curve:
@@ -48,13 +48,22 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
+      value: 0.2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
@@ -68,7 +77,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   <TractionMutliplier>k__BackingField: 1
-  <AirControl>k__BackingField: 0.1
+  <AirControl>k__BackingField: 0.3
   <BaseDamping>k__BackingField: 0
   <StoppedDamping>k__BackingField: 2.5
   <DriftingDamping>k__BackingField: 0

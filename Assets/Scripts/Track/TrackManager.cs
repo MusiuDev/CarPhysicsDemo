@@ -10,17 +10,15 @@ public class TrackManager : MonoBehaviour
     [SerializeField] private int _lookAhead = 3;
     [SerializeField] private float _maxMapAngle = 60f;
     [SerializeField] private int _startingSegments = 10;
+    [SerializeField] private int _maxActiveGroups = 14;
 
     private CheckpointGroup[] _checkpointPrefabs;
+    private int _currentActiveGroupIndex = 0;
 
     private TrackChain _currentChain;
+    public TrackChain CurrentChain => _currentChain;
     private List<CheckpointGroup> _activeGroups = new List<CheckpointGroup>();
     public IReadOnlyCollection<CheckpointGroup> ActiveGroups => _activeGroups;
-
-    void Awake()
-    {
-
-    }
 
     void Start()
     {
@@ -35,12 +33,17 @@ public class TrackManager : MonoBehaviour
         {
             TrySpawn();
         }
+        _currentActiveGroupIndex = 0;
+        _activeGroups[0].Activate();
         OnTrackUpdated?.Invoke();
     }
 
-    void Update()
+    private void HandleGroupCompleted(CheckpointGroup group)
     {
-
+        _currentActiveGroupIndex++;
+        _activeGroups[_currentActiveGroupIndex].Activate();
+        TrySpawn();
+        OnTrackUpdated?.Invoke();
     }
 
     public void TrySpawn()
@@ -69,7 +72,23 @@ public class TrackManager : MonoBehaviour
 
         _currentChain.Add(newLink);
         _activeGroups.Add(newActiveGroup);
-        Debug.Log($"Spawned new group at: {position:F2} with angle {oldAngle} - to a new angle: {_currentChain.exitAngle}");
+        newActiveGroup.OnCheckpointGroupCleared += HandleGroupCompleted;
+        newActiveGroup.ResetGroup();
+
+        if (_activeGroups.Count > _maxActiveGroups)
+        {
+            DespawnLast();
+        }
+    }
+
+    private void DespawnLast()
+    {
+        _currentActiveGroupIndex--;
+        CheckpointGroup oldest = _activeGroups[0];
+        oldest.OnCheckpointGroupCleared -= HandleGroupCompleted;
+        _currentChain.RemoveOldest();
+        _activeGroups.RemoveAt(0);
+        GameObject.Destroy(oldest.gameObject);
     }
 
     private (CheckpointGroup group, bool flipped, TrackChainLink newLink) TryChoosePrefabWithLookAhead(int lookAhead)
@@ -165,6 +184,11 @@ public class TrackChain
     public void Add(TrackChainLink newLink)
     {
         _links.Add(newLink);
+    }
+
+    public void RemoveOldest()
+    {
+        _links.RemoveAt(0);
     }
 
     public bool CheckCollision(TrackChainLink newLink)

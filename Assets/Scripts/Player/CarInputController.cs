@@ -7,6 +7,7 @@ public class CarInputController : MonoBehaviour
     [SerializeField] private InputActionReference _steerActionRef;
     [SerializeField] private InputActionReference _accelerateActionRef;
     [SerializeField] private InputActionReference _brakeActionRef;
+    [SerializeField] private bool _autoAccelerate;
 
     private InputAction _steerAction;
     private InputAction _accelerateAction;
@@ -28,14 +29,11 @@ public class CarInputController : MonoBehaviour
 
     void Update()
     {
-        float steer = 0f;
-        bool accelerate = false;
-        bool brake = false;
 
-        steer = _steerAction.ReadValue<float>();
-        accelerate = _accelerateAction.ReadValue<float>() > 0.5f;
-        brake = _brakeAction.ReadValue<float>() > 0.5f;
-
+        float steer = _steerAction.ReadValue<float>();
+        bool accelerate = _autoAccelerate || _accelerateAction.ReadValue<float>() > 0.5f;
+        bool brake = _brakeAction.ReadValue<float>() > 0.5f;
+        
         _car.SetInput(steer, accelerate, brake);
     }
 }

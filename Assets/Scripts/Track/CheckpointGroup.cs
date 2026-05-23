@@ -22,9 +22,10 @@ public class CheckpointGroup : MonoBehaviour
     private Checkpoint _nextCheckpoint;
     public bool Completed { get; private set; }
 
-    void Start()
+    public void Activate()
     {
-        ResetGroup();
+        _currentCheckpointIndex = 0;
+        UpdateNextCheckpoint();
     }
 
     public void ResetGroup()
@@ -34,7 +35,7 @@ public class CheckpointGroup : MonoBehaviour
         {
             _checkpoints[i].SetState(Checkpoint.CheckpointState.Blocked);
         }
-        _currentCheckpointIndex = 0;
+        _currentCheckpointIndex = -1;
         Completed = false;
         UpdateNextCheckpoint();
     }
@@ -65,8 +66,11 @@ public class CheckpointGroup : MonoBehaviour
 
     private void UpdateNextCheckpoint()
     {
-        _nextCheckpoint = _checkpoints[_currentCheckpointIndex];
-        _nextCheckpoint.SetState(Checkpoint.CheckpointState.Active);
+        if (_currentCheckpointIndex >= 0 && _currentCheckpointIndex < _checkpoints.Length)
+        {
+            _nextCheckpoint = _checkpoints[_currentCheckpointIndex];
+            _nextCheckpoint.SetState(Checkpoint.CheckpointState.Active);
+        }
     }
 
     private void MarkAsCompleted()
