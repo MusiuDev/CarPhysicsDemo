@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2698333496542895107}
   - component: {fileID: 8699518498082767829}
   - component: {fileID: 6173790761615470926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tree_4
-  m_TagString: Untagged
+  m_TagString: TrackObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5785874504235556239}
   - component: {fileID: 6599982126149705680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4111013917587044130}
   - component: {fileID: 3191404716126109719}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18117330612518059}
   - component: {fileID: 3250405910341232208}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2966251987588218550}
   - component: {fileID: 4945205215088880926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

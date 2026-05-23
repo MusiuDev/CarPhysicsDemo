@@ -37,11 +37,20 @@ public class SmoothCarMovement : MonoBehaviour
         _state.BrakeInput = brake;
     }
 
+    public void ResetToPositionAndRotation(Vector3 position, Quaternion rotation)
+    {
+        _rb.linearVelocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
+        transform.position = position;
+        transform.rotation = rotation;
+        _state.ResetMotion();
+    }
+
     void FixedUpdate()
     {
         UpdateWheelsInfo();
         UpdateMotionInfo();
-        UpdateMovementCharacteristicsFromSteering();
+        UpdateMovementCharacteristicsFromSteering(); //TODO: Rename this
         UpdateSteering();
         UpdateMotion();
         UpdateDamping();
@@ -224,7 +233,7 @@ public class SmoothCarMovement : MonoBehaviour
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * _wheelRaycastDistance);
         }
     }
-    
+
     public class CarState : ICarState
     {
         public float SteerInput { get; set; }
@@ -239,6 +248,22 @@ public class SmoothCarMovement : MonoBehaviour
         public Vector3 RbForward { get; set; }
         public Vector3 RbUp { get; set; }
         public float MotionAngle { get; set; }
+
+        public void ResetMotion()
+        {
+            SteerInput = default;
+            AccelerateInput = default;
+            BrakeInput = default;
+            ContactingMult = default;
+            ContactingWheels = default;
+            TotalSlopeTraction = default;
+            DriftingFactor = default;
+            IntentionAngle = default;
+            CurrentSpeedFactor = default;
+            RbForward = default;
+            RbUp = default;
+            MotionAngle = default;
+        }
     }
 
     public interface ICarState

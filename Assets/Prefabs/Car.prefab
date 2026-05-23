@@ -925,6 +925,7 @@ GameObject:
   - component: {fileID: 7410640515221001165}
   - component: {fileID: 3678377149773849879}
   - component: {fileID: 6002501517239311876}
+  - component: {fileID: 3906320434087538677}
   - component: {fileID: 7736885288457809234}
   m_Layer: 0
   m_Name: Car
@@ -963,9 +964,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a06aacbb94333f55ba20860ef96dcb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmoothCarMovement
-  _movementStraight: {fileID: 11400000, guid: 11e62ed8aa33876ec9aed9a6675df3d6, type: 2}
-  _movementSteering: {fileID: 11400000, guid: 40cb94c4b4e442096929433f3fe6048b, type: 2}
-  _steeringTransitionTime: 0.5
+  _movementStraight: {fileID: 11400000, guid: cd67bc1d3263cc4a7849e25f73d1da5f, type: 2}
+  _movementSteering: {fileID: 11400000, guid: ce6b6bdc4bd339635b4cd17f2680de1b, type: 2}
+  _steeringTransitionTime: 0.65
   _steeringTransitionCurve:
     serializedVersion: 2
     m_Curve:
@@ -1013,7 +1014,7 @@ MonoBehaviour:
   _steerActionRef: {fileID: 6949231931265028112, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _accelerateActionRef: {fileID: 7725983123266212154, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _brakeActionRef: {fileID: -7385859044393237012, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  _autoAccelerate: 0
+  _autoAccelerate: 1
 --- !u!114 &6002501517239311876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1054,6 +1055,21 @@ MonoBehaviour:
     _steerVisualWheels: 1
     _steerTurnAngle: 35
     _steerTurnSpeed: 360
+--- !u!114 &3906320434087538677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5402952260927350049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a40fada8e9499a788779534ff1bb753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarCollisionDetector
+  _obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!54 &7736885288457809234
 Rigidbody:
   m_ObjectHideFlags: 0

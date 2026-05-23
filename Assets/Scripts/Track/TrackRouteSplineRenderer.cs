@@ -23,6 +23,7 @@ public class TrackRouteSplineRenderer : MonoBehaviour
             if (groupSpline)
             {
                 allKnots.AddRange(groupSpline.knots);
+                allKnots.RemoveAt(allKnots.Count - 1); //don't add the last one so the spline doesn't double up.
             }
         }
 

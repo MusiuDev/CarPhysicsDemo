@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2919485462706473721}
   - component: {fileID: 440459409879790596}
   - component: {fileID: 8040271209271363993}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cliff_3
-  m_TagString: Untagged
+  m_TagString: TrackObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

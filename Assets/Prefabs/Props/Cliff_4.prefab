@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4315491047677509879}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cliff_4
-  m_TagString: Untagged
+  m_TagString: TrackObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 3441676777865333406}
   - component: {fileID: 2985060119842486627}
   - component: {fileID: 4163014041041684906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cliff_4_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 8563783249629790788}
   - component: {fileID: 3746176588275798350}
   - component: {fileID: 8764145791008563387}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cliff_4_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}

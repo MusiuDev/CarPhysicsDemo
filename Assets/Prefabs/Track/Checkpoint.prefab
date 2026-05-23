@@ -87,6 +87,8 @@ MonoBehaviour:
   forwardsHandleSize: 5
   backwardsHandleSize: 5
   positionOffset: 0
+  _flipPosition: 1
+  _flipRotation: 1
 --- !u!1 &637839834446090441
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,9 +99,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3519259158215028474}
   - component: {fileID: 2706455706075961792}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: TrackObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

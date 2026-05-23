@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckpointGroup : MonoBehaviour
 {
     public delegate void CheckpointGroupEvent(CheckpointGroup group);
-    public event CheckpointGroupEvent OnCheckpointGroupCleared;
+    public static event CheckpointGroupEvent OnCheckpointGroupCleared;
 
     [SerializeField] private Checkpoint[] _checkpoints;
     [SerializeField] private Transform _exitPoint;
@@ -13,6 +13,7 @@ public class CheckpointGroup : MonoBehaviour
 
     public IReadOnlyCollection<Checkpoint> Checkpoints => _checkpoints;
 
+    public Transform ExitPoint => _exitPoint;
     public Vector3 ExitPosition => _exitPoint ? _exitPoint.position : Vector3.zero;
     public float ExitAngle => _exitPoint ? _exitPoint.eulerAngles.y : 0f;
 

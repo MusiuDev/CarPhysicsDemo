@@ -40,6 +40,7 @@ public class TrackManager : MonoBehaviour
         _currentActiveGroupIndex = 0;
         _activeGroups[0].Activate();
         OnTrackUpdated?.Invoke();
+        CheckpointGroup.OnCheckpointGroupCleared += HandleGroupCompleted;
     }
 
     private void HandleGroupCompleted(CheckpointGroup group)
@@ -76,7 +77,6 @@ public class TrackManager : MonoBehaviour
 
         _currentChain.Add(newLink);
         _activeGroups.Add(newActiveGroup);
-        newActiveGroup.OnCheckpointGroupCleared += HandleGroupCompleted;
         newActiveGroup.ResetGroup();
         
         OnCheckpointGroupSpawned?.Invoke(newActiveGroup);
@@ -91,7 +91,6 @@ public class TrackManager : MonoBehaviour
     {
         _currentActiveGroupIndex--;
         CheckpointGroup oldest = _activeGroups[0];
-        oldest.OnCheckpointGroupCleared -= HandleGroupCompleted;
         _currentChain.RemoveOldest();
         _activeGroups.RemoveAt(0);
         GameObject.Destroy(oldest.gameObject);

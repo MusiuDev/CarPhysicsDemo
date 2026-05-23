@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8369016868588076848}
   - component: {fileID: 3431776174469183253}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7431429391753270591}
   - component: {fileID: 1699842880395842399}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,9 +122,9 @@ GameObject:
   - component: {fileID: 2238079354531016161}
   - component: {fileID: 5372062553434839831}
   - component: {fileID: 7126124534638806767}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cactus_2
-  m_TagString: Untagged
+  m_TagString: TrackObstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

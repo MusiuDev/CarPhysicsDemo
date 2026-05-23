@@ -457,10 +457,10 @@ LineRenderer:
   m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 30, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 6
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -496,14 +496,14 @@ LineRenderer:
       ctime7: 0
       atime0: 0
       atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
+      atime2: 65535
+      atime3: 65535
+      atime4: 65535
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -707,6 +707,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &888629515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 888629517}
+  - component: {fileID: 888629516}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &888629516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888629515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8814f3df407c0952afcdda0b42cc242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InfiniteDriftGameManager
+  _car: {fileID: 8853687016017625594}
+  _carCollision: {fileID: 8853687016017625589}
+--- !u!4 &888629517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888629515}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492593352
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,32 +902,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3678377149773849879, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _autoAccelerate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5402952260927350049, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_Name
       value: Car
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _movementStraight
-      value: 
-      objectReference: {fileID: 11400000, guid: cd67bc1d3263cc4a7849e25f73d1da5f, type: 2}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steeringTransitionTime
-      value: 0.65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+--- !u!114 &8853687016017625589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3906320434087538677, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+  m_PrefabInstance: {fileID: 8853687016017625588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a40fada8e9499a788779534ff1bb753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarCollisionDetector
 --- !u!4 &8853687016017625590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
   m_PrefabInstance: {fileID: 8853687016017625588}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8853687016017625594 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+  m_PrefabInstance: {fileID: 8853687016017625588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a06aacbb94333f55ba20860ef96dcb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SmoothCarMovement
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -889,6 +945,7 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 888629517}
   - {fileID: 8853687016017625588}
   - {fileID: 1492593353}
   - {fileID: 281992371}
