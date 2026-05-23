@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cf837d079136d3ed9fec850dbbaaef4, type: 3}
-  m_Name: CarMovement_Steering
+  m_Name: CarMovement_Straight_2
   m_EditorClassIdentifier: Assembly-CSharp::CarMovementCharacteristics
-  <MaxSpeed>k__BackingField: 12
-  <Acceleration>k__BackingField: 12
+  <MaxSpeed>k__BackingField: 16
+  <Acceleration>k__BackingField: 16
   <SteerTorque>k__BackingField: 720
-  <MaxAngularSpeed>k__BackingField: 170
+  <MaxAngularSpeed>k__BackingField: 160
   <DriftRecoverySpeed>k__BackingField: 90
-  <FastDriftRecoveryThreshold>k__BackingField: 0.75
-  <FastDriftRecoveryMult>k__BackingField: 2
+  <FastDriftRecoveryThreshold>k__BackingField: 0.9
+  <FastDriftRecoveryMult>k__BackingField: 1.8
   <SteerMultCurveBySpeed>k__BackingField:
     serializedVersion: 2
     m_Curve:
