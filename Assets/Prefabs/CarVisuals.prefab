@@ -504,7 +504,7 @@ GameObject:
   - component: {fileID: 1321824273722394235}
   - component: {fileID: 8675923420692430316}
   m_Layer: 0
-  m_Name: Trail_Light_BL (1)
+  m_Name: Trail_Light_BL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 1370282591334344292}
   - component: {fileID: 8764963537933807989}
   m_Layer: 0
-  m_Name: Trail_Light_BL
+  m_Name: Trail_Light_BR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

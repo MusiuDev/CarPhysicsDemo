@@ -45,7 +45,6 @@ public class Checkpoint : MonoBehaviour
         {
             SetState(CheckpointState.Active);
         }
-
     }
 
     public void SetState(CheckpointState newState)
@@ -61,6 +60,15 @@ public class Checkpoint : MonoBehaviour
         _currentState = newState;
         _colliderContainer.SetActive((int)_currentState < (int)CheckpointState.Open);
         _gateAnimator.SetInteger("State", (int)_currentState);
+    }
+
+    public void HandleCarReset()
+    {
+        _isPlayerIn = false;
+        if (_currentState == CheckpointState.Open)
+        {
+            SetState(CheckpointState.Active);
+        }
     }
 
     public enum CheckpointState

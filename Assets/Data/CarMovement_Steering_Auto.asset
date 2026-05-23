@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf837d079136d3ed9fec850dbbaaef4, type: 3}
   m_Name: CarMovement_Steering_Auto
   m_EditorClassIdentifier: Assembly-CSharp::CarMovementCharacteristics
-  <MaxSpeed>k__BackingField: 12
-  <Acceleration>k__BackingField: 12
-  <SteerTorque>k__BackingField: 500
-  <MaxAngularSpeed>k__BackingField: 180
-  <DriftRecoverySpeed>k__BackingField: 100
-  <FastDriftRecoveryThreshold>k__BackingField: 0.7
-  <FastDriftRecoveryMult>k__BackingField: 2.5
-  <SteerMultCurveBySpeed>k__BackingField:
+  MaxSpeed: 12
+  Acceleration: 12
+  SteerTorque: 500
+  MaxAngularSpeed: 180
+  DriftRecoverySpeed: 100
+  FastDriftRecoveryThreshold: 0.7
+  FastDriftRecoveryMult: 2.5
+  SteerMultCurveBySpeed:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -43,7 +43,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <TractionCurveBySlope>k__BackingField:
+  TractionCurveBySlope:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -76,11 +76,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <TractionMutliplier>k__BackingField: 1
-  <AirControl>k__BackingField: 0.3
-  <BaseDamping>k__BackingField: 0
-  <StoppedDamping>k__BackingField: 2.5
-  <DriftingDamping>k__BackingField: 0
-  <BaseAngularDamping>k__BackingField: 0
-  <SteeringAngularDamping>k__BackingField: 0
-  <StraightAngularDamping>k__BackingField: 3
+  TractionMutliplier: 1
+  AirControl: 0.3
+  BaseDamping: 0
+  StoppedDamping: 2.5
+  DriftingDamping: 0
+  BaseAngularDamping: 0
+  SteeringAngularDamping: 0
+  StraightAngularDamping: 3

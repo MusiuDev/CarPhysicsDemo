@@ -739,6 +739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InfiniteDriftGameManager
   _car: {fileID: 8853687016017625594}
   _carCollision: {fileID: 8853687016017625589}
+  _carStats: {fileID: 8853687016017625598}
+  _onCollisionStatusEffect: {fileID: 11400000, guid: d8239eba58ed49b5daa12970a975886f, type: 2}
 --- !u!4 &888629517
 Transform:
   m_ObjectHideFlags: 0
@@ -907,26 +909,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[1].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _steerMultCurveBySpeed.m_Curve.Array.data[1].outWeight
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -959,6 +941,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a06aacbb94333f55ba20860ef96dcb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmoothCarMovement
+--- !u!114 &8853687016017625598 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2863030739232614470, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+  m_PrefabInstance: {fileID: 8853687016017625588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85cb20295bec1319f9758e721a37e4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarStatsCotroller
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

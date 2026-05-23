@@ -923,6 +923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 345700736046049840}
   - component: {fileID: 7410640515221001165}
+  - component: {fileID: 2863030739232614470}
   - component: {fileID: 3678377149773849879}
   - component: {fileID: 6002501517239311876}
   - component: {fileID: 3906320434087538677}
@@ -964,6 +965,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a06aacbb94333f55ba20860ef96dcb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmoothCarMovement
+  _statsController: {fileID: 2863030739232614470}
+  _centerOfMassVerticalOffset: 0
+  _wheels:
+  - {fileID: 281692923439181367}
+  - {fileID: 5919621192534708112}
+  - {fileID: 3781649925366475516}
+  - {fileID: 6149756497397849223}
+  _wheelRaycastDistance: 0.15
+  _minMotionThreshold: 0.1
+  _fullMotionThreshold: 1
+--- !u!114 &2863030739232614470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5402952260927350049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85cb20295bec1319f9758e721a37e4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarStatsCotroller
   _movementStraight: {fileID: 11400000, guid: cd67bc1d3263cc4a7849e25f73d1da5f, type: 2}
   _movementSteering: {fileID: 11400000, guid: ce6b6bdc4bd339635b4cd17f2680de1b, type: 2}
   _steerMultCurveBySpeed:
@@ -971,22 +994,13 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.25
+      value: 0
       inSlope: 2
       outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - serializedVersion: 3
-      time: 0.3
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
@@ -1005,17 +1019,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.7
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -1032,7 +1037,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _steeringTransitionTime: 0.5
   _steeringTransitionCurve:
     serializedVersion: 2
     m_Curve:
@@ -1057,13 +1061,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _centerOfMassVerticalOffset: 0
-  _wheels:
-  - {fileID: 281692923439181367}
-  - {fileID: 5919621192534708112}
-  - {fileID: 3781649925366475516}
-  - {fileID: 6149756497397849223}
-  _wheelRaycastDistance: 0.15
+  _steeringTransitionTime: 0.5
 --- !u!114 &3678377149773849879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,6 +1119,9 @@ MonoBehaviour:
     _steerVisualWheels: 1
     _steerTurnAngle: 35
     _steerTurnSpeed: 360
+  _lightTrails:
+  - {fileID: 6482217943888053060}
+  - {fileID: 6354864278721974237}
 --- !u!114 &3906320434087538677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,6 +1745,16 @@ Transform:
 --- !u!4 &5935452671999141626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8217072366089475275, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+  m_PrefabInstance: {fileID: 2330068574910542385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &6354864278721974237 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 8675923420692430316, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+  m_PrefabInstance: {fileID: 2330068574910542385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &6482217943888053060 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 8764963537933807989, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
   m_PrefabInstance: {fileID: 2330068574910542385}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7096238476793552909 stripped

@@ -1,16 +1,55 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CarVisualsManager : MonoBehaviour
 {
     [SerializeField] private SmoothCarMovement _car;
     [SerializeField] private DriftingVFXGroup[] _tireGroups;
+    [SerializeField] private TrailRenderer[] _lightTrails;
 
     void Start()
     {
+        InfiniteDriftGameManager.OnCarResetStarted -= HandleCarResetStart;
+        InfiniteDriftGameManager.OnCarResetStarted += HandleCarResetStart;
+
+        InfiniteDriftGameManager.OnCarResetCompleted -= HandleCarResetComplete;
+        InfiniteDriftGameManager.OnCarResetCompleted += HandleCarResetComplete;
         foreach (var group in _tireGroups)
         {
             group.Initialize(_car.State);
+        }
+    }
+
+    private void HandleCarResetStart()
+    {
+        StopAllCoroutines();
+        foreach (var group in _tireGroups)
+        {
+            group.Disable();
+        }
+        foreach (var trail in _lightTrails)
+        {
+            trail.Clear();
+            trail.emitting = false;
+        }
+    }
+
+    private void HandleCarResetComplete()
+    {
+        StartCoroutine(WaitAndReEnable());
+    }
+
+    IEnumerator WaitAndReEnable()
+    {
+        yield return null;
+        foreach (var group in _tireGroups)
+        {
+            group.Enable();
+        }
+        foreach (var trail in _lightTrails)
+        {
+            trail.Clear();
+            trail.emitting = true;
         }
     }
 
@@ -46,18 +85,38 @@ public class CarVisualsManager : MonoBehaviour
 
         private bool _emitting;
         private float _lastDrfitTime;
-        private SmoothCarMovement.ICarState _carState;
+        private ICarState _carState;
         private float _currentSteer;
+        private bool _canEmit;
 
-        public void Initialize(SmoothCarMovement.ICarState carState)
+        public void Initialize(ICarState carState)
         {
             _carState = carState;
+            _canEmit = true;
+            _emitting = false;
+
+            UpdateRenderers();
         }
 
         public void Update()
         {
+            if (!_canEmit) return;
             UpdateState();
             UpdateRenderers();
+        }
+
+        public void Disable()
+        {
+            _emitting = false;
+            _lastDrfitTime = 0;
+            _currentSteer = 0;
+            _canEmit = false;
+            UpdateRenderers();
+        }
+
+        public void Enable()
+        {
+            _canEmit = true;
         }
 
         private void UpdateState()
@@ -84,10 +143,9 @@ public class CarVisualsManager : MonoBehaviour
 
         private void UpdateRenderers()
         {
-
             foreach (var wheelPair in _wheelPairs)
             {
-                bool shouldEnable = _emitting && wheelPair.carWheel.InContact;
+                bool shouldEnable = _canEmit && _emitting && wheelPair.carWheel.InContact;
                 wheelPair.trail.emitting = shouldEnable;
 
                 if (_steerVisualWheels)

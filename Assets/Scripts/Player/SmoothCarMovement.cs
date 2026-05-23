@@ -4,17 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class SmoothCarMovement : MonoBehaviour
 {
-    [SerializeField] private CarMovementCharacteristics _movementStraight;
-    [SerializeField] private CarMovementCharacteristics _movementSteering;
-
-    [SerializeField] private AnimationCurve _steerMultCurveBySpeed;
-    [SerializeField] private AnimationCurve _tractionCurveBySlope;
-    [SerializeField] private float _steeringTransitionTime;
-    [SerializeField] private AnimationCurve _steeringTransitionCurve;
-
+    [SerializeField] private CarStatsCotroller _statsController;
     [SerializeField] private float _centerOfMassVerticalOffset;
     [SerializeField] private CarWheel[] _wheels;
     [SerializeField] private float _wheelRaycastDistance;
+    [SerializeField] private float _minMotionThreshold = 0.1f;
+    [SerializeField] private float _fullMotionThreshold = 1f;
 
     private Rigidbody _rb;
 
@@ -22,14 +17,14 @@ public class SmoothCarMovement : MonoBehaviour
     public ICarState State => _state;
 
     public IReadOnlyCollection<CarWheel> Wheels => _wheels;
-    private float _steeringTransitionState = 0f;
-    private CarMovementCharacteristics _movement;
+
+    private CarMotionStats _movement => _statsController.Movement;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _rb.centerOfMass = Vector3.up * _centerOfMassVerticalOffset;
-        _movement = Instantiate(_movementStraight);
+        _statsController.Initialize(_state);
     }
 
     public void SetInput(float steer, bool accelerate, bool brake)
@@ -45,14 +40,16 @@ public class SmoothCarMovement : MonoBehaviour
         _rb.angularVelocity = Vector3.zero;
         transform.position = position;
         transform.rotation = rotation;
+        _rb.position = position;
+        _rb.rotation = rotation;
         _state.ResetMotion();
     }
 
     void FixedUpdate()
     {
+        _statsController.UpdateMotionStats();
         UpdateWheelsInfo();
         UpdateMotionInfo();
-        UpdateMovementCharacteristicsFromSteering(); //TODO: Rename this
         UpdateSteering();
         UpdateMotion();
         UpdateDamping();
@@ -70,7 +67,7 @@ public class SmoothCarMovement : MonoBehaviour
             if (wheel.InContact)
             {
                 _state.ContactingWheels++;
-                _state.TotalSlopeTraction += _tractionCurveBySlope.Evaluate(wheel.ContactSlope);
+                _state.TotalSlopeTraction += _statsController.TractionBySlope.Evaluate(wheel.ContactSlope);
             }
         }
         float totalContact = (1f / _wheels.Length) * _state.ContactingWheels;
@@ -83,15 +80,17 @@ public class SmoothCarMovement : MonoBehaviour
     {
         _state.RbForward = _rb.rotation * Vector3.forward;
         _state.RbUp = _rb.rotation * Vector3.up;
+        _state.Speed = _rb.linearVelocity.magnitude;
 
         _state.DriftingFactor = 0f;
         _state.MotionAngle = 0;
 
-        if (_rb.linearVelocity.magnitude > 0.01f)
+        if (_state.Speed > _minMotionThreshold)
         {
             float angle = Vector3.Angle(_state.RbForward, _rb.linearVelocity.normalized);
-            _state.DriftingFactor = angle / 90f;
-            _state.MotionAngle = -(angle / 90f) + 1;
+            float motion = _state.Speed.Remap(_minMotionThreshold, _fullMotionThreshold, 0, 1);
+            _state.DriftingFactor = (angle / 90f) * motion;
+            _state.MotionAngle = (-(angle / 90f) + 1) * motion;
         }
     }
 
@@ -143,7 +142,7 @@ public class SmoothCarMovement : MonoBehaviour
 
         if (Mathf.Abs(_state.SteerInput) > 0.1f)
         {
-            float steerMult = Mathf.Max(_state.ContactingMult, _movement.AirControl) * _steerMultCurveBySpeed.Evaluate(_state.CurrentSpeedFactor);
+            float steerMult = Mathf.Max(_state.ContactingMult, _movement.AirControl) * _statsController.SteerBySpeed.Evaluate(_state.CurrentSpeedFactor);
             if (_state.ContactingWheels == 0)
             {
                 steerMult = Mathf.Max(steerMult, _movement.AirControl);
@@ -162,35 +161,7 @@ public class SmoothCarMovement : MonoBehaviour
         }
     }
 
-    private void UpdateMovementCharacteristicsFromSteering()
-    {
-        if (Mathf.Abs(_state.SteerInput) > 0.1f)
-        {
-            float steerMult = _steerMultCurveBySpeed.Evaluate(_state.CurrentSpeedFactor);
-            _steeringTransitionState += (Time.deltaTime / _steeringTransitionTime) * steerMult * Mathf.Abs(_state.SteerInput);
-        }
-        else
-        {
-            _steeringTransitionState -= Time.deltaTime / _steeringTransitionTime;
-        }
 
-        _steeringTransitionState = Mathf.Clamp01(_steeringTransitionState);
-        float curvedTransition = _steeringTransitionCurve.Evaluate(_steeringTransitionState);
-
-        var objectType = typeof(CarMovementCharacteristics);
-        var props = objectType.GetProperties();
-        foreach (var prop in props)
-        {
-            object value = prop.GetValue(_movement, null);
-            if (value != null && value is float)
-            {
-                float valueStraight = (float)prop.GetValue(_movementStraight, null);
-                float valueSteering = (float)prop.GetValue(_movementSteering, null);
-                float lerped = Mathf.Lerp(valueStraight, valueSteering, curvedTransition);
-                prop.SetValue(_movement, lerped);
-            }
-        }
-    }
 
     private void UpdateMotion()
     {
@@ -234,53 +205,5 @@ public class SmoothCarMovement : MonoBehaviour
             Ray ray = wheel.GetRay();
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * _wheelRaycastDistance);
         }
-    }
-
-    public class CarState : ICarState
-    {
-        public float SteerInput { get; set; }
-        public bool AccelerateInput { get; set; }
-        public bool BrakeInput { get; set; }
-        public float ContactingMult { get; set; }
-        public int ContactingWheels { get; set; }
-        public float TotalSlopeTraction { get; set; }
-        public float DriftingFactor { get; set; }
-        public int IntentionAngle { get; set; }
-        public float CurrentSpeedFactor { get; set; }
-        public Vector3 RbForward { get; set; }
-        public Vector3 RbUp { get; set; }
-        public float MotionAngle { get; set; }
-
-        public void ResetMotion()
-        {
-            SteerInput = default;
-            AccelerateInput = default;
-            BrakeInput = default;
-            ContactingMult = default;
-            ContactingWheels = default;
-            TotalSlopeTraction = default;
-            DriftingFactor = default;
-            IntentionAngle = default;
-            CurrentSpeedFactor = default;
-            RbForward = default;
-            RbUp = default;
-            MotionAngle = default;
-        }
-    }
-
-    public interface ICarState
-    {
-        float SteerInput { get; }
-        bool AccelerateInput { get; }
-        bool BrakeInput { get; }
-        float ContactingMult { get; }
-        int ContactingWheels { get; }
-        float TotalSlopeTraction { get; }
-        float DriftingFactor { get; }
-        int IntentionAngle { get; }
-        float CurrentSpeedFactor { get; }
-        Vector3 RbForward { get; }
-        Vector3 RbUp { get; }
-        float MotionAngle { get; }
     }
 }
