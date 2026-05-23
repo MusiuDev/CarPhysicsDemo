@@ -7,6 +7,8 @@ public class SmoothCarMovement : MonoBehaviour
     [SerializeField] private CarMovementCharacteristics _movementStraight;
     [SerializeField] private CarMovementCharacteristics _movementSteering;
 
+    [SerializeField] private AnimationCurve _steerMultCurveBySpeed;
+    [SerializeField] private AnimationCurve _tractionCurveBySlope;
     [SerializeField] private float _steeringTransitionTime;
     [SerializeField] private AnimationCurve _steeringTransitionCurve;
 
@@ -68,7 +70,7 @@ public class SmoothCarMovement : MonoBehaviour
             if (wheel.InContact)
             {
                 _state.ContactingWheels++;
-                _state.TotalSlopeTraction += _movement.TractionCurveBySlope.Evaluate(wheel.ContactSlope);
+                _state.TotalSlopeTraction += _tractionCurveBySlope.Evaluate(wheel.ContactSlope);
             }
         }
         float totalContact = (1f / _wheels.Length) * _state.ContactingWheels;
@@ -141,7 +143,7 @@ public class SmoothCarMovement : MonoBehaviour
 
         if (Mathf.Abs(_state.SteerInput) > 0.1f)
         {
-            float steerMult = Mathf.Max(_state.ContactingMult, _movement.AirControl) * _movement.SteerMultCurveBySpeed.Evaluate(_state.CurrentSpeedFactor);
+            float steerMult = Mathf.Max(_state.ContactingMult, _movement.AirControl) * _steerMultCurveBySpeed.Evaluate(_state.CurrentSpeedFactor);
             if (_state.ContactingWheels == 0)
             {
                 steerMult = Mathf.Max(steerMult, _movement.AirControl);
@@ -164,7 +166,7 @@ public class SmoothCarMovement : MonoBehaviour
     {
         if (Mathf.Abs(_state.SteerInput) > 0.1f)
         {
-            float steerMult = _movement.SteerMultCurveBySpeed.Evaluate(_state.CurrentSpeedFactor);
+            float steerMult = _steerMultCurveBySpeed.Evaluate(_state.CurrentSpeedFactor);
             _steeringTransitionState += (Time.deltaTime / _steeringTransitionTime) * steerMult * Mathf.Abs(_state.SteerInput);
         }
         else

@@ -10,8 +10,6 @@ public class CarMovementCharacteristics : ScriptableObject
     [field: SerializeField] public float DriftRecoverySpeed { get; private set; }
     [field: SerializeField] public float FastDriftRecoveryThreshold { get; private set; }
     [field: SerializeField] public float FastDriftRecoveryMult { get; private set; }
-    [field: SerializeField] public AnimationCurve SteerMultCurveBySpeed { get; private set; }
-    [field: SerializeField] public AnimationCurve TractionCurveBySlope { get; private set; }
     [field: SerializeField] public float TractionMutliplier { get; private set; }
     [field: SerializeField] public float AirControl { get; private set; }
     [field: SerializeField] public float BaseDamping { get; private set; }
