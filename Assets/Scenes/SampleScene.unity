@@ -741,6 +741,7 @@ MonoBehaviour:
   _carCollision: {fileID: 8853687016017625589}
   _carStats: {fileID: 8853687016017625598}
   _onCollisionStatusEffect: {fileID: 11400000, guid: d8239eba58ed49b5daa12970a975886f, type: 2}
+  _onResetStatusEffect: {fileID: 11400000, guid: c9baa476971e25c27b3c34b56edb614a, type: 2}
 --- !u!4 &888629517
 Transform:
   m_ObjectHideFlags: 0
@@ -905,6 +906,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2863030739232614470, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+      propertyPath: _movementSteering
+      value: 
+      objectReference: {fileID: 11400000, guid: 6bdf57c118166b2e98f97dc1e03b7df6, type: 2}
     - target: {fileID: 5402952260927350049, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_Name
       value: Car

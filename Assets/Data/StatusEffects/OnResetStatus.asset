@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c90f0b962c36ae7f2a04f3748a3041d1, type: 3}
-  m_Name: OnCollisionStatus
+  m_Name: OnResetStatus
   m_EditorClassIdentifier: Assembly-CSharp::CarStatusEffectScriptable
   statusEffect:
     effectCurve:
@@ -21,24 +21,24 @@ MonoBehaviour:
         value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    effectDuration: 999
+    effectDuration: 2
     effectValues:
-    - type: 7
+    - type: 1
       style: 1
       value: 0

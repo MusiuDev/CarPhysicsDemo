@@ -12,6 +12,7 @@ public class InfiniteDriftGameManager : MonoBehaviour
     [SerializeField] private CarCollisionDetector _carCollision;
     [SerializeField] private CarStatsCotroller _carStats;
     [SerializeField] private CarStatusEffectScriptable _onCollisionStatusEffect;
+    [SerializeField] private CarStatusEffectScriptable _onResetStatusEffect;
 
     private Vector3 _revivePosition;
     private Quaternion _reviveRotation;
@@ -36,12 +37,13 @@ public class InfiniteDriftGameManager : MonoBehaviour
     private IEnumerator ResetCar()
     {
         OnCarResetStarted?.Invoke();
-        yield return null;
+        _carStats.AddStatusEffect(_onCollisionStatusEffect);
+        yield return new WaitForSeconds(1f);
         _carStats.ClearStatusEffects();
         _car.ResetToPositionAndRotation(_revivePosition, _reviveRotation);
         yield return null;
         OnCarResetCompleted?.Invoke();
-        _carStats.AddStatusEffect(_onCollisionStatusEffect.statusEffect);
+        _carStats.AddStatusEffect(_onResetStatusEffect);
         _resetting = false;
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cf837d079136d3ed9fec850dbbaaef4, type: 3}
   m_Name: CarMovement_Straight_Auto
   m_EditorClassIdentifier: Assembly-CSharp::CarMovementCharacteristics
-  MaxSpeed: 14
+  MaxSpeed: 15.5
   Acceleration: 16
   SteerTorque: 220
   MaxAngularSpeed: 140

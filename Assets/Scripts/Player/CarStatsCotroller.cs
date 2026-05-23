@@ -4,7 +4,7 @@ using UnityEngine;
 public class CarStatsCotroller : MonoBehaviour
 {
     [SerializeField] private CarMotionStats _movementStraight;
-    [SerializeField] private CarMotionStats _movementSteering;
+    [SerializeField] private CarMotionStatsOverride _movementSteering;
 
     [SerializeField] private AnimationCurve _steerMultCurveBySpeed;
     [SerializeField] private AnimationCurve _tractionCurveBySlope;
@@ -21,6 +21,7 @@ public class CarStatsCotroller : MonoBehaviour
     private ICarState _state;
     private float _steeringTransitionState = 0f;
     private Dictionary<CarStatusEffect, float> _effectTimers = new Dictionary<CarStatusEffect, float>();
+
     //uses a list too to ensure effects are applied in the same order they were added in the intra frame loop.
     private List<CarStatusEffect> _activeEffects = new List<CarStatusEffect>();
 
@@ -44,24 +45,53 @@ public class CarStatsCotroller : MonoBehaviour
 
         _steeringTransitionState = Mathf.Clamp01(_steeringTransitionState);
         float curvedTransition = _steeringTransitionCurve.Evaluate(_steeringTransitionState);
-
-        _movement.MaxSpeed = Mathf.Lerp(_movementStraight.MaxSpeed, _movementSteering.MaxSpeed, curvedTransition);
-        _movement.Acceleration = Mathf.Lerp(_movementStraight.Acceleration, _movementSteering.Acceleration, curvedTransition);
-        _movement.SteerTorque = Mathf.Lerp(_movementStraight.SteerTorque, _movementSteering.SteerTorque, curvedTransition);
-        _movement.MaxAngularSpeed = Mathf.Lerp(_movementStraight.MaxAngularSpeed, _movementSteering.MaxAngularSpeed, curvedTransition);
-        _movement.DriftRecoverySpeed = Mathf.Lerp(_movementStraight.DriftRecoverySpeed, _movementSteering.DriftRecoverySpeed, curvedTransition);
-        _movement.FastDriftRecoveryThreshold = Mathf.Lerp(_movementStraight.FastDriftRecoveryThreshold, _movementSteering.FastDriftRecoveryThreshold, curvedTransition);
-        _movement.FastDriftRecoveryMult = Mathf.Lerp(_movementStraight.FastDriftRecoveryMult, _movementSteering.FastDriftRecoveryMult, curvedTransition);
-        _movement.TractionMutliplier = Mathf.Lerp(_movementStraight.TractionMutliplier, _movementSteering.TractionMutliplier, curvedTransition);
-        _movement.AirControl = Mathf.Lerp(_movementStraight.AirControl, _movementSteering.AirControl, curvedTransition);
-        _movement.BaseDamping = Mathf.Lerp(_movementStraight.BaseDamping, _movementSteering.BaseDamping, curvedTransition);
-        _movement.StoppedDamping = Mathf.Lerp(_movementStraight.StoppedDamping, _movementSteering.StoppedDamping, curvedTransition);
-        _movement.DriftingDamping = Mathf.Lerp(_movementStraight.DriftingDamping, _movementSteering.DriftingDamping, curvedTransition);
-        _movement.BaseAngularDamping = Mathf.Lerp(_movementStraight.BaseAngularDamping, _movementSteering.BaseAngularDamping, curvedTransition);
-        _movement.SteeringAngularDamping = Mathf.Lerp(_movementStraight.SteeringAngularDamping, _movementSteering.SteeringAngularDamping, curvedTransition);
-        _movement.StraightAngularDamping = Mathf.Lerp(_movementStraight.StraightAngularDamping, _movementSteering.StraightAngularDamping, curvedTransition);
-
+        ResetAllValues();
+        LerpValues(curvedTransition);
         ApplyActiveEffects();
+    }
+
+    public void LerpValues(float normalizedT)
+    {
+        if (!_movementStraight) return;
+        if (!_movementSteering) return;
+
+        if (_movementSteering.overrides == null || _movementSteering.overrides.Length == 0) return;
+
+        foreach (var item in _movementSteering.overrides)
+        {
+            var (get, set) = CarStatsRegistry.Fields[item.type];
+            float currentValue = get(_movementStraight);
+            float modifiedValue = currentValue;
+
+            if (item.style == StatOverrideOperation.Set)
+            {
+                modifiedValue = Mathf.Lerp(currentValue, item.value, normalizedT);
+            }
+            else if (item.style == StatOverrideOperation.Mult)
+            {
+                float currentMult = Mathf.Lerp(1, item.value, normalizedT);
+                modifiedValue = currentValue * currentMult;
+            }
+
+            set(_movement, modifiedValue);
+        }
+    }
+
+    private void ResetAllValues()
+    {
+        //TODO: cache both the enum array and the getters and setters;
+        var values = (CarStatType[])System.Enum.GetValues(typeof(CarStatType));
+        foreach (var item in values)
+        {
+            var (get, set) = CarStatsRegistry.Fields[item];
+            float straightValue = get(_movementStraight);
+            set(_movement, straightValue);
+        }
+    }
+
+    public void AddStatusEffect(CarStatusEffectScriptable effect)
+    {
+        AddStatusEffect(effect.statusEffect);
     }
 
     public void AddStatusEffect(CarStatusEffect effect)
@@ -81,20 +111,9 @@ public class CarStatsCotroller : MonoBehaviour
         foreach (var effect in _activeEffects)
         {
             _effectTimers[effect] += Time.deltaTime;
-            float effectTimerNormalized = Mathf.Clamp01(_effectTimers[effect] / effect.effectDuration);
-
-            float effectStrength = effect.effectCurve.Evaluate(effectTimerNormalized);
-
-            _movement.SteerTorque *= Mathf.Lerp(1, effect.steerTorque, effectStrength);
-            _movement.MaxAngularSpeed *= Mathf.Lerp(1, effect.maxAngularSpeed, effectStrength);
-            _movement.TractionMutliplier *= Mathf.Lerp(1, effect.traction, effectStrength);
-            _movement.DriftRecoverySpeed *= Mathf.Lerp(1, effect.driftRecovery, effectStrength);
-            _movement.FastDriftRecoveryThreshold *= Mathf.Lerp(1, effect.fastDriftRecoveryThreshold, effectStrength);
-            _movement.FastDriftRecoveryMult *= Mathf.Lerp(1, effect.fastDriftRecovery, effectStrength);
-            _movement.Acceleration *= Mathf.Lerp(1, effect.acceleration, effectStrength);
-            _movement.MaxSpeed *= Mathf.Lerp(1, effect.maxSpeed, effectStrength);
-            _movement.AirControl *= Mathf.Lerp(1, effect.airControl, effectStrength);
+            effect.ApplyTo(_movement, _effectTimers[effect]);
         }
+
         for (int i = _activeEffects.Count - 1; i >= 0; i--)
         {
             var effect = _activeEffects[i];
