@@ -11,9 +11,11 @@ public class Checkpoint : MonoBehaviour
 
     private CheckpointState _currentState = CheckpointState.Unset;
     private bool _isPlayerIn = false;
+    private bool _isResetting = false;
 
     void OnTriggerEnter(Collider other)
     {
+        if (_isResetting) return;
         if (!other.CompareTag("PlayerBody")) return;//TODO: Change this to something better.
         Vector3 toPlayer = other.transform.position - this.transform.position;
         bool enteredFromTheBack = Vector3.Dot(-this.transform.forward, toPlayer) > 0;
@@ -28,6 +30,7 @@ public class Checkpoint : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        if (_isResetting) return;
         if (!other.CompareTag("PlayerBody")) return;//TODO: Change this to something better.
 
         _isPlayerIn = false;
@@ -62,9 +65,15 @@ public class Checkpoint : MonoBehaviour
         _gateAnimator.SetInteger("State", (int)_currentState);
     }
 
-    public void HandleCarReset()
+    public void HandleCarResetStart()
     {
         _isPlayerIn = false;
+        _isResetting = true;
+    }
+
+    public void HandleCarResetcomplete()
+    {
+        _isResetting = false;
         if (_currentState == CheckpointState.Open)
         {
             SetState(CheckpointState.Active);

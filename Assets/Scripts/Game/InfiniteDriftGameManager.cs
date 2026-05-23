@@ -7,6 +7,8 @@ public class InfiniteDriftGameManager : MonoBehaviour
     public delegate void GameManagerEvent();
     public static event GameManagerEvent OnCarResetStarted;
     public static event GameManagerEvent OnCarResetCompleted;
+    public static event GameManagerEvent OnCarPreTeleport;
+    public static event GameManagerEvent OnCarPostTeleport;
 
     [SerializeField] private SmoothCarMovement _car;
     [SerializeField] private CarCollisionDetector _carCollision;
@@ -29,7 +31,6 @@ public class InfiniteDriftGameManager : MonoBehaviour
     private void HandleCarCollision(Collision col)
     {
         if (_resetting) return;
-
         _resetting = true;
         StartCoroutine(ResetCar());
     }
@@ -39,9 +40,12 @@ public class InfiniteDriftGameManager : MonoBehaviour
         OnCarResetStarted?.Invoke();
         _carStats.AddStatusEffect(_onCollisionStatusEffect);
         yield return new WaitForSeconds(1f);
+        OnCarPreTeleport?.Invoke();
+        yield return null;
         _carStats.ClearStatusEffects();
         _car.ResetToPositionAndRotation(_revivePosition, _reviveRotation);
         yield return null;
+        OnCarPostTeleport?.Invoke();
         OnCarResetCompleted?.Invoke();
         _carStats.AddStatusEffect(_onResetStatusEffect);
         _resetting = false;

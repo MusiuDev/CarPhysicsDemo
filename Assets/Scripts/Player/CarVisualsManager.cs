@@ -9,18 +9,18 @@ public class CarVisualsManager : MonoBehaviour
 
     void Start()
     {
-        InfiniteDriftGameManager.OnCarResetStarted -= HandleCarResetStart;
-        InfiniteDriftGameManager.OnCarResetStarted += HandleCarResetStart;
+        InfiniteDriftGameManager.OnCarPreTeleport -= HandleCarPreTeleport;
+        InfiniteDriftGameManager.OnCarPreTeleport += HandleCarPreTeleport;
 
-        InfiniteDriftGameManager.OnCarResetCompleted -= HandleCarResetComplete;
-        InfiniteDriftGameManager.OnCarResetCompleted += HandleCarResetComplete;
+        InfiniteDriftGameManager.OnCarPostTeleport -= HandleCarPostTeleport;
+        InfiniteDriftGameManager.OnCarPostTeleport += HandleCarPostTeleport;
         foreach (var group in _tireGroups)
         {
             group.Initialize(_car.State);
         }
     }
 
-    private void HandleCarResetStart()
+    private void HandleCarPreTeleport()
     {
         StopAllCoroutines();
         foreach (var group in _tireGroups)
@@ -34,7 +34,7 @@ public class CarVisualsManager : MonoBehaviour
         }
     }
 
-    private void HandleCarResetComplete()
+    private void HandleCarPostTeleport()
     {
         StartCoroutine(WaitAndReEnable());
     }
@@ -111,6 +111,10 @@ public class CarVisualsManager : MonoBehaviour
             _lastDrfitTime = 0;
             _currentSteer = 0;
             _canEmit = false;
+            foreach (var wheelPair in _wheelPairs)
+            {
+                wheelPair.trail.Clear();
+            }
             UpdateRenderers();
         }
 
