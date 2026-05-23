@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TrackManager : MonoBehaviour
 {
+    public delegate void TrackManagerEvent();
+    public event TrackManagerEvent OnTrackUpdated;
+
     [SerializeField] private int _lookAhead = 3;
     [SerializeField] private float _maxMapAngle = 60f;
     [SerializeField] private int _startingSegments = 10;
@@ -12,6 +15,7 @@ public class TrackManager : MonoBehaviour
 
     private TrackChain _currentChain;
     private List<CheckpointGroup> _activeGroups = new List<CheckpointGroup>();
+    public IReadOnlyCollection<CheckpointGroup> ActiveGroups => _activeGroups;
 
     void Awake()
     {
@@ -31,6 +35,7 @@ public class TrackManager : MonoBehaviour
         {
             TrySpawn();
         }
+        OnTrackUpdated?.Invoke();
     }
 
     void Update()
@@ -110,8 +115,8 @@ public class TrackManager : MonoBehaviour
             {
                 return (candidate, flipped, newLink);
             }
-            flipped = !flipped; 
-            
+            flipped = !flipped;
+
             newLink = candidate.GetTrackChainLinkAt(currentExitPos, currentExitAngle, flipped);
             if (Mathf.Abs(newLink.exitAngle) <= _maxMapAngle && !chain.CheckCollision(newLink))
             {
