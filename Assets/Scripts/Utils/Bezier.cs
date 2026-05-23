@@ -158,12 +158,16 @@ public static class BezierSpline
         float remainingDistance = 0f;
         for (int i = 0; i < knots.Length - 1; i++)
         {
+            if (knots[i] == null || knots[i + 1] == null)
+            {
+                Debug.LogWarning($"Invalid knot at {i} index");
+            }
             Bezier curve = new Bezier(knots[i], knots[i + 1], bezierSegments);
             Vector3[] points = curve.GetEquallySpacedPoints(segmentLength, out remainingDistance, nextOffset);
             nextOffset = segmentLength - remainingDistance;
             path.pathPoints.AddRange(points);
         }
-        
+
         path.remainingDistance = remainingDistance;
         return path;
     }

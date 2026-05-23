@@ -21,7 +21,7 @@ public class TrackObstacle : MonoBehaviour
         }
 
         GameObject randomProp = _possibleProps[Random.Range(0, _possibleProps.Length - 1)];
-        Transform randomPropInstance = GameObject.Instantiate(randomProp, Vector3.zero, Quaternion.identity, this.transform).transform;
+        Transform randomPropInstance = GameObject.Instantiate(randomProp, transform.position, transform.rotation, this.transform).transform;
 
         if (_horizontalPositionDriftRange > 0)
         {

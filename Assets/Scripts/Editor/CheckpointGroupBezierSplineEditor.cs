@@ -34,6 +34,8 @@ public class CheckpointGroupBezierSplineEditor : Editor
             bool allToolsActive = Tools.current == Tool.Rect;
             foreach (var knot in knots)
             {
+                if (!knot) continue;
+                
                 if (allToolsActive || Tools.current == Tool.Scale)
                 {
                     ScaleKnotHandles(knot, forwards: index < knots.Length - 1, index > 0);
