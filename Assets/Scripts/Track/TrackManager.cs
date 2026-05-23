@@ -7,6 +7,10 @@ public class TrackManager : MonoBehaviour
     public delegate void TrackManagerEvent();
     public event TrackManagerEvent OnTrackUpdated;
 
+    public delegate void TrackManagerGroupEvent(CheckpointGroup group);
+    public event TrackManagerGroupEvent OnCheckpointGroupDespawned;
+    public event TrackManagerGroupEvent OnCheckpointGroupSpawned;
+
     [SerializeField] private int _lookAhead = 3;
     [SerializeField] private float _maxMapAngle = 60f;
     [SerializeField] private int _startingSegments = 10;
@@ -74,6 +78,8 @@ public class TrackManager : MonoBehaviour
         _activeGroups.Add(newActiveGroup);
         newActiveGroup.OnCheckpointGroupCleared += HandleGroupCompleted;
         newActiveGroup.ResetGroup();
+        
+        OnCheckpointGroupSpawned?.Invoke(newActiveGroup);
 
         if (_activeGroups.Count > _maxActiveGroups)
         {
@@ -89,6 +95,7 @@ public class TrackManager : MonoBehaviour
         _currentChain.RemoveOldest();
         _activeGroups.RemoveAt(0);
         GameObject.Destroy(oldest.gameObject);
+        OnCheckpointGroupDespawned?.Invoke(oldest);
     }
 
     private (CheckpointGroup group, bool flipped, TrackChainLink newLink) TryChoosePrefabWithLookAhead(int lookAhead)

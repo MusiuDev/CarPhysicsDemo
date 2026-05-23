@@ -224,7 +224,7 @@ public class SmoothCarMovement : MonoBehaviour
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * _wheelRaycastDistance);
         }
     }
-
+    
     public class CarState : ICarState
     {
         public float SteerInput { get; set; }
