@@ -68,7 +68,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
             float newForwards = ScaleKnotHandle(knot.Position, knot.Forward, knot.forwardsHandleSize);
             if (EditorGUI.EndChangeCheck())
             {
-                Undo.RecordObject(target, "Scale Handle(s)");
+                Undo.RecordObject(knot, "Scale Handle(s)");
 
                 if (Event.current.alt && knot.forwardsHandleSize > 0.01f) //If the original value is too low, don't scale, to avoid edge case behaviors.
                 {
@@ -90,7 +90,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
             float newBackwards = ScaleKnotHandle(knot.Position, -knot.Forward, knot.backwardsHandleSize);
             if (EditorGUI.EndChangeCheck())
             {
-                Undo.RecordObject(target, "Scale Handle(s)");
+                Undo.RecordObject(knot, "Scale Handle(s)");
 
                 if (Event.current.alt && knot.backwardsHandleSize > 0.01f)
                 {
@@ -115,7 +115,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
         Handles.SphereHandleCap(-1, knot.RawPosition, Quaternion.identity, 0.25f, EventType.Repaint);
         if (EditorGUI.EndChangeCheck())
         {
-            Undo.RecordObject(target, "Change Knot Offset");
+            Undo.RecordObject(knot, "Change Knot Offset");
             float newOffset = knot.InverseTransformPoint(newPosition).x;
             knot.positionOffset = newOffset;
             EditorUtility.SetDirty(knot);
@@ -141,7 +141,7 @@ public class CheckpointGroupBezierSplineEditor : Editor
                 angle = angle * Mathf.Sign(Vector3.Dot(axis, knot.RawUp));
             }
 
-            Undo.RecordObject(target, "Change Knot Rotation");
+            Undo.RecordObject(knot, "Change Knot Rotation");
             knot.rotationOffset = angle;
             EditorUtility.SetDirty(knot);
         }
