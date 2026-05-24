@@ -10,7 +10,8 @@ public class CheckpointGroupBezierSpline : MonoBehaviour
     {
         if (knots == null) return;
         if (knots.Length <= 1) return;
-
+        
+        Gizmos.color = Color.cyan;
         GizmoUtils.DrawSplineFromKnots(knots, segmentDistance);
     }
 }

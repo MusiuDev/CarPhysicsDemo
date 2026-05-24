@@ -47,7 +47,27 @@ public static class GizmoUtils
             lineList[2 * i + 1] = path.pathPoints[i + 1];
         }
 
-        Gizmos.color = Color.cyan;
+        Gizmos.DrawLineList(lineList);
+    }
+
+    public static void DrawOffsetSplineFromKnots(IBezierKnot[] knots, float segmentDistance, float offset, Vector3 upAxis)
+    {
+        SplinePath path = BezierSpline.GetFullPathWithOffset(knots, segmentDistance, offset, upAxis, 0, 32);
+
+        if (path == null) return;
+        if (path.pathPoints.Count <= 1) return;
+
+        Vector3[] lineList = new Vector3[(path.pathPoints.Count - 1) * 2];
+
+        Gizmos.DrawSphere(path.pathPoints[0], segmentDistance * 0.25f);
+        for (int i = 0; i < path.pathPoints.Count - 1; i++)
+        {
+            lineList[2 * i] = path.pathPoints[i];
+            lineList[2 * i + 1] = path.pathPoints[i + 1];
+
+            Gizmos.DrawSphere(path.pathPoints[i + 1], segmentDistance * 0.25f);
+        }
+
         Gizmos.DrawLineList(lineList);
     }
 
