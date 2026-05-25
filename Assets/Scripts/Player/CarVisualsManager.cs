@@ -68,7 +68,9 @@ public class CarVisualsManager : MonoBehaviour
     {
         public CarWheel carWheel;
         public TrailRenderer trail;
+        public ParticleSystem particles;
         public Transform visualWheel;
+        public bool isPlaying = true;// true so it can be stopped at start
     }
 
     [System.Serializable]
@@ -150,7 +152,21 @@ public class CarVisualsManager : MonoBehaviour
             foreach (var wheelPair in _wheelPairs)
             {
                 bool shouldEnable = _canEmit && _emitting && wheelPair.carWheel.InContact;
-                wheelPair.trail.emitting = shouldEnable;
+
+                if (wheelPair.isPlaying != shouldEnable)
+                {
+                    wheelPair.trail.emitting = shouldEnable;
+                    if (shouldEnable)
+                    {
+                        wheelPair.particles.Play();
+                    }
+                    else
+                    {
+                        wheelPair.particles.Stop();
+                    }
+                    wheelPair.isPlaying = shouldEnable;
+                }
+
 
                 if (_steerVisualWheels)
                 {

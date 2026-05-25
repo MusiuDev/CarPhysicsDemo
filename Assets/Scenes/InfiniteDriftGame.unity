@@ -1059,14 +1059,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3902133753783389927, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _flippedTimeThreshold
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3902133753783389927, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _stoppedTimeThreshold
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5402952260927350049, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_Name
       value: Car
