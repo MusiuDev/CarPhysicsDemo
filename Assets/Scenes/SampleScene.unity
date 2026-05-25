@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrackManager
   _lookAhead: 3
-  _maxMapAngle: 45
+  _maxMapAngle: 50
   _startingSegments: 12
   _maxActiveGroups: 16
   _disabledGroupsInFront: 3
@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3504322, y: 0, z: 0, w: 0.9365881}
-  m_LocalPosition: {x: 0, y: 40.6, z: -55.8}
+  m_LocalPosition: {x: 0, y: 40.6, z: -254.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1026,7 +1026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_LocalRotation.w
