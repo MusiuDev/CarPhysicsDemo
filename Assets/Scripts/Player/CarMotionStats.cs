@@ -20,6 +20,7 @@ public class CarMotionStats : ScriptableObject
     public float BaseAngularDamping;
     public float SteeringAngularDamping;
     public float StraightAngularDamping;
+    public float GravityScale;
 }
 
 /// <summary>
@@ -44,6 +45,7 @@ public static class CarStatsRegistry
         {CarStatType.BaseAngularDamping, (so=>so.BaseAngularDamping,(so,value)=>so.BaseAngularDamping = value)},
         {CarStatType.SteeringAngularDamping, (so=>so.SteeringAngularDamping,(so,value)=>so.SteeringAngularDamping = value)},
         {CarStatType.StraightAngularDamping, (so=>so.StraightAngularDamping,(so,value)=>so.StraightAngularDamping = value)},
+        {CarStatType.GravityScale, (so=>so.GravityScale,(so,value)=>so.GravityScale = value)},
     };
 }
 
@@ -63,7 +65,8 @@ public enum CarStatType
     DriftingDamping,
     BaseAngularDamping,
     SteeringAngularDamping,
-    StraightAngularDamping
+    StraightAngularDamping,
+    GravityScale,
 }
 
 public enum StatOverrideOperation

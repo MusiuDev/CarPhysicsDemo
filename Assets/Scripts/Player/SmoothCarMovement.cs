@@ -25,6 +25,11 @@ public class SmoothCarMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _rb.centerOfMass = Vector3.up * _centerOfMassVerticalOffset;
         _statsController.Initialize(_state);
+        if (_rb.useGravity)
+        {
+            //We do not enforce it here to avoid the behavior of gravity being silently disabled on a rigidbody
+            Debug.LogWarning("Smooth Car Movement Rigidbody has gravity enabled. This could lead to unexpected behavior. Consider disabling it");
+        }
     }
 
     public void SetInput(float steer, bool accelerate, bool brake)
@@ -193,6 +198,11 @@ public class SmoothCarMovement : MonoBehaviour
             Vector3 targetVelocity = targetDirection * velocityMagnitude;
 
             _rb.linearVelocity = Vector3.Slerp(_rb.linearVelocity, targetVelocity, _state.ContactingMult);
+        }
+
+        if (_movement.GravityScale > 0)
+        {
+            _rb.AddForce(Physics.gravity * _movement.GravityScale, ForceMode.Acceleration);
         }
     }
 
