@@ -1,0 +1,112 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+
+public class NavigationManager : MonoBehaviour
+{
+    [SerializeField] private UIDocument _fadeOverlayUI;
+    [SerializeField] private float _fadeDuration;
+    
+    public float FadeDuration => _fadeDuration;
+
+    private VisualElement _root;
+    private VisualElement _fadeOverlay;
+    private CoverState _lastRequestedState = CoverState.Unset;
+    private bool _inSceneTransition;
+
+    private static NavigationManager m_instance;
+    public static NavigationManager Instance { get => m_instance; private set => m_instance = value; }
+
+    private Coroutine _currentTransition;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Debug.LogWarning($"[Singleton] Instance of {typeof(NavigationManager)} already exists. Destroying duplicate.");
+            Destroy(gameObject);
+            return;
+        }
+
+        InitializeUI();
+    }
+
+    private void InitializeUI()
+    {
+        _root = _fadeOverlayUI.rootVisualElement;
+        _fadeOverlay = _root.Query<VisualElement>("FadeOverlay");
+        _fadeOverlay.style.display = DisplayStyle.Flex;
+    }
+
+    public Coroutine RequestCoverState(CoverState state, float delay = 0f)
+    {
+        _lastRequestedState = state;
+
+        if (_currentTransition == null)
+        {
+            _currentTransition = StartCoroutine(ExecuteFadeTransition(state, delay));
+        }
+
+        return _currentTransition;
+    }
+
+    private IEnumerator ExecuteFadeTransition(CoverState state, float delay = 0f)
+    {
+        yield return new WaitForSeconds(delay);
+        _fadeOverlay.style.display = DisplayStyle.Flex;
+        _fadeOverlay.style.opacity = state == CoverState.Cover ? 1f : 0f;
+        yield return new WaitForSeconds(_fadeDuration);
+        if (state == CoverState.Uncover)
+        {
+            _fadeOverlay.style.display = DisplayStyle.None;
+        }
+
+        if (_lastRequestedState != state)
+        {
+            yield return ExecuteFadeTransition(_lastRequestedState);
+        }
+        else
+        {
+            _currentTransition = null;
+        }
+    }
+
+    public void RequestSceneSwitch(string scene)
+    {
+        if (_inSceneTransition) return;
+        StartCoroutine(SwitchScene(scene));
+    }
+
+    private IEnumerator SwitchScene(string scene)
+    {
+        _inSceneTransition = true;
+        yield return RequestCoverState(CoverState.Cover);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Single);
+        asyncLoad.allowSceneActivation = false;
+        float minLoadTime = 0.5f;
+        float timer = 0f;
+
+        while (asyncLoad.progress < 0.9f || timer < minLoadTime)
+        {
+            yield return null;
+            timer += Time.deltaTime;
+        }
+
+        asyncLoad.allowSceneActivation = true;
+        yield return RequestCoverState(CoverState.Uncover);
+        _inSceneTransition = false;
+    }
+}
+
+public enum CoverState
+{
+    Unset,
+    Cover,
+    Uncover
+}

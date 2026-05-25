@@ -1,0 +1,79 @@
+:root {
+}
+
+#MainContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.musiu-label {
+    color: rgb(55, 28, 0);
+    -unity-text-align: upper-center;
+    -unity-font-style: bold;
+}
+
+.title-label {
+    font-size: 32px;
+}
+
+.subtitle-label {
+    font-size: 16px;
+}
+
+.footer-label {
+}
+
+.musiu-button {
+}
+
+#MainContainer .musiu-button {
+    border-top-width: 2px;
+    border-right-width: 4px;
+    border-bottom-width: 8px;
+    border-left-width: 4px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    -unity-font-style: bold;
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+#InfoButtons .musiu-button {
+    flex-grow: 1;
+    font-size: 12px;
+    color: rgb(27, 27, 27);
+}
+
+#PlayButtons .musiu-button {
+    flex-grow: 1;
+    width: 160px;
+    font-size: 24px;
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
+.horizontal-separator {
+    height: 6px;
+    background-color: rgba(123, 52, 0, 0.58);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    width: 70%;
+    align-self: center;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
