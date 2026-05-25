@@ -814,7 +814,7 @@ MonoBehaviour:
   _cliffsOffset: 68
   _cliffsLinearSpacing: 30
   _cliffKnotSize: 6
-  _firstKnotPosition: {x: 0, y: 0, z: 0}
+  _firstKnotPosition: {x: 0, y: 0, z: -100}
   _frontLimitsWall: {fileID: 0}
   _backLimitsWall: {fileID: 0}
 --- !u!4 &1473800318
