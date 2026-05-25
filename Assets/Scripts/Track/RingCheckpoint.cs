@@ -7,23 +7,25 @@ public class RingCheckpoint : Checkpoint
     [SerializeField] private float _ringRadius;
 
     private Vector3 _ringCenterWorld => transform.position + transform.up * _ringCenterHeight;
-    private float _enterDirection;
+    private int _enterDirection;
 
     override protected bool ProcessPlayerEnter(Transform playerTransform)
     {
         Vector3 toPlayer = playerTransform.position - _ringCenterWorld;
-        _enterDirection = Vector3.Dot(transform.forward, toPlayer);
+        _enterDirection = Mathf.RoundToInt(Mathf.Sign(Vector3.Dot(transform.forward, toPlayer.normalized)));
 
-        Vector3 playerPosProyected = Vector3.ProjectOnPlane(playerTransform.position, transform.position);
+        Plane p = new Plane(transform.forward, transform.position);
+
+        Vector3 playerPosProyected = p.ClosestPointOnPlane(playerTransform.position);
         float distanceToCenter = Vector3.Distance(_ringCenterWorld, playerPosProyected);
-        
         return distanceToCenter <= _ringRadius;
     }
 
     protected override bool ProcessPlayerExit(Transform playerTransform)
     {
         Vector3 toPlayer = playerTransform.position - _ringCenterWorld;
-        float exitDirection = Vector3.Dot(transform.forward, toPlayer);
+        int exitDirection = Mathf.RoundToInt(Mathf.Sign(Vector3.Dot(transform.forward, toPlayer.normalized)));
+        Debug.Log($"Ring Checkpoint Exit Result Enter: {_enterDirection} - Exit: {exitDirection}");
         return exitDirection != _enterDirection;
     }
 

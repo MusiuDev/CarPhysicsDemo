@@ -927,6 +927,7 @@ GameObject:
   - component: {fileID: 3678377149773849879}
   - component: {fileID: 6002501517239311876}
   - component: {fileID: 3906320434087538677}
+  - component: {fileID: 3902133753783389927}
   - component: {fileID: 7736885288457809234}
   m_Layer: 0
   m_Name: Car
@@ -1118,7 +1119,7 @@ MonoBehaviour:
     _extraTime: 0.25
     _steerVisualWheels: 1
     _steerTurnAngle: 35
-    _steerTurnSpeed: 360
+    _steerTurnSpeed: 180
   _lightTrails:
   - {fileID: 6482217943888053060}
   - {fileID: 6354864278721974237}
@@ -1137,6 +1138,25 @@ MonoBehaviour:
   _obstacleLayers:
     serializedVersion: 2
     m_Bits: 768
+  _minImpactForceToDetect: 3
+  _minCollisionFactorToDetect: 0.25
+--- !u!114 &3902133753783389927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5402952260927350049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be4478a88ee364e1faf8b0389cb236b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarFlippedDetection
+  _car: {fileID: 7410640515221001165}
+  _flippedTimeThreshold: 0.5
+  _flippedSpeedThreshold: 1
+  _stoppedTimeThreshold: 2
+  _stoppedSpeedThreshold: 1
 --- !u!54 &7736885288457809234
 Rigidbody:
   m_ObjectHideFlags: 0

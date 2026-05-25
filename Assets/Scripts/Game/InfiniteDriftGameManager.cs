@@ -12,6 +12,7 @@ public class InfiniteDriftGameManager : MonoBehaviour
 
     [SerializeField] private SmoothCarMovement _car;
     [SerializeField] private CarCollisionDetector _carCollision;
+    [SerializeField] private CarStuckDetection _carFlip;
     [SerializeField] private CarStatsCotroller _carStats;
     [SerializeField] private CarStatusEffectScriptable _onCollisionStatusEffect;
     [SerializeField] private CarStatusEffectScriptable _onResetStatusEffect;
@@ -24,11 +25,19 @@ public class InfiniteDriftGameManager : MonoBehaviour
     {
         CheckpointGroup.OnCheckpointGroupCleared += HandleCheckpointGroupCleared;
         _carCollision.OnCarCollisionWithObstacle += HandleCarCollision;
+        _carFlip.OnCarStuck += HandleCarStuck;
         _revivePosition = _car.transform.position;
         _reviveRotation = _car.transform.rotation;
     }
 
     private void HandleCarCollision(Collision col)
+    {
+        if (_resetting) return;
+        _resetting = true;
+        StartCoroutine(ResetCar());
+    }
+
+    private void HandleCarStuck()
     {
         if (_resetting) return;
         _resetting = true;

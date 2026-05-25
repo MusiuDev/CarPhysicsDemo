@@ -28,11 +28,13 @@ public abstract class Checkpoint : MonoBehaviour
     {
         if (_isResetting) return;
         if (!other.CompareTag(PLAYER_BODY_TAG)) return;
-        
+        if (_currentState != CheckpointState.Open) return;
+
+        bool _validExit = _isPlayerIn && ProcessPlayerExit(other.transform);
+
         _isPlayerIn = false;
 
-        if (_currentState != CheckpointState.Open) return;
-        if (ProcessPlayerExit(other.transform))
+        if (_validExit)
         {
             SetState(CheckpointState.Completed);
             OnCheckpointCompleted?.Invoke(this);

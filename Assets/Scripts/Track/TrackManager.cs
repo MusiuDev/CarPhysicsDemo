@@ -16,6 +16,8 @@ public class TrackManager : MonoBehaviour
     [SerializeField] private int _startingSegments = 10;
     [SerializeField] private int _maxActiveGroups = 14;
     [SerializeField] private int _disabledGroupsInFront = 3;
+    [SerializeField] private float _recencyPenalty = 0.25f;
+    [SerializeField] private int _recencyHistoryLength = 10;
 
     private CheckpointGroup[] _checkpointPrefabs;
     private int _currentActiveGroupIndex = 0;
@@ -24,6 +26,8 @@ public class TrackManager : MonoBehaviour
     public TrackChain CurrentChain => _currentChain;
     private List<CheckpointGroup> _activeGroups = new List<CheckpointGroup>();
     public IReadOnlyCollection<CheckpointGroup> ActiveGroups => _activeGroups;
+
+    private List<int> _recentGroups = new List<int>();
 
     void Start()
     {
@@ -60,18 +64,18 @@ public class TrackManager : MonoBehaviour
             return;
         }
 
-        (CheckpointGroup group, bool flipped, TrackChainLink newLink) = TryChoosePrefabWithLookAhead(_lookAhead);
-        if (!group || newLink == null)
+        (CheckpointGroup groupPrefab, bool flipped, TrackChainLink newLink) = TryChoosePrefabWithLookAhead(_lookAhead);
+        if (!groupPrefab || newLink == null)
         {
             Debug.LogError("Spawner wasn't able to find a valid link. Picking one at random");
             flipped = Random.value > 0.5f;
-            group = _checkpointPrefabs[Random.Range(0, _checkpointPrefabs.Length - 1)];
-            newLink = group.GetTrackChainLinkAt(_currentChain.exitPosition, _currentChain.exitAngle, flipped);
+            groupPrefab = _checkpointPrefabs[Random.Range(0, _checkpointPrefabs.Length - 1)];
+            newLink = groupPrefab.GetTrackChainLinkAt(_currentChain.exitPosition, _currentChain.exitAngle, flipped);
         }
 
         Quaternion rotation = Quaternion.Euler(0, _currentChain.exitAngle, 0);
         Vector3 position = _currentChain.exitPosition;
-        CheckpointGroup newActiveGroup = GameObject.Instantiate(group, position, rotation, this.transform);
+        CheckpointGroup newActiveGroup = GameObject.Instantiate(groupPrefab, position, rotation, this.transform);
         if (flipped) newActiveGroup.Flip();
 
         float oldAngle = _currentChain.exitAngle;
@@ -86,6 +90,12 @@ public class TrackManager : MonoBehaviour
             {
                 _activeGroups[^(_disabledGroupsInFront + 1)].gameObject.SetActive(true);
             }
+        }
+
+        _recentGroups.Add(groupPrefab.GetEntityId().GetHashCode());
+        if (_recentGroups.Count > _recencyHistoryLength)
+        {
+            _recentGroups.RemoveAt(0);
         }
 
 
@@ -137,7 +147,7 @@ public class TrackManager : MonoBehaviour
 
     private (CheckpointGroup group, bool flipped, TrackChainLink newLink) TryChoosePrefab(TrackChain chain)
     {
-        List<CheckpointGroup> shuffledGroups = _checkpointPrefabs.OrderBy(a => Random.value).ToList();
+        List<CheckpointGroup> shuffledGroups = _checkpointPrefabs.OrderBy(a => Random.value + GetRecencyPenaltyForGroup(a)).ToList();
         Vector3 currentExitPos = chain.exitPosition;
         float currentExitAngle = chain.exitAngle;
 
@@ -159,6 +169,12 @@ public class TrackManager : MonoBehaviour
             }
         }
         return (null, false, null);
+    }
+
+    private float GetRecencyPenaltyForGroup(CheckpointGroup group)
+    {
+        int hash = group.GetEntityId().GetHashCode();
+        return _recentGroups.Count((id) => id == hash) * _recencyPenalty;
     }
 }
 

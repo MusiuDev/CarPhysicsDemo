@@ -51,3 +51,6 @@ MonoBehaviour:
     - type: 9
       style: 0
       value: 1
+    - type: 0
+      style: 1
+      value: 0.5

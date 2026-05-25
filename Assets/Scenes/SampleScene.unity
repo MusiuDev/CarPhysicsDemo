@@ -150,9 +150,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrackManager
   _lookAhead: 3
   _maxMapAngle: 50
-  _startingSegments: 12
+  _startingSegments: 13
   _maxActiveGroups: 16
   _disabledGroupsInFront: 3
+  _recencyPenalty: 0.25
+  _recencyHistoryLength: 10
 --- !u!4 &281992371
 Transform:
   m_ObjectHideFlags: 0
@@ -753,6 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InfiniteDriftGameManager
   _car: {fileID: 8853687016017625594}
   _carCollision: {fileID: 8853687016017625589}
+  _carFlip: {fileID: 8853687016017625602}
   _carStats: {fileID: 8853687016017625598}
   _onCollisionStatusEffect: {fileID: 11400000, guid: d8239eba58ed49b5daa12970a975886f, type: 2}
   _onResetStatusEffect: {fileID: 11400000, guid: c9baa476971e25c27b3c34b56edb614a, type: 2}
@@ -1056,6 +1059,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3902133753783389927, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+      propertyPath: _flippedTimeThreshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902133753783389927, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+      propertyPath: _stoppedTimeThreshold
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402952260927350049, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_Name
       value: Car
@@ -1103,6 +1114,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85cb20295bec1319f9758e721a37e4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarStatsCotroller
+--- !u!114 &8853687016017625602 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3902133753783389927, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+  m_PrefabInstance: {fileID: 8853687016017625588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be4478a88ee364e1faf8b0389cb236b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarFlippedDetection
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
