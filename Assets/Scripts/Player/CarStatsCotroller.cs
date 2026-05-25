@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,10 +26,26 @@ public class CarStatsCotroller : MonoBehaviour
     //uses a list too to ensure effects are applied in the same order they were added in the intra frame loop.
     private List<CarStatusEffect> _activeEffects = new List<CarStatusEffect>();
 
+    private (Func<CarMotionStats, float> get, Action<CarMotionStats, float> set)[] _resetFunctionsCache;
+
     public void Initialize(ICarState carState)
     {
         _movement = Instantiate(_movementStraight);
         _state = carState;
+        GenerateResetCache();
+    }
+
+    private void GenerateResetCache()
+    {
+        var values = (CarStatType[])System.Enum.GetValues(typeof(CarStatType));
+        _resetFunctionsCache = new (Func<CarMotionStats, float> get, Action<CarMotionStats, float> set)[values.Length];
+
+        for (int i = 0; i < values.Length; i++)
+        {
+            CarStatType item = values[i];
+            var (get, set) = CarStatsRegistry.Fields[item];
+            _resetFunctionsCache[i] = (get, set);
+        }
     }
 
     public void UpdateMotionStats()
@@ -79,13 +96,10 @@ public class CarStatsCotroller : MonoBehaviour
 
     private void ResetAllValues()
     {
-        //TODO: cache both the enum array and the getters and setters;
-        var values = (CarStatType[])System.Enum.GetValues(typeof(CarStatType));
-        foreach (var item in values)
+        foreach (var item in _resetFunctionsCache)
         {
-            var (get, set) = CarStatsRegistry.Fields[item];
-            float straightValue = get(_movementStraight);
-            set(_movement, straightValue);
+            float originalValue = item.get(_movementStraight);
+            item.set(_movement, originalValue);
         }
     }
 
