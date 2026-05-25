@@ -109,4 +109,87 @@ public static class MathUtils
 
         return points;
     }
+
+    public static float ClosestT(System.Func<float, Vector3> sampleFunc, Vector3 point, int samples)
+    {
+        float closest_t = 0f;
+        float closestDistSqrd = Mathf.Infinity;
+        float segmentSize = 1f / samples;
+
+        for (int i = 0; i < samples; i++)
+        {
+            float t = i * segmentSize;
+            Vector3 sample = sampleFunc(t);
+            float distSqrd = Vector3.SqrMagnitude(point - sample);
+            if (distSqrd < closestDistSqrd)
+            {
+                closestDistSqrd = distSqrd;
+                closest_t = t;
+            }
+        }
+
+        float t_down = Mathf.Max(closest_t - segmentSize * 0.5f, 0f);
+        float t_up = Mathf.Min(closest_t + segmentSize * 0.5f, 1f);
+
+        for (int i = 0; i < samples; i++)
+        {
+            float s = (t_up - t_down) / 3f;
+            float t_under = t_down + s;
+            float t_over = t_up - s;
+
+            Vector3 under_pos = sampleFunc(t_under);
+            Vector3 over_pos = sampleFunc(t_over);
+            float under_dist = Vector3.SqrMagnitude(point - under_pos);
+            float over_dist = Vector3.SqrMagnitude(point - over_pos);
+
+            if (under_dist < over_dist)
+            {
+                t_up = t_over;
+                closest_t = t_under;
+            }
+            else
+            {
+                t_down = t_under;
+                closest_t = t_over;
+            }
+        }
+
+        return closest_t;
+    }
+}
+
+
+public static class BezierUtils
+{
+
+
+    public static Frenet SampleFrenetFrame(this Bezier curve, float t)
+    {
+        return curve.SampleFrenetFrame(t, Vector3.zero);
+    }
+
+    public static Frenet SampleFrenetFrame(this Bezier curve, float t, Vector3 preferedUpAxis)
+    {
+        Vector3 d1 = curve.SampleDerivative(t);
+        Vector3 d2 = curve.SampleSecondDerivative(t);
+        Vector3 T = d1.normalized;
+
+        Vector3 T1 = d2 - Vector3.Dot(d2, T) * T;
+
+        if (T1.sqrMagnitude <= Mathf.Epsilon) return new Frenet(T);
+
+        Vector3 n = T1.normalized;
+        Vector3 b = Vector3.Cross(T, n);
+        float k = T1.magnitude / d1.sqrMagnitude;
+
+        if (preferedUpAxis.sqrMagnitude > 0.001f && Vector3.Dot(b, preferedUpAxis) < 0f)
+        {
+            b = -b;
+            n = -n;
+        }
+
+        return new Frenet(T, n, b, k);
+    }
+
+
 }

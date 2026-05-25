@@ -35,19 +35,7 @@ public static class GizmoUtils
 
     public static void DrawSplineFromKnots(IBezierKnot[] knots, float segmentDistance)
     {
-        SplinePath path = BezierSpline.GetFullPath(knots, segmentDistance);
-
-        if (path == null) return;
-        if (path.pathPoints.Count <= 1) return;
-
-        Vector3[] lineList = new Vector3[(path.pathPoints.Count - 1) * 2];
-        for (int i = 0; i < path.pathPoints.Count - 1; i++)
-        {
-            lineList[2 * i] = path.pathPoints[i];
-            lineList[2 * i + 1] = path.pathPoints[i + 1];
-        }
-
-        Gizmos.DrawLineList(lineList);
+        DrawOffsetSplineFromKnots(knots, segmentDistance, 0, Vector3.zero);
     }
 
     public static void DrawOffsetSplineFromKnots(IBezierKnot[] knots, float segmentDistance, float offset, Vector3 upAxis)

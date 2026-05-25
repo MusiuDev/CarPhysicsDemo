@@ -4,7 +4,6 @@ using System;
 
 public static class BezierSpline
 {
-
     public static SplinePath GetFullPath(IBezierKnot[] knots, float segmentLength, float linearOffset = 0f, int bezierSegments = 16)
     {
         return GetFullPathWithOffset(knots, segmentLength, 0, Vector3.zero, linearOffset, bezierSegments);
@@ -79,7 +78,7 @@ public class BezierDefinition
 public class Bezier
 {
     private float[] MainLUT;
-    private BezierDefinition _def;
+    public BezierDefinition _def;
 
     public Bezier(BezierDefinition def)
     {
@@ -95,6 +94,11 @@ public class Bezier
     private static Vector4 TVecD(float t)
     {
         return new Vector4(0, 1, 2 * t, 3 * t * t);
+    }
+
+    private static Vector4 TVecD2(float t)
+    {
+        return new Vector4(0, 0, 2, 6 * t);
     }
 
     public Vector3 Sample(float t)
@@ -117,6 +121,11 @@ public class Bezier
     public Vector3 SampleDerivative(float t)
     {
         return _def.GM * TVecD(t);
+    }
+
+    public Vector3 SampleSecondDerivative(float t)
+    {
+        return _def.GM * TVecD2(t);
     }
 
     public Vector3[] GetRegularSegmentsByDistance(float segmentLength, out float remainingDistance, float linearOffset = 0)
@@ -159,5 +168,29 @@ public class SplinePath
     public SplinePath(params Vector3[] points)
     {
         pathPoints = new List<Vector3>(points);
+    }
+}
+
+public struct Frenet
+{
+    public Vector3 t; //tangent
+    public Vector3 n; //normal
+    public Vector3 b; //binormal
+    public float k; //curvature
+
+    public Frenet(Vector3 t, Vector3 n, Vector3 b, float k)
+    {
+        this.t = t;
+        this.n = n;
+        this.b = b;
+        this.k = k;
+    }
+
+    public Frenet(Vector3 t)
+    {
+        this.t = t;
+        this.n = Vector3.zero;
+        this.b = Vector3.zero;
+        this.k = 0f;
     }
 }
