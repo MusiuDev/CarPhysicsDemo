@@ -12,6 +12,30 @@ PrefabInstance:
       propertyPath: m_Time
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 953646562670272104, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 953646562670272104, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 953646562670272104, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271551360934873157, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271551360934873157, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271551360934873157, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1591777564523839312, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
       propertyPath: m_LocalRotation.w
       value: -0.000000041203563
@@ -44,6 +68,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarVisualsMainMenu Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2577869872956689191, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577869872956689191, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2577869872956689191, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715228952890825647, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Time
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4514226486951080374, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
       propertyPath: m_Time
       value: 1
@@ -70,7 +110,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5472229400656185706, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
       propertyPath: m_Time
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609041610992884194, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609041610992884194, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: simulationSpeed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609041610992884194, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280954073425615909, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Time
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7526693453059115973, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -111,6 +167,10 @@ PrefabInstance:
     - target: {fileID: 7526693453059115973, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760161401432721928, guid: 7671bd39433465e73b2d71b1a285daca, type: 3}
+      propertyPath: m_Time
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
