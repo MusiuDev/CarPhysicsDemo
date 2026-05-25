@@ -14,9 +14,9 @@ public class CheckpointGroup : MonoBehaviour
 
     public IReadOnlyCollection<Checkpoint> Checkpoints => _checkpoints;
 
-    public Transform ExitPoint => _exitPoint;
     public Vector3 ExitPosition => _exitPoint ? _exitPoint.position : Vector3.zero;
     public float ExitAngle => _exitPoint ? _exitPoint.eulerAngles.y : 0f;
+    public Quaternion ExitRotation => _exitPoint ? _exitPoint.rotation : Quaternion.identity;
 
     public Transform BoundsTransform => _boundsTransform;
 

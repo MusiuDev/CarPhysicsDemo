@@ -53,10 +53,7 @@ public class InfiniteDriftGameManager : MonoBehaviour
 
     private void HandleCheckpointGroupCleared(CheckpointGroup group)
     {
-        if (group.ExitPoint)
-        {
-            _revivePosition = group.ExitPoint.position;
-            _reviveRotation = group.ExitPoint.rotation;
-        }
+        _revivePosition = group.ExitPosition;
+        _reviveRotation = group.ExitRotation;
     }
 }

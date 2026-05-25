@@ -9,7 +9,9 @@ public class TrackEnvironment : MonoBehaviour
     [SerializeField] private float _cliffsOffset;
     [SerializeField] private float _cliffsLinearSpacing;
     [SerializeField] private float _cliffKnotSize;
-    [SerializeField] private Vector3 firstKnotPosition;
+    [SerializeField] private Vector3 _firstKnotPosition;
+    [SerializeField] private Transform _frontLimitsWall;
+    [SerializeField] private Transform _backLimitsWall;
 
     private float _nextOffset_a = 0f;
     private float _nextOffset_b = 0f;
@@ -20,7 +22,9 @@ public class TrackEnvironment : MonoBehaviour
         TrackManager.OnTrackUpdated += HandleTrackUpdated;
         TrackManager.OnCheckpointGroupSpawned += HandleGroupSpawned;
         TrackManager.OnCheckpointGroupDespawned += HandleGroupDespawned;
-        AddKnotAt(firstKnotPosition, Quaternion.identity);
+        AddKnotAt(_firstKnotPosition, Quaternion.identity);
+        AddKnotAt(Vector3.zero, Quaternion.identity);
+        SetBackWallAt(_firstKnotPosition, Quaternion.identity);
     }
 
     void Start()
@@ -59,7 +63,8 @@ public class TrackEnvironment : MonoBehaviour
 
     private void HandleGroupSpawned(CheckpointGroup group)
     {
-        AddKnotAt(group.transform.position, group.transform.rotation);
+        AddKnotAt(group.ExitPosition, group.ExitRotation);
+        SetFrontWallAt(group.ExitPosition, group.ExitRotation);
     }
 
     private void SpawnCliffsAt(Vector3[] positions, Transform parent)
@@ -71,18 +76,21 @@ public class TrackEnvironment : MonoBehaviour
         }
     }
 
-
     private void HandleGroupDespawned(CheckpointGroup group)
     {
         var oldestKnot = knots[0];
         knots.RemoveAt(0);
         Destroy(oldestKnot.gameObject);
+        if (knots.Count > 1 && knots[0] != null)
+        {
+            SetBackWallAt(knots[0].transform.position, knots[0].transform.rotation);
+        }
     }
 
     private void HandleTrackUpdated()
     {
         if (!_ground) return;
-        
+
         Vector3 first = _trackManager.CurrentChain.First.entryPosition;
         Vector3 last = _trackManager.CurrentChain.Last.exitPosition;
 
@@ -91,6 +99,20 @@ public class TrackEnvironment : MonoBehaviour
 
         _ground.position = center;
         _ground.forward = direction.normalized;
+    }
+
+    private void SetBackWallAt(Vector3 position, Quaternion rotation)
+    {
+        if (!_backLimitsWall) return;
+        _backLimitsWall.position = position;
+        _backLimitsWall.rotation = rotation;
+    }
+
+    private void SetFrontWallAt(Vector3 position, Quaternion rotation)
+    {
+        if (!_frontLimitsWall) return;
+        _frontLimitsWall.position = position;
+        _frontLimitsWall.rotation = rotation;
     }
 
     void OnDrawGizmos()

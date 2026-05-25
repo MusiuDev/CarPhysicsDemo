@@ -15,6 +15,7 @@ public class TrackManager : MonoBehaviour
     [SerializeField] private float _maxMapAngle = 60f;
     [SerializeField] private int _startingSegments = 10;
     [SerializeField] private int _maxActiveGroups = 14;
+    [SerializeField] private int _disabledGroupsInFront = 3;
 
     private CheckpointGroup[] _checkpointPrefabs;
     private int _currentActiveGroupIndex = 0;
@@ -78,7 +79,16 @@ public class TrackManager : MonoBehaviour
         _currentChain.Add(newLink);
         _activeGroups.Add(newActiveGroup);
         newActiveGroup.ResetGroup();
-        
+        if (_disabledGroupsInFront > 0)
+        {
+            newActiveGroup.gameObject.SetActive(false);
+            if (_activeGroups.Count > _disabledGroupsInFront)
+            {
+                _activeGroups[^(_disabledGroupsInFront + 1)].gameObject.SetActive(true);
+            }
+        }
+
+
         OnCheckpointGroupSpawned?.Invoke(newActiveGroup);
 
         if (_activeGroups.Count > _maxActiveGroups)
