@@ -233,7 +233,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 55
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -259,8 +259,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3627278, y: 0, z: 0, w: 0.93189514}
-  m_LocalPosition: {x: 0, y: 28.9, z: -20.6}
+  m_LocalRotation: {x: 0.3504322, y: 0, z: 0, w: 0.9365881}
+  m_LocalPosition: {x: 0, y: 40.6, z: -55.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -323,9 +323,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmoothCarCameraFollow
   _carTransform: {fileID: 8853687016017625590}
-  _distance: 20.6
-  _height: 28.9
-  _heightOffset: 10
+  _distance: 21.5
+  _height: 27.1
+  _heightOffset: 8.7
   _rotationDamping: 0
 --- !u!1 &363763121
 GameObject:
@@ -373,6 +373,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrackEnvironment
   _trackManager: {fileID: 281992370}
   _ground: {fileID: 1492593353}
+  _cliffPrefabs:
+  - {fileID: 8528266161084466091, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+  - {fileID: 5281528014009030219, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+  - {fileID: 6747198798807413912, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+  _cliffsOffset: 46
+  _cliffsLinearSpacing: 18
+  _cliffKnotSize: 6
+  firstKnotPosition: {x: 0, y: 0, z: -100}
 --- !u!1 &389377326
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,6 +765,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1473800316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1473800318}
+  - component: {fileID: 1473800317}
+  m_Layer: 0
+  m_Name: TrackEnvironmentVisuals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1473800317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473800316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887a1f921116c72adb1d62bff85920b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrackEnvironment
+  _trackManager: {fileID: 281992370}
+  _ground: {fileID: 0}
+  _cliffPrefabs:
+  - {fileID: 8528266161084466091, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
+  - {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
+  - {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
+  _cliffsOffset: 68
+  _cliffsLinearSpacing: 30
+  _cliffKnotSize: 6
+  firstKnotPosition: {x: 0, y: 0, z: -100}
+--- !u!4 &1473800318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473800316}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492593352
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,3 +1032,4 @@ SceneRoots:
   - {fileID: 281992371}
   - {fileID: 389377327}
   - {fileID: 363763122}
+  - {fileID: 1473800318}
