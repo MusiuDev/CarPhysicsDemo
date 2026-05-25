@@ -270,11 +270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: forwardsHandleSize
-      value: 10.494049
+      value: 11.926574
       objectReference: {fileID: 0}
     - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: backwardsHandleSize
-      value: 10.494049
+      value: 13.128604
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

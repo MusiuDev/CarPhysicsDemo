@@ -1,5 +1,105 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5788222005930256078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2404999955039509556}
+  - component: {fileID: 2778236300919707846}
+  m_Layer: 0
+  m_Name: Knot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2404999955039509556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788222005930256078}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.23753941, z: -0, w: 0.9713779}
+  m_LocalPosition: {x: 9.45, y: 0, z: 21.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5275004325211142152}
+  m_LocalEulerAnglesHint: {x: 0, y: -27.483, z: 0}
+--- !u!114 &2778236300919707846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788222005930256078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be4b7b3e1627c01ca798154950507eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TransformBezierKnot
+  rotationOffset: 16.632326
+  forwardsHandleSize: 9.761946
+  backwardsHandleSize: 8.806202
+  positionOffset: 0
+  _flipPosition: 1
+  _flipRotation: 1
+--- !u!1 &6004975435379059255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7240994504753103747}
+  - component: {fileID: 4674444021622344364}
+  m_Layer: 0
+  m_Name: Knot (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7240994504753103747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004975435379059255}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.23753941, z: -0, w: 0.9713779}
+  m_LocalPosition: {x: 8.74, y: 0, z: 24.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5275004325211142152}
+  m_LocalEulerAnglesHint: {x: 0, y: -27.483, z: 0}
+--- !u!114 &4674444021622344364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004975435379059255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be4b7b3e1627c01ca798154950507eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TransformBezierKnot
+  rotationOffset: 7.7187023
+  forwardsHandleSize: 9.761946
+  backwardsHandleSize: 8.806202
+  positionOffset: 0
+  _flipPosition: 1
+  _flipRotation: 1
 --- !u!1001 &67603310934866168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2644384453539394807, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
       propertyPath: forwardsHandleSize
-      value: 14.415923
+      value: 15.156185
       objectReference: {fileID: 0}
     - target: {fileID: 2644384453539394807, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
       propertyPath: backwardsHandleSize
@@ -602,14 +702,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2452044132475613073, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: knots.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2452044132475613073, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
+      propertyPath: 'knots.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2778236300919707846}
     - target: {fileID: 2452044132475613073, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: 'knots.Array.data[2]'
       value: 
-      objectReference: {fileID: 175593578107168291}
+      objectReference: {fileID: 4660082852856622807}
     - target: {fileID: 2452044132475613073, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: 'knots.Array.data[3]'
+      value: 
+      objectReference: {fileID: 175593578107168291}
+    - target: {fileID: 2452044132475613073, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
+      propertyPath: 'knots.Array.data[4]'
+      value: 
+      objectReference: {fileID: 4674444021622344364}
+    - target: {fileID: 2452044132475613073, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
+      propertyPath: 'knots.Array.data[5]'
       value: 
       objectReference: {fileID: 999714814262007303}
     - target: {fileID: 2452044132475613073, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
@@ -770,19 +882,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: forwardsHandleSize
-      value: 2.679387
+      value: 5.398069
       objectReference: {fileID: 0}
     - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: backwardsHandleSize
-      value: 18.13987
+      value: 6.150085
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7334279940241770115, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8265028274856488937, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2404999955039509556}
+    - targetCorrespondingSourceObject: {fileID: 8265028274856488937, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6752110350173943050}
+    - targetCorrespondingSourceObject: {fileID: 8265028274856488937, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7240994504753103747}
     - targetCorrespondingSourceObject: {fileID: 4319186643545321196, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7310902539462883655}
@@ -845,6 +963,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2663780499836840479, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
   m_PrefabInstance: {fileID: 4289629241634101217}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4660082852856622807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
+  m_PrefabInstance: {fileID: 4289629241634101217}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be4b7b3e1627c01ca798154950507eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TransformBezierKnot
 --- !u!4 &5275004325211142152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8265028274856488937, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}

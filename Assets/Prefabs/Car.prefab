@@ -988,7 +988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarStatsCotroller
   _movementStraight: {fileID: 11400000, guid: cd67bc1d3263cc4a7849e25f73d1da5f, type: 2}
-  _movementSteering: {fileID: 11400000, guid: ce6b6bdc4bd339635b4cd17f2680de1b, type: 2}
+  _movementSteering: {fileID: 11400000, guid: 6bdf57c118166b2e98f97dc1e03b7df6, type: 2}
   _steerMultCurveBySpeed:
     serializedVersion: 2
     m_Curve:

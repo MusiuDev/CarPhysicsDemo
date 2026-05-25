@@ -15,10 +15,10 @@ MonoBehaviour:
   overrides:
   - type: 0
     style: 0
-    value: 12
+    value: 13.5
   - type: 1
     style: 0
-    value: 12
+    value: 13.5
   - type: 2
     style: 0
     value: 500

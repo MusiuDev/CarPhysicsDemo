@@ -421,12 +421,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
+      propertyPath: rotationOffset
+      value: 12.455559
+      objectReference: {fileID: 0}
+    - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: forwardsHandleSize
-      value: 10.443554
+      value: 12.633833
       objectReference: {fileID: 0}
     - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: backwardsHandleSize
-      value: 10.443554
+      value: 12.877332
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

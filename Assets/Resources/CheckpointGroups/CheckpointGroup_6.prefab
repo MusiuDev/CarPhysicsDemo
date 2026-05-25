@@ -94,10 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be4b7b3e1627c01ca798154950507eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransformBezierKnot
-  rotationOffset: -4.025707
+  rotationOffset: -20.99149
   forwardsHandleSize: 4.9817405
-  backwardsHandleSize: 7.196066
-  positionOffset: -0.59452385
+  backwardsHandleSize: 12.992136
+  positionOffset: 0.6294234
   _flipPosition: 1
   _flipRotation: 1
 --- !u!1001 &185753867271986243
@@ -758,11 +758,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: rotationOffset
-      value: 4.6457577
+      value: 19.918827
       objectReference: {fileID: 0}
     - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: forwardsHandleSize
-      value: 7.099654
+      value: 11.9234295
       objectReference: {fileID: 0}
     - target: {fileID: 8875508252810606902, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: backwardsHandleSize
@@ -874,11 +874,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2644384453539394807, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
       propertyPath: forwardsHandleSize
-      value: 10.178189
+      value: 12.754259
       objectReference: {fileID: 0}
     - target: {fileID: 2644384453539394807, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
       propertyPath: backwardsHandleSize
-      value: 2.5443895
+      value: 7.1356616
       objectReference: {fileID: 0}
     - target: {fileID: 8892700913307101150, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
       propertyPath: m_LocalPosition.x
@@ -966,11 +966,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2644384453539394807, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
       propertyPath: positionOffset
-      value: -1.2415633
+      value: -1.7663188
       objectReference: {fileID: 0}
     - target: {fileID: 2644384453539394807, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
       propertyPath: forwardsHandleSize
-      value: 4.8004227
+      value: 4.475708
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644384453539394807, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
+      propertyPath: backwardsHandleSize
+      value: 4.377449
       objectReference: {fileID: 0}
     - target: {fileID: 8892700913307101150, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
       propertyPath: m_LocalPosition.x

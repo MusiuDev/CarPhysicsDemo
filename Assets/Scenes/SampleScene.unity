@@ -537,8 +537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrackRouteSplineRenderer
   _lineRenderer: {fileID: 389377328}
-  _lineSegmentDistance: 3
-  _bezierSegments: 8
+  _lineSegmentDistance: 2
+  _bezierSegments: 9
   _firstPointDistance: 100
 --- !u!1 &410087039
 GameObject:
@@ -968,10 +968,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2863030739232614470, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
-      propertyPath: _movementSteering
-      value: 
-      objectReference: {fileID: 11400000, guid: 6bdf57c118166b2e98f97dc1e03b7df6, type: 2}
     - target: {fileID: 5402952260927350049, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
       propertyPath: m_Name
       value: Car
