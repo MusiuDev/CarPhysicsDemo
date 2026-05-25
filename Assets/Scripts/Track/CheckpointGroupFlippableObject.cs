@@ -17,8 +17,8 @@ public class CheckpointGroupFlippableObject : MonoBehaviour, IFlippableObject
         if (_flipRotation)
         {
             Vector3 rot = transform.localEulerAngles;
-            transform.localEulerAngles = rot;
             rot.y *= -1f;
+            transform.localEulerAngles = rot;
         }
     }
 }

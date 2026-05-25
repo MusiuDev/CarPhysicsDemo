@@ -27,3 +27,4 @@ MonoBehaviour:
   BaseAngularDamping: 0
   SteeringAngularDamping: 0
   StraightAngularDamping: 3
+  GravityScale: 1.75

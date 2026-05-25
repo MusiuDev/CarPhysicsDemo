@@ -1,25 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
-public class Checkpoint : MonoBehaviour
+public abstract class Checkpoint : MonoBehaviour
 {
     public delegate void CheckpointEvent(Checkpoint checkpoint);
     public event CheckpointEvent OnCheckpointCompleted;
+    protected const string PLAYER_BODY_TAG = "PlayerBody";
 
-    [SerializeField] private Animator _gateAnimator;
-    [SerializeField] private GameObject _colliderContainer;
-
-    private CheckpointState _currentState = CheckpointState.Unset;
+    protected CheckpointState _currentState = CheckpointState.Unset;
     private bool _isPlayerIn = false;
     private bool _isResetting = false;
 
     void OnTriggerEnter(Collider other)
     {
         if (_isResetting) return;
-        if (!other.CompareTag("PlayerBody")) return;//TODO: Change this to something better.
-        Vector3 toPlayer = other.transform.position - this.transform.position;
-        bool enteredFromTheBack = Vector3.Dot(-this.transform.forward, toPlayer) > 0;
-        if (enteredFromTheBack)
+        if (!other.CompareTag(PLAYER_BODY_TAG)) return;
+        if (ProcessPlayerEnter(other.transform))
         {
             _isPlayerIn = true;
         }
@@ -31,15 +27,12 @@ public class Checkpoint : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         if (_isResetting) return;
-        if (!other.CompareTag("PlayerBody")) return;//TODO: Change this to something better.
-
+        if (!other.CompareTag(PLAYER_BODY_TAG)) return;
+        
         _isPlayerIn = false;
 
         if (_currentState != CheckpointState.Open) return;
-
-        Vector3 toPlayer = other.transform.position - this.transform.position;
-        bool exitFromFromt = Vector3.Dot(this.transform.forward, toPlayer) > 0;
-        if (exitFromFromt)
+        if (ProcessPlayerExit(other.transform))
         {
             SetState(CheckpointState.Completed);
             OnCheckpointCompleted?.Invoke(this);
@@ -50,20 +43,28 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
+    protected void NotifyCheckpointCompleted()
+    {
+        OnCheckpointCompleted?.Invoke(this);
+    }
+
+    protected abstract bool ProcessPlayerEnter(Transform playerTransform);
+    protected abstract bool ProcessPlayerExit(Transform playerTransform);
+
     public void SetState(CheckpointState newState)
     {
         if (_currentState == newState) return;
 
-        //If the player is already in when the checkpoint gets activated, open the gate instantly. 
+        //If the player is already in when the checkpoint gets activated, set it as open immediately.
         if (_isPlayerIn && newState == CheckpointState.Active)
         {
             newState = CheckpointState.Open;
         }
-
         _currentState = newState;
-        _colliderContainer.SetActive((int)_currentState < (int)CheckpointState.Open);
-        _gateAnimator.SetInteger("State", (int)_currentState);
+        UpdateStatePresentation();
     }
+
+    protected abstract void UpdateStatePresentation();
 
     public void HandleCarResetStart()
     {

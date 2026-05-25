@@ -366,22 +366,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be4b7b3e1627c01ca798154950507eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransformBezierKnot
---- !u!4 &6752110350173943050 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8892700913307101150, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
-  m_PrefabInstance: {fileID: 2800509767287378644}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8901555475263989059 stripped
+--- !u!114 &6009031045165734091 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6725498503636072343, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8482869846261418527, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
   m_PrefabInstance: {fileID: 2800509767287378644}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41824f64ec8d106e381f31d12f1c95e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c2d37eef5a3b6e30951a13cce375136, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Checkpoint
+  m_EditorClassIdentifier: Assembly-CSharp::GateCheckpoint
+--- !u!4 &6752110350173943050 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8892700913307101150, guid: ec28c88f5a478eb5e9e1bea7a8647649, type: 3}
+  m_PrefabInstance: {fileID: 2800509767287378644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2864530666057162852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -807,7 +807,7 @@ PrefabInstance:
     - target: {fileID: 4501219889789319141, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: '_checkpoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 8901555475263989059}
+      objectReference: {fileID: 6009031045165734091}
     - target: {fileID: 7391839120536518687, guid: 3037dc30380e1c0b593c8b352cb81703, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.631775
