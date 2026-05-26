@@ -15,11 +15,13 @@ public class NavigationManager : MonoBehaviour
 
     [SerializeField] private UIDocument _fadeOverlayUI;
     [SerializeField] private float _fadeDuration;
+    [SerializeField] private string _mainMenuScene;
 
     public float FadeDuration => _fadeDuration;
 
     private VisualElement _root;
     private VisualElement _fadeOverlay;
+    private Button _backButton;
     private CoverState _lastRequestedState = CoverState.Unset;
     private bool _inSceneTransition;
 
@@ -50,6 +52,14 @@ public class NavigationManager : MonoBehaviour
         _root = _fadeOverlayUI.rootVisualElement;
         _fadeOverlay = _root.Query<VisualElement>("FadeOverlay");
         _fadeOverlay.style.display = DisplayStyle.Flex;
+        _backButton = _root.Query<Button>("Back_Btn");
+
+        _backButton.RegisterCallback<ClickEvent>((e) =>
+        {
+            RequestMainMenuScene();
+        });
+
+        _backButton.style.display = DisplayStyle.None;
     }
 
     public Coroutine RequestCoverState(CoverState state, float delay = 0f)
@@ -109,9 +119,16 @@ public class NavigationManager : MonoBehaviour
         }
 
         asyncLoad.allowSceneActivation = true;
+        _backButton.style.display = (scene == _mainMenuScene) ? DisplayStyle.None : DisplayStyle.Flex;
         yield return RequestCoverState(CoverState.Uncover);
         _inSceneTransition = false;
         OnSceneLoadAndFadeComplete?.Invoke();
+
+    }
+
+    public void RequestMainMenuScene()
+    {
+        RequestSceneSwitch(_mainMenuScene);
     }
 
     public void RequestOpenExternalLink(string url)
