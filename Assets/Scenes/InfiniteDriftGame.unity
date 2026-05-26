@@ -758,6 +758,9 @@ MonoBehaviour:
   _carCollision: {fileID: 8853687016017625589}
   _carStuck: {fileID: 8853687016017625602}
   _carStats: {fileID: 8853687016017625598}
+  _killBounds:
+    m_Center: {x: 0, y: 150, z: 0}
+    m_Extent: {x: 0, y: 200, z: 0}
   _resetCarDelay: 0.5
   _enableInputDelay: 0.25
 --- !u!4 &888629517

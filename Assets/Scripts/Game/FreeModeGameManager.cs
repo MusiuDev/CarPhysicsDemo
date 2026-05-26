@@ -6,14 +6,11 @@ public class FreeModeGameManager : GameManager
     [SerializeField] private float _resetCarDelay;
     [SerializeField] private float _enableInputDelay;
 
-    private Vector3 _revivePosition;
-    private Quaternion _reviveRotation;
-
     protected override void HandleAwake()
     {
         _carStuck.OnCarStuck += HandleCarStuck;
-        _revivePosition = _car.transform.position;
-        _reviveRotation = _car.transform.rotation;
+        _safeRevivePosition = _car.transform.position;
+        _safeReviveRotation = _car.transform.rotation;
     }
 
     protected override void HandleDestroy()
@@ -31,7 +28,7 @@ public class FreeModeGameManager : GameManager
 
     private void HandleCarStuck()
     {
-        RequestResetcar(_revivePosition, _reviveRotation, _resetCarDelay);
+        RequestResetcar(_safeRevivePosition, _safeReviveRotation, _resetCarDelay);
     }
 
     protected override void CarResetStarted()

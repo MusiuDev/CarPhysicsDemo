@@ -26,12 +26,16 @@ public abstract class GameManager : MonoBehaviour
     [SerializeField] protected CarCollisionDetector _carCollision;
     [SerializeField] protected CarStuckDetection _carStuck;
     [SerializeField] protected CarStatsCotroller _carStats;
+    [SerializeField] protected Bounds _killBounds;
 
     protected static bool _resetting;
     public static bool Resetting => _resetting;
 
     protected static bool _gameActive;
     public static bool GameActive => _gameActive;
+
+    protected Vector3 _safeRevivePosition;
+    protected Quaternion _safeReviveRotation;
 
     protected void Awake()
     {
@@ -65,6 +69,23 @@ public abstract class GameManager : MonoBehaviour
         StartCoroutine(ResetCar(position, rotation, delay));
     }
 
+    void Update()
+    {
+        if (_car)
+        {
+            //I'm not using "Bounds.Contains" so the bounds can define only some dimensions as valid if required
+            bool outside =
+            _killBounds.size.x > Mathf.Epsilon && !_car.transform.position.x.Between(_killBounds.min.x, _killBounds.max.x) ||
+            _killBounds.size.y > Mathf.Epsilon && !_car.transform.position.y.Between(_killBounds.min.y, _killBounds.max.y) ||
+            _killBounds.size.z > Mathf.Epsilon && !_car.transform.position.z.Between(_killBounds.min.z, _killBounds.max.z);
+
+            if (outside)
+            {
+                RequestResetcar(_safeRevivePosition, _safeReviveRotation, 0f);
+            }
+        }
+    }
+
     private IEnumerator ResetCar(Vector3 position, Quaternion rotation, float delay)
     {
         _resetting = true;
@@ -82,6 +103,11 @@ public abstract class GameManager : MonoBehaviour
         CarResetCompleted();
         OnCarResetCompleted?.Invoke();
         _resetting = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(_killBounds.center, _killBounds.size);
     }
 
     protected virtual void CarResetStarted() { /* Empty by design */ }

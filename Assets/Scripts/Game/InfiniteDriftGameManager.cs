@@ -6,16 +6,13 @@ public class InfiniteDriftGameManager : GameManager
     [SerializeField] private float _resetCarDelay;
     [SerializeField] private float _enableInputDelay;
 
-    private Vector3 _revivePosition;
-    private Quaternion _reviveRotation;
-
     protected override void HandleAwake()
     {
         CheckpointGroup.OnCheckpointGroupCleared += HandleCheckpointGroupCleared;
         _carCollision.OnCarCollisionWithObstacle += HandleCarCollision;
         _carStuck.OnCarStuck += HandleCarStuck;
-        _revivePosition = _car.transform.position;
-        _reviveRotation = _car.transform.rotation;
+        _safeRevivePosition = _car.transform.position;
+        _safeReviveRotation = _car.transform.rotation;
         _gameActive = false;
     }
 
@@ -37,12 +34,12 @@ public class InfiniteDriftGameManager : GameManager
 
     private void HandleCarCollision(Collision col)
     {
-        RequestResetcar(_revivePosition, _reviveRotation, _resetCarDelay);
+        RequestResetcar(_safeRevivePosition, _safeReviveRotation, _resetCarDelay);
     }
 
     private void HandleCarStuck()
     {
-        RequestResetcar(_revivePosition, _reviveRotation, _resetCarDelay);
+        RequestResetcar(_safeRevivePosition, _safeReviveRotation, _resetCarDelay);
     }
 
     protected override void CarResetStarted()
@@ -65,7 +62,7 @@ public class InfiniteDriftGameManager : GameManager
 
     private void HandleCheckpointGroupCleared(CheckpointGroup group)
     {
-        _revivePosition = group.ExitPosition;
-        _reviveRotation = group.ExitRotation;
+        _safeRevivePosition = group.ExitPosition;
+        _safeReviveRotation = group.ExitRotation;
     }
 }
