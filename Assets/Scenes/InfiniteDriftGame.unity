@@ -754,6 +754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InfiniteDriftGameManager
   _car: {fileID: 8853687016017625594}
+  _inputController: {fileID: 8853687016017625591}
   _carCollision: {fileID: 8853687016017625589}
   _carFlip: {fileID: 8853687016017625602}
   _carStats: {fileID: 8853687016017625598}
@@ -1084,6 +1085,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 345700736046049840, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
   m_PrefabInstance: {fileID: 8853687016017625588}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8853687016017625591 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3678377149773849879, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}
+  m_PrefabInstance: {fileID: 8853687016017625588}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec7465ec47b9ea718c57db8cbb41d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarInputController
 --- !u!114 &8853687016017625594 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7410640515221001165, guid: f5ff10cb38bfd97eebd0c68ff6506677, type: 3}

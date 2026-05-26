@@ -11,6 +11,7 @@ public class InfiniteDriftGameManager : MonoBehaviour
     public static event GameManagerEvent OnCarPostTeleport;
 
     [SerializeField] private SmoothCarMovement _car;
+    [SerializeField] private CarInputController _inputController;
     [SerializeField] private CarCollisionDetector _carCollision;
     [SerializeField] private CarStuckDetection _carFlip;
     [SerializeField] private CarStatsCotroller _carStats;
@@ -25,9 +26,25 @@ public class InfiniteDriftGameManager : MonoBehaviour
     {
         CheckpointGroup.OnCheckpointGroupCleared += HandleCheckpointGroupCleared;
         _carCollision.OnCarCollisionWithObstacle += HandleCarCollision;
+        NavigationManager.OnSceneLoadAndFadeComplete += HandleTransitionComplete;
         _carFlip.OnCarStuck += HandleCarStuck;
         _revivePosition = _car.transform.position;
         _reviveRotation = _car.transform.rotation;
+    }
+
+    void OnDestroy()
+    {
+        CheckpointGroup.OnCheckpointGroupCleared -= HandleCheckpointGroupCleared;
+        NavigationManager.OnSceneLoadAndFadeComplete -= HandleTransitionComplete;
+        if (_carCollision)
+        {
+            _carCollision.OnCarCollisionWithObstacle -= HandleCarCollision;
+        }
+    }
+
+    private void HandleTransitionComplete()
+    {
+        _inputController.InputEnabled = true;
     }
 
     private void HandleCarCollision(Collision col)

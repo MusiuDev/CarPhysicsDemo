@@ -5,9 +5,17 @@ using UnityEngine.UIElements;
 
 public class NavigationManager : MonoBehaviour
 {
+
+    public delegate void FadeCoverEvent(CoverState state);
+    public static event FadeCoverEvent OnFadeTransitionComplete;
+
+    public delegate void NavigationManagerEvent();
+    public static event NavigationManagerEvent OnSceneLoadAndFadeComplete;
+
+
     [SerializeField] private UIDocument _fadeOverlayUI;
     [SerializeField] private float _fadeDuration;
-    
+
     public float FadeDuration => _fadeDuration;
 
     private VisualElement _root;
@@ -67,6 +75,8 @@ public class NavigationManager : MonoBehaviour
             _fadeOverlay.style.display = DisplayStyle.None;
         }
 
+        OnFadeTransitionComplete?.Invoke(state);
+
         if (_lastRequestedState != state)
         {
             yield return ExecuteFadeTransition(_lastRequestedState);
@@ -101,6 +111,12 @@ public class NavigationManager : MonoBehaviour
         asyncLoad.allowSceneActivation = true;
         yield return RequestCoverState(CoverState.Uncover);
         _inSceneTransition = false;
+        OnSceneLoadAndFadeComplete?.Invoke();
+    }
+
+    public void RequestOpenExternalLink(string url)
+    {
+        Application.OpenURL(url);
     }
 }
 

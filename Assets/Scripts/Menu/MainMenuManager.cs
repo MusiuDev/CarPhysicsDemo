@@ -7,6 +7,8 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private UIDocument _mainMenuDocument;
     [SerializeField] private string _driftScene;
     [SerializeField] private string _stuntsScene;
+    [SerializeField] private string _githubLink;
+    [SerializeField] private string _portfolioLink;
 
     VisualElement _root;
     void Start()
@@ -29,6 +31,18 @@ public class MainMenuUI : MonoBehaviour
         playStuntsButton.RegisterCallback<ClickEvent>((e) =>
         {
             NavigationManager.Instance.RequestSceneSwitch(_stuntsScene);
+        });
+
+        Button githubButton = _root.Query<Button>("Github_Btn");
+        githubButton.RegisterCallback<ClickEvent>((e) =>
+        {
+            NavigationManager.Instance.RequestOpenExternalLink(_githubLink);
+        });
+
+        Button portfolioButton = _root.Query<Button>("Portfolio_Btn");
+        portfolioButton.RegisterCallback<ClickEvent>((e) =>
+        {
+            NavigationManager.Instance.RequestOpenExternalLink(_portfolioLink);
         });
     }
 
