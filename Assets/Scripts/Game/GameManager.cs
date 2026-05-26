@@ -33,7 +33,7 @@ public abstract class GameManager : MonoBehaviour
     protected static bool _gameActive;
     public static bool GameActive => _gameActive;
 
-    private void Awake()
+    protected void Awake()
     {
         NavigationManager.OnSceneLoadAndFadeComplete += HandleTransitionComplete;
         HandleAwake();
@@ -41,7 +41,7 @@ public abstract class GameManager : MonoBehaviour
 
     protected virtual void HandleAwake() { /* Empty by design */ }
 
-    private void Start()
+    protected void Start()
     {
         HandleStart();
         if (!NavigationManager.Instance) HandleTransitionComplete();
@@ -49,7 +49,7 @@ public abstract class GameManager : MonoBehaviour
 
     protected virtual void HandleStart() { /* Empty by design */ }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         NavigationManager.OnSceneLoadAndFadeComplete -= HandleTransitionComplete;
         HandleDestroy();

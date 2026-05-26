@@ -926,7 +926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   _mainMenuDocument: {fileID: 1520841971}
   _driftScene: InfiniteDriftGame
-  _stuntsScene: InfiniteDriftGame
+  _stuntsScene: FreeModeGame
   _githubLink: https://github.com/MusiuDev/CasualDriftGame
   _portfolioLink: https://ismael.ar/
 --- !u!1 &1543135115
