@@ -29,7 +29,7 @@ public abstract class GameManager : MonoBehaviour
 
     protected static bool _resetting;
     public static bool Resetting => _resetting;
-    
+
     protected static bool _gameActive;
     public static bool GameActive => _gameActive;
 
@@ -70,13 +70,13 @@ public abstract class GameManager : MonoBehaviour
         _resetting = true;
         CarResetStarted();
         OnCarResetStarted?.Invoke();
-        yield return new WaitForSeconds(delay);
+        yield return NavigationManager.Instance ? NavigationManager.Instance.RequestCoverState(CoverState.Cover, delay) : new WaitForSeconds(delay);
         CarPreTeleport();
         OnCarPreTeleport?.Invoke();
         yield return null;
         _carStats.ClearStatusEffects();
         _car.ResetToPositionAndRotation(position, rotation);
-        yield return null;
+        yield return NavigationManager.Instance ? NavigationManager.Instance.RequestCoverState(CoverState.Uncover) : null;
         CarPostTeleport();
         OnCarPostTeleport?.Invoke();
         CarResetCompleted();

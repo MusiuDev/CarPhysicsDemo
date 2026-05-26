@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NavigationManager
   _fadeOverlayUI: {fileID: 1306956205}
-  _fadeDuration: 0.75
+  _fadeDuration: 0.5
 --- !u!4 &1149353416
 Transform:
   m_ObjectHideFlags: 0
