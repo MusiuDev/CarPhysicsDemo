@@ -47,11 +47,17 @@ public class NavigationManager : MonoBehaviour
         InitializeUI();
     }
 
+    void Start()
+    {
+        RequestMainMenuScene();
+    }
+
     private void InitializeUI()
     {
         _root = _fadeOverlayUI.rootVisualElement;
         _fadeOverlay = _root.Query<VisualElement>("FadeOverlay");
         _fadeOverlay.style.display = DisplayStyle.Flex;
+        _lastRequestedState = CoverState.Cover;
         _backButton = _root.Query<Button>("Back_Btn");
 
         _backButton.RegisterCallback<ClickEvent>((e) =>
