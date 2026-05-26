@@ -8,12 +8,13 @@ public class CarInputController : MonoBehaviour
     [SerializeField] private InputActionReference _accelerateActionRef;
     [SerializeField] private InputActionReference _brakeActionRef;
     [SerializeField] private bool _autoAccelerate;
-    [SerializeField] private bool _inputEnabled;
+    [SerializeField] private bool _inputEnabledAtStart;
 
     private InputAction _steerAction;
     private InputAction _accelerateAction;
     private InputAction _brakeAction;
 
+    private bool _inputEnabled;
     public bool InputEnabled
     {
         get
@@ -23,7 +24,7 @@ public class CarInputController : MonoBehaviour
         set
         {
             if (value == _inputEnabled) return;
-            _inputEnabled = enabled;
+            _inputEnabled = value;
             ResetInputState();
         }
     }
@@ -37,7 +38,7 @@ public class CarInputController : MonoBehaviour
     {
         if (!_car || !_steerActionRef || _steerActionRef.action == null || !_accelerateActionRef || !_brakeActionRef)
         {
-            this.gameObject.SetActive(false);
+            this.enabled = false;
             Debug.LogError("CarInputController is missing references. Disabling the component.");
             return;
         }
@@ -45,14 +46,19 @@ public class CarInputController : MonoBehaviour
         _steerAction = _steerActionRef.action;
         _accelerateAction = _accelerateActionRef.action;
         _brakeAction = _brakeActionRef.action;
+
+        if (_inputEnabledAtStart)
+        {
+            InputEnabled = true;
+        }
     }
 
     void Update()
     {
-        if (!_inputEnabled) return;
+        if (!InputEnabled) return;
 
         float steer = _steerAction.ReadValue<float>();
-        bool accelerate = _autoAccelerate || _accelerateAction.ReadValue<float>() > 0.5f;
+        bool accelerate = AutoAccelerate || (_accelerateAction.ReadValue<float>() > 0.5f);
         bool brake = _brakeAction.ReadValue<float>() > 0.5f;
 
         _car.SetInput(steer, accelerate, brake);

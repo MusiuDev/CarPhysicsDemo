@@ -1080,6 +1080,7 @@ MonoBehaviour:
   _accelerateActionRef: {fileID: 7725983123266212154, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _brakeActionRef: {fileID: -7385859044393237012, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _autoAccelerate: 1
+  _inputEnabledAtStart: 0
 --- !u!114 &6002501517239311876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,10 +1100,12 @@ MonoBehaviour:
       trail: {fileID: 4998208479293369876}
       particles: {fileID: 3272456086936628313}
       visualWheel: {fileID: 7096238476793552909}
+      isPlaying: 1
     - carWheel: {fileID: 6149756497397849223}
       trail: {fileID: 7757259745858714459}
       particles: {fileID: 256845898180737302}
       visualWheel: {fileID: 5935452671999141626}
+      isPlaying: 1
     _driftingStart: 0.1
     _driftingEnd: 0.05
     _extraTime: 0.3
@@ -1114,10 +1117,12 @@ MonoBehaviour:
       trail: {fileID: 6468375674069170233}
       particles: {fileID: 3599330752231635572}
       visualWheel: {fileID: 3909459024096447841}
+      isPlaying: 1
     - carWheel: {fileID: 3781649925366475516}
       trail: {fileID: 1430231575858653598}
       particles: {fileID: 8930102951986752467}
       visualWheel: {fileID: 2290752738240404371}
+      isPlaying: 1
     _driftingStart: 0.25
     _driftingEnd: 0.2
     _extraTime: 0.25

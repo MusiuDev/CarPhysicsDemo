@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 888629517}
   - component: {fileID: 888629516}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: DriftGameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -756,10 +756,10 @@ MonoBehaviour:
   _car: {fileID: 8853687016017625594}
   _inputController: {fileID: 8853687016017625591}
   _carCollision: {fileID: 8853687016017625589}
-  _carFlip: {fileID: 8853687016017625602}
+  _carStuck: {fileID: 8853687016017625602}
   _carStats: {fileID: 8853687016017625598}
-  _onCollisionStatusEffect: {fileID: 11400000, guid: d8239eba58ed49b5daa12970a975886f, type: 2}
-  _onResetStatusEffect: {fileID: 11400000, guid: c9baa476971e25c27b3c34b56edb614a, type: 2}
+  _resetCarDelay: 1.5
+  _enableInputDelay: 1
 --- !u!4 &888629517
 Transform:
   m_ObjectHideFlags: 0

@@ -1,80 +1,65 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-public class InfiniteDriftGameManager : MonoBehaviour
+public class InfiniteDriftGameManager : GameManager
 {
-    public delegate void GameManagerEvent();
-    public static event GameManagerEvent OnCarResetStarted;
-    public static event GameManagerEvent OnCarResetCompleted;
-    public static event GameManagerEvent OnCarPreTeleport;
-    public static event GameManagerEvent OnCarPostTeleport;
-
-    [SerializeField] private SmoothCarMovement _car;
-    [SerializeField] private CarInputController _inputController;
-    [SerializeField] private CarCollisionDetector _carCollision;
-    [SerializeField] private CarStuckDetection _carFlip;
-    [SerializeField] private CarStatsCotroller _carStats;
-    [SerializeField] private CarStatusEffectScriptable _onCollisionStatusEffect;
-    [SerializeField] private CarStatusEffectScriptable _onResetStatusEffect;
+    [SerializeField] private float _resetCarDelay;
+    [SerializeField] private float _enableInputDelay;
 
     private Vector3 _revivePosition;
     private Quaternion _reviveRotation;
-    private bool _resetting;
 
-    void Awake()
+    protected override void HandleAwake()
     {
         CheckpointGroup.OnCheckpointGroupCleared += HandleCheckpointGroupCleared;
         _carCollision.OnCarCollisionWithObstacle += HandleCarCollision;
-        NavigationManager.OnSceneLoadAndFadeComplete += HandleTransitionComplete;
-        _carFlip.OnCarStuck += HandleCarStuck;
+        _carStuck.OnCarStuck += HandleCarStuck;
         _revivePosition = _car.transform.position;
         _reviveRotation = _car.transform.rotation;
+        _gameActive = false;
     }
 
-    void OnDestroy()
+    protected override void HandleDestroy()
     {
         CheckpointGroup.OnCheckpointGroupCleared -= HandleCheckpointGroupCleared;
-        NavigationManager.OnSceneLoadAndFadeComplete -= HandleTransitionComplete;
-        if (_carCollision)
-        {
-            _carCollision.OnCarCollisionWithObstacle -= HandleCarCollision;
-        }
+        if (_carCollision) _carCollision.OnCarCollisionWithObstacle -= HandleCarCollision;
+        if (_carStuck) _carStuck.OnCarStuck += HandleCarStuck;
+        RaiseOnGameStopped();
     }
 
-    private void HandleTransitionComplete()
+    protected override void HandleTransitionComplete()
     {
-        _inputController.InputEnabled = true;
+        StartCoroutine(EnableInputAfterDelay(_enableInputDelay));
+        _gameActive = true;
+        RaiseOnGameStarted();
     }
 
     private void HandleCarCollision(Collision col)
     {
-        if (_resetting) return;
-        _resetting = true;
-        StartCoroutine(ResetCar());
+        RequestResetcar(_revivePosition, _reviveRotation, _resetCarDelay);
     }
 
     private void HandleCarStuck()
     {
-        if (_resetting) return;
-        _resetting = true;
-        StartCoroutine(ResetCar());
+        RequestResetcar(_revivePosition, _reviveRotation, _resetCarDelay);
     }
 
-    private IEnumerator ResetCar()
+    protected override void CarResetStarted()
     {
-        OnCarResetStarted?.Invoke();
-        _carStats.AddStatusEffect(_onCollisionStatusEffect);
-        yield return new WaitForSeconds(1f);
-        OnCarPreTeleport?.Invoke();
-        yield return null;
-        _carStats.ClearStatusEffects();
-        _car.ResetToPositionAndRotation(_revivePosition, _reviveRotation);
-        yield return null;
-        OnCarPostTeleport?.Invoke();
-        OnCarResetCompleted?.Invoke();
-        _carStats.AddStatusEffect(_onResetStatusEffect);
-        _resetting = false;
+        _gameActive = false;
+        _inputController.InputEnabled = false;
+    }
+
+    protected override void CarResetCompleted()
+    {
+        StartCoroutine(EnableInputAfterDelay(_enableInputDelay));
+    }
+
+    private IEnumerator EnableInputAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        _gameActive = true;
+        _inputController.InputEnabled = true;
     }
 
     private void HandleCheckpointGroupCleared(CheckpointGroup group)

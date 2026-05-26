@@ -17,13 +17,11 @@ public class CarStuckDetection : MonoBehaviour
     private bool _isStopped;
     private float _stoppedCurrentTime;
 
-    private bool _isResetting;
     private ICarState _state;
 
     void Awake()
     {
-        InfiniteDriftGameManager.OnCarResetStarted += HandleResetStarted;
-        InfiniteDriftGameManager.OnCarResetCompleted += HandleResetCompleted;
+        GameManager.OnCarResetCompleted += HandleResetCompleted;
     }
 
     void Start()
@@ -31,15 +29,8 @@ public class CarStuckDetection : MonoBehaviour
         _state = _car.State;
     }
 
-    private void HandleResetStarted()
-    {
-        _isResetting = true;
-    }
-
     private void HandleResetCompleted()
     {
-        _isResetting = false;
-        
         _isFlipped = false;
         _flippedCurrentTime = 0f;
         _isStopped = false;
@@ -48,7 +39,7 @@ public class CarStuckDetection : MonoBehaviour
 
     void Update()
     {
-        if (_isResetting) return;
+        if (GameManager.Resetting || !GameManager.GameActive) return;
         UpdateFlippedStatus();
         UpdateStoppedStatus();
     }
@@ -116,6 +107,6 @@ public class CarStuckDetection : MonoBehaviour
 
     private bool CheckCarStopped()
     {
-        return _state.Speed < _stoppedSpeedThreshold;
+        return _state.Speed < _stoppedSpeedThreshold && (_state.AccelerateInput || _state.BrakeInput);
     }
 }

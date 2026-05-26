@@ -25,7 +25,6 @@ public class RingCheckpoint : Checkpoint
     {
         Vector3 toPlayer = playerTransform.position - _ringCenterWorld;
         int exitDirection = Mathf.RoundToInt(Mathf.Sign(Vector3.Dot(transform.forward, toPlayer.normalized)));
-        Debug.Log($"Ring Checkpoint Exit Result Enter: {_enterDirection} - Exit: {exitDirection}");
         return exitDirection != _enterDirection;
     }
 
