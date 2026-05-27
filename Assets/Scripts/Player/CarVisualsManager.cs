@@ -9,15 +9,21 @@ public class CarVisualsManager : MonoBehaviour
 
     void Start()
     {
-        InfiniteDriftGameManager.OnCarPreTeleport -= HandleCarPreTeleport;
-        InfiniteDriftGameManager.OnCarPreTeleport += HandleCarPreTeleport;
+        GameManager.OnCarPreTeleport -= HandleCarPreTeleport;
+        GameManager.OnCarPreTeleport += HandleCarPreTeleport;
 
-        InfiniteDriftGameManager.OnCarPostTeleport -= HandleCarPostTeleport;
-        InfiniteDriftGameManager.OnCarPostTeleport += HandleCarPostTeleport;
+        GameManager.OnCarPostTeleport -= HandleCarPostTeleport;
+        GameManager.OnCarPostTeleport += HandleCarPostTeleport;
         foreach (var group in _tireGroups)
         {
             group.Initialize(_car.State);
         }
+    }
+
+    void OnDestroy()
+    {
+        GameManager.OnCarPreTeleport -= HandleCarPreTeleport;
+        GameManager.OnCarPostTeleport -= HandleCarPostTeleport;
     }
 
     private void HandleCarPreTeleport()

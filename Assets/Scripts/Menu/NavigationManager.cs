@@ -105,7 +105,7 @@ public class NavigationManager : MonoBehaviour
 
     public void RequestSceneSwitch(string scene)
     {
-        if (_inSceneTransition) return;
+        if (_inSceneTransition || _currentTransition != null) return;
         StartCoroutine(SwitchScene(scene));
     }
 

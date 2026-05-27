@@ -843,6 +843,10 @@ PrefabInstance:
       propertyPath: _autoAccelerate
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8163915476440061512, guid: aab9fb207faa3fed6a2b9e640256414c, type: 3}
+      propertyPath: _forceTouchInputs
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

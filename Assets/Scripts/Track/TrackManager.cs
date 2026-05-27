@@ -48,6 +48,11 @@ public class TrackManager : MonoBehaviour
         CheckpointGroup.OnCheckpointGroupCleared += HandleGroupCompleted;
     }
 
+    void OnDestroy()
+    {
+        CheckpointGroup.OnCheckpointGroupCleared -= HandleGroupCompleted;
+    }
+
     private void HandleGroupCompleted(CheckpointGroup group)
     {
         _currentActiveGroupIndex++;

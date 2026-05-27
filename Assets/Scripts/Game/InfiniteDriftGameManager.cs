@@ -20,7 +20,7 @@ public class InfiniteDriftGameManager : GameManager
     {
         CheckpointGroup.OnCheckpointGroupCleared -= HandleCheckpointGroupCleared;
         if (_carCollision) _carCollision.OnCarCollisionWithObstacle -= HandleCarCollision;
-        if (_carStuck) _carStuck.OnCarStuck += HandleCarStuck;
+        if (_carStuck) _carStuck.OnCarStuck -= HandleCarStuck;
         _gameActive = false;
         RaiseOnGameStopped();
     }

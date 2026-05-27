@@ -72,8 +72,8 @@ public class CarInputController : MonoBehaviour
         if (!_inputHUD) return;
         VisualElement root = _inputHUD.rootVisualElement;
 
-        bool hasTouch = Touchscreen.current != null;
-        if (!hasTouch && !_forceTouchInputs)
+        bool hasTouch = _forceTouchInputs || Application.isMobilePlatform;
+        if (!hasTouch)
         {
             VisualElement inputContainer = root.Query<VisualElement>("InputButtonsContainer");
             if (inputContainer != null) inputContainer.style.display = DisplayStyle.None;

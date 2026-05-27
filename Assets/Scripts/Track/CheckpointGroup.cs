@@ -27,11 +27,11 @@ public class CheckpointGroup : MonoBehaviour
     public void Activate()
     {
         _currentCheckpointIndex = 0;
-        InfiniteDriftGameManager.OnCarResetStarted -= HandleCarResetStart;
-        InfiniteDriftGameManager.OnCarResetStarted += HandleCarResetStart;
+        GameManager.OnCarResetStarted -= HandleCarResetStart;
+        GameManager.OnCarResetStarted += HandleCarResetStart;
 
-        InfiniteDriftGameManager.OnCarResetCompleted -= HandleCarResetcompleted;
-        InfiniteDriftGameManager.OnCarResetCompleted += HandleCarResetcompleted;
+        GameManager.OnCarResetCompleted -= HandleCarResetcompleted;
+        GameManager.OnCarResetCompleted += HandleCarResetcompleted;
         UpdateNextCheckpoint();
     }
 
@@ -51,12 +51,14 @@ public class CheckpointGroup : MonoBehaviour
     {
         Completed = true;
         OnCheckpointGroupCleared?.Invoke(this);
-        InfiniteDriftGameManager.OnCarResetStarted -= HandleCarResetStart;
+        GameManager.OnCarResetStarted -= HandleCarResetStart;
         UnsubscribeFromCheckpoints();
     }
 
     void OnDestroy()
     {
+        GameManager.OnCarResetStarted -= HandleCarResetStart;
+        GameManager.OnCarResetCompleted -= HandleCarResetcompleted;
         UnsubscribeFromCheckpoints();
     }
 

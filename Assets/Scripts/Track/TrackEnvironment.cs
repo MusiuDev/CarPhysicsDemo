@@ -27,6 +27,13 @@ public class TrackEnvironment : MonoBehaviour
         SetBackWallAt(_firstKnotPosition, Quaternion.identity);
     }
 
+    void OnDestroy()
+    {
+        TrackManager.OnTrackUpdated -= HandleTrackUpdated;
+        TrackManager.OnCheckpointGroupSpawned -= HandleGroupSpawned;
+        TrackManager.OnCheckpointGroupDespawned -= HandleGroupDespawned;
+    }
+
     void Start()
     {
 

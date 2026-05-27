@@ -16,6 +16,7 @@ public class FreeModeGameManager : GameManager
     protected override void HandleDestroy()
     {
         _gameActive = false;
+        if (_carStuck) _carStuck.OnCarStuck -= HandleCarStuck;
         RaiseOnGameStopped();
     }
 

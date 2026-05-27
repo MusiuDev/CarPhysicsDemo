@@ -24,6 +24,11 @@ public class CarStuckDetection : MonoBehaviour
         GameManager.OnCarResetCompleted += HandleResetCompleted;
     }
 
+    void OnDestroy()
+    {
+        GameManager.OnCarResetCompleted -= HandleResetCompleted;
+    }
+
     void Start()
     {
         _state = _car.State;

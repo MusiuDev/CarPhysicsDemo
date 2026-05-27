@@ -23,6 +23,13 @@ public class TrackRouteSplineRenderer : MonoBehaviour
         TrackManager.OnTrackUpdated += UpdateLineRenderer; //This one only gets called after bulk updates, so we only update the renderer here.
     }
 
+    void OnDestroy()
+    {
+        TrackManager.OnCheckpointGroupSpawned -= HandleGroupSpawned;
+        TrackManager.OnCheckpointGroupDespawned -= HandleGroupDespawned;
+        TrackManager.OnTrackUpdated -= UpdateLineRenderer;
+    }
+
     private void HandleGroupSpawned(CheckpointGroup group)
     {
         CheckpointGroupBezierSpline groupSpline = group.GetComponent<CheckpointGroupBezierSpline>();
