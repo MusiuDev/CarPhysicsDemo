@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7163491031624437576}
   - component: {fileID: 1467754312799500371}
   - component: {fileID: 8222234004848864967}
-  - component: {fileID: 3820578022049656934}
+  - component: {fileID: -2471910866113227333}
+  - component: {fileID: 7077543607311963480}
   m_Layer: 9
   m_Name: Cactus_4
   m_TagString: TrackObstacle
@@ -91,8 +92,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3820578022049656934
-CapsuleCollider:
+--- !u!114 &-2471910866113227333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430639599925422918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f1ded50c03d16819f1d256ad9a00a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameObjectPoolable
+--- !u!65 &7077543607311963480
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,8 +122,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.35074538
-  m_Height: 3.7724683
-  m_Direction: 1
-  m_Center: {x: -0.037934482, y: 1.8291188, z: -0.020614266}
+  serializedVersion: 3
+  m_Size: {x: 0.76962936, y: 3.7153552, z: 0.7296501}
+  m_Center: {x: -0.04886079, y: 1.8576754, z: -0.020614266}

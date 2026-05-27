@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1246816411864251034}
   - component: {fileID: 4889294601131348149}
   - component: {fileID: 2914054098926852638}
+  - component: {fileID: 5630432883642168363}
   m_Layer: 9
   m_Name: Crate
   m_TagString: TrackObstacle
@@ -112,3 +113,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3523138, y: 1.3523237, z: 1.3523237}
   m_Center: {x: 0, y: 0.6761568, z: 0.00000500679}
+--- !u!114 &5630432883642168363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244831990330694354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f1ded50c03d16819f1d256ad9a00a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameObjectPoolable

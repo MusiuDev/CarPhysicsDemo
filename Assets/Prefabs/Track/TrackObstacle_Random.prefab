@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6114447433397830090}
   - component: {fileID: 2101351030636211475}
-  - component: {fileID: 3972466490266979890}
   m_Layer: 0
   m_Name: TrackObstacle_Random
   m_TagString: Untagged
@@ -46,32 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrackObstacle
   _possibleProps:
-  - {fileID: 5312880929181847456, guid: a9d022f5c98177b6cbd46cda737648c3, type: 3}
-  - {fileID: 67112433929525428, guid: 2863dd7e0cc146f0d9c940e48c3caa22, type: 3}
-  - {fileID: 7452622336258765490, guid: c7ff006b8ff84aabd94d37a427867498, type: 3}
-  - {fileID: 1447111620493043462, guid: 6807d2f5f97488c6f9f69207fceff167, type: 3}
-  - {fileID: 5430639599925422918, guid: 2155c14ff30b55811b71946690ac4f9c, type: 3}
-  - {fileID: 8244831990330694354, guid: 75aac0c86acbd60238e1351eb74baaaa, type: 3}
-  - {fileID: 1326399192653206513, guid: d39a5356423faefdab4f06a74e5e4871, type: 3}
-  - {fileID: 2485285197497884177, guid: 81bb87618f502928395d23af1ece168e, type: 3}
-  - {fileID: 8548151680128827342, guid: 2396139e5257f51c382bb94ad1c8ff18, type: 3}
-  - {fileID: 6938000768008156454, guid: 01ff83f53f348325fa495a460c306187, type: 3}
-  - {fileID: 4396357230838629873, guid: bcb882efcd23fe69e8a1ac1698a61e85, type: 3}
-  - {fileID: 8983472155257116098, guid: 8f0fc8784e9b4f46e969b95f61fc94ee, type: 3}
+  - {fileID: 7590114712612764474, guid: a9d022f5c98177b6cbd46cda737648c3, type: 3}
+  - {fileID: 5253513709533667045, guid: 2863dd7e0cc146f0d9c940e48c3caa22, type: 3}
+  - {fileID: -5549628358339951025, guid: c7ff006b8ff84aabd94d37a427867498, type: 3}
+  - {fileID: -1117054908868742939, guid: 6807d2f5f97488c6f9f69207fceff167, type: 3}
+  - {fileID: -2471910866113227333, guid: 2155c14ff30b55811b71946690ac4f9c, type: 3}
+  - {fileID: 5630432883642168363, guid: 75aac0c86acbd60238e1351eb74baaaa, type: 3}
+  - {fileID: 7175226483989415932, guid: d39a5356423faefdab4f06a74e5e4871, type: 3}
+  - {fileID: -6213957359696090806, guid: 81bb87618f502928395d23af1ece168e, type: 3}
+  - {fileID: 8777321362044908782, guid: 2396139e5257f51c382bb94ad1c8ff18, type: 3}
+  - {fileID: 7945361306451324845, guid: 01ff83f53f348325fa495a460c306187, type: 3}
+  - {fileID: -3382000199168663440, guid: bcb882efcd23fe69e8a1ac1698a61e85, type: 3}
+  - {fileID: -3905741997568145508, guid: 8f0fc8784e9b4f46e969b95f61fc94ee, type: 3}
   _horizontalPositionDriftRange: 0.5
   _scaleDriftRange: 0.25
   _randomizeRotation: 1
---- !u!114 &3972466490266979890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4324591875344274523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e03dab843a4a5615ac1786455ea7ec3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CheckpointGroupFlippableObject
   _flipPosition: 1
   _flipRotation: 1

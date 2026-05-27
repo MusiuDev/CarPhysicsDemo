@@ -46,4 +46,8 @@ public class MainMenuUI : MonoBehaviour
         });
     }
 
+    void OnDestroy()
+    {
+        DynamicPoolProvider.Clear();
+    }
 }

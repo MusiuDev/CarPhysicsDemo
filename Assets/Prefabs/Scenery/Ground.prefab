@@ -100,7 +100,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sand
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1072171756458781796, guid: 49d44e561abaf7defbd44d6fb11de1da, type: 3}
+    - {fileID: -5609942687590046648, guid: 49d44e561abaf7defbd44d6fb11de1da, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

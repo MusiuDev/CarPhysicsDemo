@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1319663180908725902}
   - component: {fileID: 1020995511316012441}
   - component: {fileID: 1019814203819072599}
+  - component: {fileID: 7590114712612764474}
   m_Layer: 9
   m_Name: Barrel
   m_TagString: TrackObstacle
@@ -114,3 +115,15 @@ CapsuleCollider:
   m_Height: 1.6030986
   m_Direction: 1
   m_Center: {x: 0, y: 0.7103218, z: -0.014459014}
+--- !u!114 &7590114712612764474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312880929181847456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f1ded50c03d16819f1d256ad9a00a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameObjectPoolable

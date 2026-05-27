@@ -4,8 +4,10 @@ using UnityEngine;
 public class TrackEnvironment : MonoBehaviour
 {
     [SerializeField] private TrackManager _trackManager;
+    [SerializeField] private SmoothCarMovement _car;
     [SerializeField] private Transform _ground;
-    [SerializeField] private GameObject[] _cliffPrefabs;
+    [SerializeField] private Transform _groundCollider;
+    [SerializeField] private GameObjectPoolable[] _cliffPrefabs;
     [SerializeField] private float _cliffsOffset;
     [SerializeField] private float _cliffsLinearSpacing;
     [SerializeField] private float _cliffKnotSize;
@@ -15,21 +17,23 @@ public class TrackEnvironment : MonoBehaviour
 
     private float _nextOffset_a = 0f;
     private float _nextOffset_b = 0f;
-    private List<TransformBezierKnot> knots = new List<TransformBezierKnot>();
+    private List<TransformBezierKnot> _knots = new List<TransformBezierKnot>();
+    private Dictionary<TransformBezierKnot, List<GameObjectPoolable>> _knotsToCliffsDict = new Dictionary<TransformBezierKnot, List<GameObjectPoolable>>();
 
     void Awake()
     {
-        TrackManager.OnTrackUpdated += HandleTrackUpdated;
+        //TrackManager.OnTrackUpdated += HandleTrackUpdated;
         TrackManager.OnCheckpointGroupSpawned += HandleGroupSpawned;
         TrackManager.OnCheckpointGroupDespawned += HandleGroupDespawned;
         AddKnotAt(_firstKnotPosition, Quaternion.identity);
         AddKnotAt(Vector3.zero, Quaternion.identity);
         SetBackWallAt(_firstKnotPosition, Quaternion.identity);
+        UpdateGroundCollider();
     }
 
     void OnDestroy()
     {
-        TrackManager.OnTrackUpdated -= HandleTrackUpdated;
+        //TrackManager.OnTrackUpdated -= HandleTrackUpdated;
         TrackManager.OnCheckpointGroupSpawned -= HandleGroupSpawned;
         TrackManager.OnCheckpointGroupDespawned -= HandleGroupDespawned;
     }
@@ -37,6 +41,19 @@ public class TrackEnvironment : MonoBehaviour
     void Start()
     {
 
+    }
+
+    void Update()
+    {
+        UpdateGroundCollider();
+    }
+
+    private void UpdateGroundCollider()
+    {
+        if (!_car || !_groundCollider) return;
+        Vector3 groundPosition = _car.transform.position;
+        groundPosition.y = _groundCollider.position.y;
+        _groundCollider.position = groundPosition;
     }
 
     private void AddKnotAt(Vector3 pos, Quaternion rotation)
@@ -51,20 +68,23 @@ public class TrackEnvironment : MonoBehaviour
         newKnot.forwardsHandleSize = _cliffKnotSize;
         newKnot.backwardsHandleSize = _cliffKnotSize;
 
-        knots.Add(newKnot);
+        _knots.Add(newKnot);
 
-        if (knots.Count > 1)
+        if (_knots.Count > 1)
         {
-            TransformBezierKnot prevKnot = knots[^2];
+            TransformBezierKnot prevKnot = _knots[^2];
             BezierDefinition def = new BezierDefinition(prevKnot, newKnot);
             Bezier curve = new Bezier(def);
             Vector3[] newCliffs_A = curve.GetRegularSegmentsByDistanceWithOffset(_cliffsLinearSpacing, _cliffsOffset, Vector3.up, out float remainingDistance_a, _nextOffset_a);
             Vector3[] newCliffs_B = curve.GetRegularSegmentsByDistanceWithOffset(_cliffsLinearSpacing, -_cliffsOffset, Vector3.up, out float remainingDistance_b, _nextOffset_b);
             _nextOffset_a = _cliffsLinearSpacing - remainingDistance_a;
             _nextOffset_b = _cliffsLinearSpacing - remainingDistance_b;
+            List<GameObjectPoolable> cliffs = new List<GameObjectPoolable>();
 
-            SpawnCliffsAt(newCliffs_A, prevKnot.transform);
-            SpawnCliffsAt(newCliffs_B, prevKnot.transform);
+            SpawnCliffsAt(newCliffs_A, cliffs);
+            SpawnCliffsAt(newCliffs_B, cliffs);
+
+            _knotsToCliffsDict.Add(prevKnot, cliffs);
         }
     }
 
@@ -74,23 +94,32 @@ public class TrackEnvironment : MonoBehaviour
         SetFrontWallAt(group.ExitPosition, group.ExitRotation);
     }
 
-    private void SpawnCliffsAt(Vector3[] positions, Transform parent)
+    private void SpawnCliffsAt(Vector3[] positions, List<GameObjectPoolable> cliffsList)
     {
         foreach (var pos in positions)
         {
-            GameObject prefab = _cliffPrefabs[Random.Range(0, _cliffPrefabs.Length)];
-            Instantiate(prefab, pos, Quaternion.Euler(0, Random.Range(0f, 360f), 0), parent);
+            var cliff = DynamicPoolProvider.Get(_cliffPrefabs[Random.Range(0, _cliffPrefabs.Length - 1)]);
+            cliff.transform.position = pos;
+            cliff.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
+            cliffsList.Add(cliff);
         }
     }
 
     private void HandleGroupDespawned(CheckpointGroup group)
     {
-        var oldestKnot = knots[0];
-        knots.RemoveAt(0);
-        Destroy(oldestKnot.gameObject);
-        if (knots.Count > 1 && knots[0] != null)
+        var oldestKnot = _knots[0];
+        _knots.RemoveAt(0);
+
+        List<GameObjectPoolable> knotCliffs = _knotsToCliffsDict[oldestKnot];
+        foreach (var item in knotCliffs)
         {
-            SetBackWallAt(knots[0].transform.position, knots[0].transform.rotation);
+            DynamicPoolProvider.Return(item);
+        }
+
+        Destroy(oldestKnot.gameObject);
+        if (_knots.Count > 1 && _knots[0] != null)
+        {
+            SetBackWallAt(_knots[0].transform.position, _knots[0].transform.rotation);
         }
     }
 
@@ -125,10 +154,10 @@ public class TrackEnvironment : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
-        GizmoUtils.DrawSplineFromKnots(knots.ToArray(), _cliffsLinearSpacing);
+        GizmoUtils.DrawSplineFromKnots(_knots.ToArray(), _cliffsLinearSpacing);
         Gizmos.color = Color.magenta;
-        GizmoUtils.DrawOffsetSplineFromKnots(knots.ToArray(), _cliffsLinearSpacing, _cliffsOffset, Vector3.up);
+        GizmoUtils.DrawOffsetSplineFromKnots(_knots.ToArray(), _cliffsLinearSpacing, _cliffsOffset, Vector3.up);
         Gizmos.color = Color.red;
-        GizmoUtils.DrawOffsetSplineFromKnots(knots.ToArray(), _cliffsLinearSpacing, -_cliffsOffset, Vector3.up);
+        GizmoUtils.DrawOffsetSplineFromKnots(_knots.ToArray(), _cliffsLinearSpacing, -_cliffsOffset, Vector3.up);
     }
 }

@@ -3,29 +3,51 @@ using UnityEngine;
 public class SmoothCarCameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform _carTransform;
-    [SerializeField] private float _distance = 6.4f;
-    [SerializeField] private float _height = 1.4f;
-    [SerializeField] private float _heightOffset = 2f;
-    [SerializeField] private float _rotationDamping = 3.0f;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private CameraSettings _landscapeSettings;
+    [SerializeField] private CameraSettings _portraitSetttings;
 
-    private float _currentAngle;
+    private float _currentYAngle;
 
     void LateUpdate()
     {
-        FollowTarget(_carTransform);
+        FollowTarget();
     }
 
-    private void FollowTarget(Transform targetTransform)
+    public void FollowTarget()
     {
-        if (!targetTransform) return;
-        
-        _currentAngle = Mathf.LerpAngle(_currentAngle, _carTransform.eulerAngles.y, _rotationDamping * Time.deltaTime);
-        Vector3 pos = targetTransform.position - Quaternion.Euler(0, _currentAngle, 0) * Vector3.forward * _distance;
+        if (!_carTransform || !_camera) return;
+        CameraSettings currentSettings = CameraSettings.Lerp(_landscapeSettings, _portraitSetttings, _camera.aspect);
 
-        pos.y = targetTransform.position.y + _height;
-        transform.position = pos;
+        _currentYAngle = Mathf.LerpAngle(_currentYAngle, _carTransform.eulerAngles.y, currentSettings.rotationDamping * Time.deltaTime);
+        Vector3 angledPos = _carTransform.position + Quaternion.Euler(currentSettings.angle, _currentYAngle, 0) * (Vector3.up * currentSettings.distance);
 
-        transform.LookAt(targetTransform.position + Vector3.up * _heightOffset, Vector3.up);
+        transform.position = angledPos;
+
+        transform.LookAt(_carTransform.position, Vector3.up);
+
+        transform.Rotate(currentSettings.offsetAngle, 0, 0);
     }
 
+    [System.Serializable]
+    public struct CameraSettings
+    {
+        public float idealAspectRatio;
+        public float distance;
+        public float angle;
+        public float offsetAngle;
+        public float rotationDamping;
+
+        public static CameraSettings Lerp(CameraSettings from, CameraSettings to, float aspect)
+        {
+            float t = aspect.Remap(from.idealAspectRatio, to.idealAspectRatio, 0, 1);
+            return new CameraSettings
+            {
+                distance = Mathf.Lerp(from.distance, to.distance, t),
+                angle = Mathf.Lerp(from.angle, to.angle, t),
+                offsetAngle = Mathf.Lerp(from.offsetAngle, to.offsetAngle, t),
+                rotationDamping = Mathf.Lerp(from.rotationDamping, to.rotationDamping, t),
+            };
+        }
+    }
 }

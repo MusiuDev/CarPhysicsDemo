@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5947772637781880785}
+  - component: {fileID: -8636829219503197587}
   m_Layer: 0
   m_Name: CliffIsland_2_NoCollision
   m_TagString: Untagged
@@ -38,6 +39,18 @@ Transform:
   - {fileID: 8991837407120404176}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8636829219503197587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5281528014009030219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f1ded50c03d16819f1d256ad9a00a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameObjectPoolable
 --- !u!1001 &890294577514317266
 PrefabInstance:
   m_ObjectHideFlags: 0

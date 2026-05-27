@@ -1,11 +1,18 @@
 using UnityEngine;
 
-public class TrackObstacle : MonoBehaviour
+public class TrackObstacle : MonoBehaviour, IFlippableObject
 {
-    [SerializeField] private GameObject[] _possibleProps;
+    [SerializeField] private GameObjectPoolable[] _possibleProps;
     [SerializeField] private float _horizontalPositionDriftRange = 0.5f;
     [SerializeField] private float _scaleDriftRange = 0.25f;
     [SerializeField] private bool _randomizeRotation = true;
+    [SerializeField] private bool _flipPosition = true;
+    [SerializeField] private bool _flipRotation = true;
+
+    private GameObjectPoolable _currentProp;
+    private Vector2 _currentPosDrift;
+    private float _currentRandomScale;
+    private float _currentRandomRot;
 
     void Start()
     {
@@ -20,26 +27,38 @@ public class TrackObstacle : MonoBehaviour
             return;
         }
 
-        GameObject randomProp = _possibleProps[Random.Range(0, _possibleProps.Length - 1)];
-        Transform randomPropInstance = GameObject.Instantiate(randomProp, transform.position, transform.rotation, this.transform).transform;
+        GameObjectPoolable randomProp = _possibleProps[Random.Range(0, _possibleProps.Length - 1)];
+        _currentProp = DynamicPoolProvider.Get(randomProp);
 
         if (_horizontalPositionDriftRange > 0)
         {
-            Vector2 posDrift = Random.insideUnitCircle * _horizontalPositionDriftRange;
-            randomPropInstance.localPosition = posDrift.ToXZ();
+            _currentPosDrift = Random.insideUnitCircle * _horizontalPositionDriftRange;
         }
 
         if (_scaleDriftRange > 0)
         {
-            float scaleDrift = 1f + Random.Range(-_scaleDriftRange, _scaleDriftRange);
-            randomPropInstance.localScale = Vector3.one * scaleDrift;
+            _currentRandomScale = 1f + Random.Range(-_scaleDriftRange, _scaleDriftRange);
         }
 
         if (_randomizeRotation)
         {
-            float randomAngle = Random.Range(0, 360f);
-            randomPropInstance.localEulerAngles = new Vector3(0, randomAngle, 0);
+            _currentRandomRot = Random.Range(0, 360f);
         }
+
+        UpdatePropTransform();
+    }
+
+    private void UpdatePropTransform()
+    {
+        if (!_currentProp) return;
+        _currentProp.transform.position = transform.position + _currentPosDrift.ToXZ();
+        _currentProp.transform.localScale = Vector3.one * _currentRandomScale;
+        _currentProp.transform.rotation = Quaternion.AngleAxis(_currentRandomRot, transform.up);
+    }
+
+    void OnDestroy()
+    {
+        DynamicPoolProvider.Return(_currentProp);
     }
 
     void OnDrawGizmos()
@@ -55,5 +74,24 @@ public class TrackObstacle : MonoBehaviour
                 Gizmos.DrawMesh(meshFilter.sharedMesh, transform.position, transform.rotation, transform.localScale);
             }
         }
+    }
+
+    public void Flip()
+    {
+        if (_flipPosition)
+        {
+            Vector3 pos = transform.localPosition;
+            pos.x *= -1f;
+            transform.localPosition = pos;
+        }
+
+        if (_flipRotation)
+        {
+            Vector3 rot = transform.localEulerAngles;
+            rot.y *= -1f;
+            transform.localEulerAngles = rot;
+        }
+
+        UpdatePropTransform();
     }
 }

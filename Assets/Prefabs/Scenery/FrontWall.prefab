@@ -29,24 +29,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2659069178202914431}
-  - {fileID: 3182149078897659331}
-  - {fileID: 5952560129902767264}
-  - {fileID: 8574594825217355381}
-  - {fileID: 5308621190061118541}
-  - {fileID: 6098458266151464885}
-  - {fileID: 6335837525844648460}
-  - {fileID: 2661247943628933453}
-  - {fileID: 4982519043353703044}
-  - {fileID: 7684012609700713212}
-  - {fileID: 8554522800478628780}
-  - {fileID: 6992249947750865837}
-  - {fileID: 6320769866284567375}
-  - {fileID: 1941373033050865942}
-  - {fileID: 7372848726297973820}
-  - {fileID: 5184196206620221234}
-  - {fileID: 2509913866241450974}
-  - {fileID: 7148954807962239310}
+  - {fileID: 3192254163311789291}
+  - {fileID: 2356211583883869755}
+  - {fileID: 1439875410539720490}
+  - {fileID: 6245431140011818668}
+  - {fileID: 1060086913665791233}
+  - {fileID: 4104374689373966600}
+  - {fileID: 2641539242062243185}
+  - {fileID: 8783012027406093771}
+  - {fileID: 7318921284529190758}
+  - {fileID: 2158736237160965863}
+  - {fileID: 1816275874543035811}
+  - {fileID: 3770008624345971942}
+  - {fileID: 587211840103579130}
   - {fileID: 2945169589080519183}
   - {fileID: 5287011242585777048}
   - {fileID: 3509004191305583175}
@@ -81,6 +76,10 @@ PrefabInstance:
     - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_Name
       value: CliffIsland_3_NoCollision (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -184,6 +183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_1_NoCollision (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -205,6 +208,10 @@ PrefabInstance:
     - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_Name
       value: CliffIsland_3_NoCollision (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -256,7 +263,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
   m_PrefabInstance: {fileID: 314580736531904485}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &389509805431688669
+--- !u!1001 &790234740741617938
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -264,121 +271,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 42883061155073971}
     m_Modifications:
-    - target: {fileID: 5281528014009030219, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_2_S (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -101.8
+      value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00002
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.9000015
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.32532495
+      value: 0.6987306
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.94560236
+      value: -0.71538496
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
---- !u!4 &6335837525844648460 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &7318921284529190758 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-  m_PrefabInstance: {fileID: 389509805431688669}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &443790144139837540
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 5281528014009030219, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_2_S
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -117.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.1000013
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.0644172
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9979231
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
---- !u!4 &6098458266151464885 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-  m_PrefabInstance: {fileID: 443790144139837540}
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 790234740741617938}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &966376996220793714
 PrefabInstance:
@@ -391,6 +336,10 @@ PrefabInstance:
     - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_Name
       value: CliffIsland_2_NoCollision (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_LocalPosition.x
@@ -442,7 +391,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
   m_PrefabInstance: {fileID: 966376996220793714}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1706808288612556117
+--- !u!1001 &1623253586504696767
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -450,245 +399,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 42883061155073971}
     m_Modifications:
-    - target: {fileID: 5281528014009030219, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_2_S (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.7
+      value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -14.000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.48025715
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.8771277
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9996736
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.025550174
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
---- !u!4 &4982519043353703044 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &8783012027406093771 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-  m_PrefabInstance: {fileID: 1706808288612556117}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1778443618758122472
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 6747198798807413912, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_3_S (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 106.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10.000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.51422113
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.8576577
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
---- !u!4 &7148954807962239310 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-  m_PrefabInstance: {fileID: 1778443618758122472}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1844900242453979137
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -81.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -8.600001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.02666418
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.99964446
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528266161084466091, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_1_S (3)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
---- !u!4 &8574594825217355381 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-  m_PrefabInstance: {fileID: 1844900242453979137}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2146496645580508826
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 6747198798807413912, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_3_S (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -67
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.9689585
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.24722366
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
---- !u!4 &7372848726297973820 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-  m_PrefabInstance: {fileID: 2146496645580508826}
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 1623253586504696767}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2209290693361370906
 PrefabInstance:
@@ -701,6 +464,10 @@ PrefabInstance:
     - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_Name
       value: CliffIsland_2_NoCollision (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_LocalPosition.x
@@ -764,6 +531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_2_NoCollision (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.8
@@ -813,68 +584,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
   m_PrefabInstance: {fileID: 2607490792588947911}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2611382560013730941
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 5281528014009030219, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_2_S (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 125.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -15.000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.8229313
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.568141
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
---- !u!4 &8554522800478628780 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-  m_PrefabInstance: {fileID: 2611382560013730941}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2754600812946238956
 PrefabInstance:
@@ -928,6 +637,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_1_NoCollision (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -937,130 +650,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
   m_PrefabInstance: {fileID: 2754600812946238956}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2794888972035136057
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -131.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -12.800001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.9341717
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.35682386
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528266161084466091, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_1_S (4)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
---- !u!4 &5308621190061118541 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-  m_PrefabInstance: {fileID: 2794888972035136057}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &3183938547193795049
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 6747198798807413912, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_3_S (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -36.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.4000015
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.8572648
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.5148757
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
---- !u!4 &6320769866284567375 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-  m_PrefabInstance: {fileID: 3183938547193795049}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3595920340026861164
 PrefabInstance:
@@ -1114,6 +703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_1_NoCollision (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1124,7 +717,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
   m_PrefabInstance: {fileID: 3595920340026861164}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3712036967411217532
+--- !u!1001 &4163939487152009432
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1132,121 +725,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 42883061155073971}
     m_Modifications:
-    - target: {fileID: 5281528014009030219, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_2_S (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -48.3
+      value: -55
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 9.499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.94671977
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.32205862
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.797592
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.60319734
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
---- !u!4 &6992249947750865837 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &6245431140011818668 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-  m_PrefabInstance: {fileID: 3712036967411217532}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &4046945451483839789
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 5281528014009030219, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_2_S (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 100.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.199999
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.15990803
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.98713195
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
---- !u!4 &7684012609700713212 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-  m_PrefabInstance: {fileID: 4046945451483839789}
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 4163939487152009432}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4185819030064416522
 PrefabInstance:
@@ -1259,6 +790,10 @@ PrefabInstance:
     - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_Name
       value: CliffIsland_2_NoCollision (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1310,7 +845,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
   m_PrefabInstance: {fileID: 4185819030064416522}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4353163838909891988
+--- !u!1001 &4839214906010880671
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1318,183 +853,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 42883061155073971}
     m_Modifications:
-    - target: {fileID: 6747198798807413912, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_3_S (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 110.6
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00002
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.5
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.9999529
+      value: -0.6450679
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.009709571
+      value: 0.76412535
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
---- !u!4 &5184196206620221234 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &3192254163311789291 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-  m_PrefabInstance: {fileID: 4353163838909891988}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &4467236066565956308
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 66.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -8.600001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.064409666
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.99792355
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528266161084466091, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_1_S (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
---- !u!4 &5952560129902767264 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-  m_PrefabInstance: {fileID: 4467236066565956308}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &4849305689307464631
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 42883061155073971}
-    m_Modifications:
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -8.600001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.37508073
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.9269922
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8528266161084466091, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_1_S (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
---- !u!4 &3182149078897659331 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-  m_PrefabInstance: {fileID: 4849305689307464631}
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 4839214906010880671}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5168490035985955963
 PrefabInstance:
@@ -1548,6 +959,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_1_NoCollision
       objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1558,7 +973,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
   m_PrefabInstance: {fileID: 5168490035985955963}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5441363450678915083
+--- !u!1001 &5462254603513113349
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1566,71 +981,121 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 42883061155073971}
     m_Modifications:
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.1326
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.1326
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.1326
-      objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.6
+      value: -113.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00001
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.7
+      value: -0.7
       objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.8963163
+      value: 0.9580467
       objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.44341534
+      value: -0.28661245
       objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -33.311
       objectReference: {fileID: 0}
-    - target: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8528266161084466091, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_Name
-      value: CliffIsland_1_S
+      value: CliffIsland_XS_1 (10)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
---- !u!4 &2659069178202914431 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &2641539242062243185 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: 5ba3ccb161762443c9be2e593d80852e, type: 3}
-  m_PrefabInstance: {fileID: 5441363450678915083}
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 5462254603513113349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5753211761427034191
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 42883061155073971}
+    m_Modifications:
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9347081
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.3554163
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &2356211583883869755 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 5753211761427034191}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5972708439546221523
 PrefabInstance:
@@ -1684,6 +1149,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_1_NoCollision (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1705,6 +1174,10 @@ PrefabInstance:
     - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_Name
       value: CliffIsland_2_NoCollision (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1768,6 +1241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_2_NoCollision
       objectReference: {fileID: 0}
+    - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.2
@@ -1818,7 +1295,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
   m_PrefabInstance: {fileID: 6117417547781633647}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6434936700759996792
+--- !u!1001 &6309782111889301372
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1826,59 +1303,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 42883061155073971}
     m_Modifications:
-    - target: {fileID: 6747198798807413912, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_3_S (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.5
+      value: -88
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.5999985
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.620032
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7845766
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9755579
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.21974277
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
---- !u!4 &2509913866241450974 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &4104374689373966600 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-  m_PrefabInstance: {fileID: 6434936700759996792}
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 6309782111889301372}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6507649742838876154
 PrefabInstance:
@@ -1891,6 +1368,10 @@ PrefabInstance:
     - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_Name
       value: CliffIsland_3_NoCollision (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1954,6 +1435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_3_NoCollision
       objectReference: {fileID: 0}
+    - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.2
@@ -2004,6 +1489,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
   m_PrefabInstance: {fileID: 6507888753793957878}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6572072027312042642
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 42883061155073971}
+    m_Modifications:
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 90.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.30352008
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.95282507
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 215.338
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (11)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &3770008624345971942 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 6572072027312042642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6643834446522894725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2015,6 +1562,10 @@ PrefabInstance:
     - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_Name
       value: CliffIsland_3_NoCollision (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2077,6 +1628,10 @@ PrefabInstance:
     - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_Name
       value: CliffIsland_3_NoCollision (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2180,6 +1735,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_1_NoCollision (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2190,7 +1749,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: 19796bbbbe63fadc784f479a5749a3c8, type: 3}
   m_PrefabInstance: {fileID: 6906004868672750643}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &7019240406480018352
+--- !u!1001 &7049080099104963445
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2198,59 +1757,121 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 42883061155073971}
     m_Modifications:
-    - target: {fileID: 6747198798807413912, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_3_S (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35.1
+      value: -70
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00002
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.93921083
+      value: -0.7216755
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.3433411
+      value: -0.69223154
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
---- !u!4 &1941373033050865942 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &1060086913665791233 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8906006290871507622, guid: 78080f27296132e439df394d23b7a2ab, type: 3}
-  m_PrefabInstance: {fileID: 7019240406480018352}
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 7049080099104963445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7440861792105739150
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 42883061155073971}
+    m_Modifications:
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 111.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6454
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.76384485
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 260.391
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (12)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &587211840103579130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 7440861792105739150}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7900497106214421522
 PrefabInstance:
@@ -2263,6 +1884,10 @@ PrefabInstance:
     - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_Name
       value: CliffIsland_3_NoCollision (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747198798807413912, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8906006290871507622, guid: 2f612055fb8694ff18fb48d70245cbef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2326,6 +1951,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CliffIsland_2_NoCollision (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -2376,7 +2005,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
   m_PrefabInstance: {fileID: 7966424226947449721}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8530975841515677340
+--- !u!1001 &8255147892550264979
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2384,59 +2013,121 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 42883061155073971}
     m_Modifications:
-    - target: {fileID: 5281528014009030219, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_Name
-      value: CliffIsland_2_S (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.3
+      value: 48
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.2000008
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.74061704
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.67192745
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.97998124
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.19909024
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
---- !u!4 &2661247943628933453 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &2158736237160965863 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: a3e2cdc063d3c0e82af867dfb33b9e3f, type: 3}
-  m_PrefabInstance: {fileID: 8530975841515677340}
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 8255147892550264979}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8525814536555736023
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 42883061155073971}
+    m_Modifications:
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.14438692
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9895213
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &1816275874543035811 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 8525814536555736023}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8538452699010368035
 PrefabInstance:
@@ -2449,6 +2140,10 @@ PrefabInstance:
     - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_Name
       value: CliffIsland_2_NoCollision (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281528014009030219, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2499,4 +2194,66 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5947772637781880785, guid: d141361db9ef2aa41b5f9aa086da4f91, type: 3}
   m_PrefabInstance: {fileID: 8538452699010368035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8979620618147324254
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 42883061155073971}
+    m_Modifications:
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -37
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98817766
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.15331307
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528266161084466091, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+      propertyPath: m_Name
+      value: CliffIsland_XS_1 (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+--- !u!4 &1439875410539720490 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8026947731194629748, guid: ac0ac9712baa84b17a686a281db97916, type: 3}
+  m_PrefabInstance: {fileID: 8979620618147324254}
   m_PrefabAsset: {fileID: 0}

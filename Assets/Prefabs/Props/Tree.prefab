@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6606106528130918853}
   - component: {fileID: 173996284266493438}
   - component: {fileID: 7799353745365663083}
-  - component: {fileID: 8626922391742134341}
+  - component: {fileID: 8777321362044908782}
+  - component: {fileID: 999340219047588620}
   m_Layer: 9
   m_Name: Tree
   m_TagString: TrackObstacle
@@ -91,8 +92,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8626922391742134341
-CapsuleCollider:
+--- !u!114 &8777321362044908782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8548151680128827342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f1ded50c03d16819f1d256ad9a00a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameObjectPoolable
+--- !u!65 &999340219047588620
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,8 +122,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2087722
-  m_Height: 3.4713712
-  m_Direction: 1
-  m_Center: {x: -0.02676095, y: 1.5689538, z: -0.011696011}
+  serializedVersion: 3
+  m_Size: {x: 0.5253477, y: 4.176761, z: 0.65635633}
+  m_Center: {x: -0.045084953, y: 2.0883772, z: -0.033438027}
