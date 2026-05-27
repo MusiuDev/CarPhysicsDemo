@@ -1,0 +1,16 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIDocuments/FullTouchInputUI.uss?fileID=7433441132597879392&amp;guid=931255d1f862abcb1a917824e9939dfe&amp;type=3#FullTouchInputUI"/>
+    <Style src="project://database/Assets/UIDocuments/MainMenuStyling.uss?fileID=7433441132597879392&amp;guid=9bc1fd9a75035a97193a58ca7647423d&amp;type=3#MainMenuStyling"/>
+    <ui:VisualElement name="MainContainer" style="flex-grow: 1; justify-content: flex-end;">
+        <ui:VisualElement name="InputButtonsContainer" style="flex-direction: row; justify-content: space-between; margin-right: 8px; margin-bottom: 8px; margin-left: 8px;">
+            <ui:VisualElement name="SteeringInputs" style="flex-direction: row;">
+                <ui:Button name="SteerLeft_Btn" icon-image="project://database/Assets/UIDocuments/up_arrow.svg?fileID=7388822144124034973&amp;guid=d37a65bc65c5bd6cba3401ed1d5ddda1&amp;type=3#up_arrow" class="musiu-button steer-button"/>
+                <ui:Button name="SteerRight_Btn" icon-image="project://database/Assets/UIDocuments/up_arrow.svg?fileID=7388822144124034973&amp;guid=d37a65bc65c5bd6cba3401ed1d5ddda1&amp;type=3#up_arrow" class="musiu-button steer-button"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="GasInputs" style="flex-direction: row;">
+                <ui:Button name="Brake_Btn" icon-image="project://database/Assets/UIDocuments/up_arrow.svg?fileID=7388822144124034973&amp;guid=d37a65bc65c5bd6cba3401ed1d5ddda1&amp;type=3#up_arrow" class="musiu-button brake-button"/>
+                <ui:Button name="Aceelerate_Btn" icon-image="project://database/Assets/UIDocuments/up_arrow.svg?fileID=7388822144124034973&amp;guid=d37a65bc65c5bd6cba3401ed1d5ddda1&amp;type=3#up_arrow" class="musiu-button accel-button"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

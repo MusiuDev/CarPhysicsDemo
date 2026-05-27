@@ -1,0 +1,60 @@
+:root {
+}
+
+#SteerLeft_Btn > Image {
+    rotate: -90deg;
+}
+
+#SteerRight_Btn > Image {
+    rotate: 90deg;
+}
+
+#Aceelerate_Btn > Image {
+}
+
+#Brake_Btn > Image {
+    rotate: 180deg;
+}
+
+.steer-button {
+    width: 80px;
+    height: 80px;
+}
+
+.brake-button {
+    width: 60px;
+    height: 60px;
+}
+
+.accel-button {
+    width: 80px;
+    height: 80px;
+}
+
+#InputButtonsContainer .musiu-button > Image {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    width: 40px;
+    height: 40px;
+}
+
+#MainContainer #InputButtonsContainer .musiu-button {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
+#Brake_Btn {
+    align-self: flex-end;
+}
