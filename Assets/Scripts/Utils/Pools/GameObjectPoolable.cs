@@ -2,19 +2,23 @@ using UnityEngine;
 
 public class GameObjectPoolable : MonoBehaviour, IPoolable
 {
-    public IDynamicPool ParentPool { get; set; }
+    public DynamicPool ParentPool { get; private set; }
+    public GameObject GameObjectReference => gameObject;
+
+    public IPoolable CreateInstance(DynamicPool parent)
+    {
+        var newInstance = Instantiate(this);
+        newInstance.ParentPool = parent;
+        return newInstance;
+    }
+
     public void OnPooledSpawn()
     {
-        if (gameObject) gameObject.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     public void OnPooledDespawn()
     {
-        if (gameObject) gameObject.SetActive(false);
-    }
-
-    public void OnPooledDestroy()
-    {
-        if (gameObject) Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

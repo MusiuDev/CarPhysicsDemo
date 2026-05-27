@@ -56,11 +56,6 @@ public class TrackObstacle : MonoBehaviour, IFlippableObject
         _currentProp.transform.rotation = Quaternion.AngleAxis(_currentRandomRot, transform.up);
     }
 
-    void OnDestroy()
-    {
-        DynamicPoolProvider.Return(_currentProp);
-    }
-
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

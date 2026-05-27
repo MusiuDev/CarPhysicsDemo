@@ -56,7 +56,6 @@ public abstract class GameManager : MonoBehaviour
     protected void OnDestroy()
     {
         NavigationManager.OnSceneLoadAndFadeComplete -= HandleTransitionComplete;
-        DynamicPoolProvider.Clear();
         HandleDestroy();
     }
 

@@ -1,31 +1,43 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public static class DynamicPoolProvider
 {
-    private static Dictionary<IPoolable, IDynamicPool> _activePools = new Dictionary<IPoolable, IDynamicPool>();
+    private static Dictionary<IPoolable, DynamicPool> _activePools = new Dictionary<IPoolable, DynamicPool>();
 
     public static T Get<T>(T poolable) where T : Component, IPoolable
     {
-        if (!_activePools.TryGetValue(poolable, out IDynamicPool pool))
+        if (!_activePools.TryGetValue(poolable, out DynamicPool pool))
         {
-            pool = new DynamicPool<T>(poolable);
+            pool = new GameObject($"Pool<{poolable.GameObjectReference.name}>").AddComponent<DynamicPool>();
+            pool.Initialize(poolable);
+            pool.OnPoolDestroyed += () => HandlePoolDestroyed(pool);
             _activePools.Add(poolable, pool);
         }
-        return (T)pool.GetInstance();
+
+        var instance = (T)pool.GetInstance();
+        return instance;
+    }
+
+    private static void HandlePoolDestroyed(DynamicPool pool)
+    {
+        _activePools.Remove(pool.Prefab);
     }
 
     public static void Return<T>(T poolable) where T : Component, IPoolable
     {
-        if (poolable) poolable.ParentPool.ReturnInstance(poolable);
-    }
-
-    public static void Clear()
-    {
-        foreach (var item in _activePools)
+        if (!poolable)
         {
-            item.Value.Destroy();
+            Debug.LogError("Cannot return a null poolable");
+            return;
         }
-        _activePools.Clear();
+        if (!poolable.ParentPool)
+        {
+            Debug.LogError($"Trying to return an orphaned poolable {poolable}");
+            return;
+        }
+        poolable.ParentPool.ReturnInstance(poolable);
     }
 }

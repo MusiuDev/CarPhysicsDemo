@@ -3,72 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class DynamicPool<T> : IDynamicPool where T : Component, IPoolable
+public class DynamicPool : MonoBehaviour
 {
-    private T _prefab;
-    private List<T> _instances = new List<T>();
-    private Stack<T> _availableInstances = new Stack<T>();
+    public delegate void PoolEvent();
+    public event PoolEvent OnPoolDestroyed;
 
-    public DynamicPool(T prefab)
+    private IPoolable _prefab;
+    public IPoolable Prefab => _prefab;
+    private HashSet<IPoolable> _instances = new HashSet<IPoolable>();
+    private Stack<IPoolable> _availableInstances = new Stack<IPoolable>();
+
+    public void Initialize(IPoolable prefab)
     {
         _prefab = prefab;
     }
 
-    IPoolable IDynamicPool.GetInstance() => GetInstance();
-
-    public T GetInstance()
+    public IPoolable GetInstance()
     {
+        IPoolable selected;
+
         if (_availableInstances.Count == 0)
         {
-            T instanced = Object.Instantiate(_prefab);
-            Object.DontDestroyOnLoad(instanced);
-            _instances.Add(instanced);
-            instanced.ParentPool = this;
-            return instanced;
+            selected = _prefab.CreateInstance(this);
+            _instances.Add(selected);
         }
         else
         {
-            T selected = _availableInstances.Pop();
-            selected.OnPooledSpawn();
-            return selected;
+            selected = _availableInstances.Pop();
         }
+
+        selected.OnPooledSpawn();
+        return selected;
     }
 
-    void IDynamicPool.ReturnInstance(IPoolable poolable) => ReturnInstance((T)poolable);
-
-    public void ReturnInstance(T instance)
+    public void ReturnInstance(IPoolable instance)
     {
-        if (!instance) return;
+        if (instance == null) return;
+
         if (!_instances.Contains(instance))
         {
             Debug.LogError("Trying to return the wrong object to the pool.");
             return;
         }
+
         _availableInstances.Push(instance);
         instance.OnPooledDespawn();
     }
 
-    public void Destroy()
+    public void OnDestroy()
     {
-        foreach (var item in _instances)
-        {
-            if (item) item.OnPooledDestroy();
-        }
         _instances.Clear();
         _availableInstances.Clear();
+        OnPoolDestroyed?.Invoke();
     }
 }
 
-public interface IDynamicPool
-{
-    IPoolable GetInstance();
-    void ReturnInstance(IPoolable poolable);
-    void Destroy();
-}
 public interface IPoolable
 {
-    IDynamicPool ParentPool { get; set; }
+    GameObject GameObjectReference { get; }
+    DynamicPool ParentPool { get; }
+    IPoolable CreateInstance(DynamicPool parent);
     void OnPooledSpawn();
     void OnPooledDespawn();
-    void OnPooledDestroy();
 }

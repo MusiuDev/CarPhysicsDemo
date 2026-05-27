@@ -45,9 +45,4 @@ public class MainMenuUI : MonoBehaviour
             NavigationManager.Instance.RequestOpenExternalLink(_portfolioLink);
         });
     }
-
-    void OnDestroy()
-    {
-        DynamicPoolProvider.Clear();
-    }
 }

@@ -22,7 +22,7 @@ public class TrackEnvironment : MonoBehaviour
 
     void Awake()
     {
-        //TrackManager.OnTrackUpdated += HandleTrackUpdated;
+        TrackManager.OnTrackUpdated += HandleTrackUpdated;
         TrackManager.OnCheckpointGroupSpawned += HandleGroupSpawned;
         TrackManager.OnCheckpointGroupDespawned += HandleGroupDespawned;
         AddKnotAt(_firstKnotPosition, Quaternion.identity);
@@ -33,7 +33,7 @@ public class TrackEnvironment : MonoBehaviour
 
     void OnDestroy()
     {
-        //TrackManager.OnTrackUpdated -= HandleTrackUpdated;
+        TrackManager.OnTrackUpdated -= HandleTrackUpdated;
         TrackManager.OnCheckpointGroupSpawned -= HandleGroupSpawned;
         TrackManager.OnCheckpointGroupDespawned -= HandleGroupDespawned;
     }
@@ -113,7 +113,10 @@ public class TrackEnvironment : MonoBehaviour
         List<GameObjectPoolable> knotCliffs = _knotsToCliffsDict[oldestKnot];
         foreach (var item in knotCliffs)
         {
-            DynamicPoolProvider.Return(item);
+            if (item)
+            {
+                DynamicPoolProvider.Return(item);
+            }
         }
 
         Destroy(oldestKnot.gameObject);
