@@ -1181,7 +1181,7 @@ GameObject:
   - component: {fileID: 675336442219162742}
   - component: {fileID: 7886080256975026213}
   - component: {fileID: 8584125603253880976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1242,7 +1242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8026947731194629748}
   - component: {fileID: -8203062511697446981}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CliffIsland_XS_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,6 +1443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cliff_5_B (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4aa0e5a9e564e134a818ee5b0e29d2ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1504,6 +1508,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4aa0e5a9e564e134a818ee5b0e29d2ac, type: 3}
       propertyPath: m_Name
       value: Cliff_5_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4aa0e5a9e564e134a818ee5b0e29d2ac, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1579,6 +1587,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cliff_5_A
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d71edd4977e7a6a8eb939cfbee9c3f1e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1652,6 +1664,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
       propertyPath: m_Name
       value: Cliff_1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1727,6 +1743,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cliff_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1800,6 +1820,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
       propertyPath: m_Name
       value: Cliff_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -66,6 +66,10 @@ public class NavigationManager : MonoBehaviour
         });
 
         _backButton.style.display = DisplayStyle.None;
+
+
+        Label versionLabel = _root.Query<Label>("Version_Label");
+        versionLabel.text = $"v{Application.version}";
     }
 
     public Coroutine RequestCoverState(CoverState state, float delay = 0f)
