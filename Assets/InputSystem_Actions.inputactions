@@ -602,6 +602,17 @@
                 },
                 {
                     "name": "",
+                    "id": "08c75125-9ec3-4557-b7cd-9fc2ab76b8e6",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1fea4c82-c0da-431f-b750-172a3abf3d4f",
                     "path": "<Keyboard>/s",
                     "interactions": "",
