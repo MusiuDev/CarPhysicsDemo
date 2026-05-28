@@ -1439,6 +1439,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4aa0e5a9e564e134a818ee5b0e29d2ac, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff4fdeeb40ad249d8acc3adf1a67c6eb, type: 2}
     - target: {fileID: 919132149155446097, guid: 4aa0e5a9e564e134a818ee5b0e29d2ac, type: 3}
       propertyPath: m_Name
       value: Cliff_5_B (1)
@@ -1505,6 +1509,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4aa0e5a9e564e134a818ee5b0e29d2ac, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff4fdeeb40ad249d8acc3adf1a67c6eb, type: 2}
     - target: {fileID: 919132149155446097, guid: 4aa0e5a9e564e134a818ee5b0e29d2ac, type: 3}
       propertyPath: m_Name
       value: Cliff_5_B
@@ -1583,6 +1591,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d71edd4977e7a6a8eb939cfbee9c3f1e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff4fdeeb40ad249d8acc3adf1a67c6eb, type: 2}
     - target: {fileID: 919132149155446097, guid: d71edd4977e7a6a8eb939cfbee9c3f1e, type: 3}
       propertyPath: m_Name
       value: Cliff_5_A
@@ -1661,6 +1673,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff4fdeeb40ad249d8acc3adf1a67c6eb, type: 2}
     - target: {fileID: 919132149155446097, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
       propertyPath: m_Name
       value: Cliff_1 (2)
@@ -1739,6 +1755,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff4fdeeb40ad249d8acc3adf1a67c6eb, type: 2}
     - target: {fileID: 919132149155446097, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
       propertyPath: m_Name
       value: Cliff_1
@@ -1817,6 +1837,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ff4fdeeb40ad249d8acc3adf1a67c6eb, type: 2}
     - target: {fileID: 919132149155446097, guid: f2a0db5439433c11b8b4c4d465c671d1, type: 3}
       propertyPath: m_Name
       value: Cliff_1 (1)
