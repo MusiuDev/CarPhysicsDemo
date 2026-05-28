@@ -513,6 +513,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1729878026092624824, guid: fe889c9b1a249f7cd8e16ba4c3111500, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729878026092624824, guid: fe889c9b1a249f7cd8e16ba4c3111500, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 3
       objectReference: {fileID: 0}
@@ -566,11 +570,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623598138546078485, guid: fe889c9b1a249f7cd8e16ba4c3111500, type: 3}
       propertyPath: m_CustomShadowLayers
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7623598138546078485, guid: fe889c9b1a249f7cd8e16ba4c3111500, type: 3}
       propertyPath: m_ShadowRenderingLayersMask.m_Bits
-      value: 4294967295
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -856,7 +860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7107588477224695282, guid: f5b995c0ffd280f5c95c4154b2fb656b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -347.25
+      value: -265.3
       objectReference: {fileID: 0}
     - target: {fileID: 7107588477224695282, guid: f5b995c0ffd280f5c95c4154b2fb656b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -918,6 +922,14 @@ PrefabInstance:
     - target: {fileID: 4176045158551204441, guid: 45b16046f21f50a638db953d4fdde8be, type: 3}
       propertyPath: m_LocalScale.z
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4176045158551204441, guid: 45b16046f21f50a638db953d4fdde8be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4176045158551204441, guid: 45b16046f21f50a638db953d4fdde8be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5758851225810257737, guid: 45b16046f21f50a638db953d4fdde8be, type: 3}
       propertyPath: m_Name

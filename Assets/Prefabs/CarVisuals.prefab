@@ -650,10 +650,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4135703708340461698, guid: 523983ea8f2820bf5983d813161ef5f3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b33c862b7f4f314997e9e62ce9a0099, type: 2}
+    - target: {fileID: -1765097783736378317, guid: 523983ea8f2820bf5983d813161ef5f3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b33c862b7f4f314997e9e62ce9a0099, type: 2}
+    - target: {fileID: -1748203986799191022, guid: 523983ea8f2820bf5983d813161ef5f3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b33c862b7f4f314997e9e62ce9a0099, type: 2}
+    - target: {fileID: -1491180260961666387, guid: 523983ea8f2820bf5983d813161ef5f3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b33c862b7f4f314997e9e62ce9a0099, type: 2}
     - target: {fileID: 919132149155446097, guid: 523983ea8f2820bf5983d813161ef5f3, type: 3}
       propertyPath: m_Name
       value: MuscleMusiu
       objectReference: {fileID: 0}
+    - target: {fileID: 9017072185221178700, guid: 523983ea8f2820bf5983d813161ef5f3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b33c862b7f4f314997e9e62ce9a0099, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
